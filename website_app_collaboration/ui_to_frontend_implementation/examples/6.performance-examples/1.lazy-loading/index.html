@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>延迟加载示例 / Lazy Loading Examples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 头部导航 / Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <h1>延迟加载示例 / Lazy Loading Examples</h1>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#images">图片延迟加载 / Image Lazy Loading</a></li>
+                    <li><a href="#components">组件延迟加载 / Component Lazy Loading</a></li>
+                    <li><a href="#resources">资源延迟加载 / Resource Lazy Loading</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 图片延迟加载示例 / Image Lazy Loading Examples -->
+        <section id="images" class="section">
+            <div class="container">
+                <h2>图片延迟加载 / Image Lazy Loading</h2>
+                
+                <!-- 原生延迟加载 / Native Lazy Loading -->
+                <div class="demo-block">
+                    <h3>原生延迟加载 / Native Lazy Loading</h3>
+                    <div class="image-grid">
+                        <div class="image-item">
+                            <img src="https://via.placeholder.com/800x600"
+                                 loading="lazy"
+                                 alt="原生延迟加载示例 1 / Native lazy loading example 1">
+                            <p>原生延迟加载 1 / Native lazy loading 1</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="https://via.placeholder.com/800x600"
+                                 loading="lazy"
+                                 alt="原生延迟加载示例 2 / Native lazy loading example 2">
+                            <p>原生延迟加载 2 / Native lazy loading 2</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="https://via.placeholder.com/800x600"
+                                 loading="lazy"
+                                 alt="原生延迟加载示例 3 / Native lazy loading example 3">
+                            <p>原生延迟加载 3 / Native lazy loading 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 交叉观察器延迟加载 / Intersection Observer Lazy Loading -->
+                <div class="demo-block">
+                    <h3>交叉观察器延迟加载 / Intersection Observer Lazy Loading</h3>
+                    <div class="image-grid">
+                        <div class="image-item">
+                            <div class="lazy-container">
+                                <img data-src="https://via.placeholder.com/800x600"
+                                     class="lazy"
+                                     alt="交叉观察器示例 1 / Intersection Observer example 1">
+                                <div class="placeholder">
+                                    <div class="spinner"></div>
+                                </div>
+                            </div>
+                            <p>交叉观察器 1 / Intersection Observer 1</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="lazy-container">
+                                <img data-src="https://via.placeholder.com/800x600"
+                                     class="lazy"
+                                     alt="交叉观察器示例 2 / Intersection Observer example 2">
+                                <div class="placeholder">
+                                    <div class="spinner"></div>
+                                </div>
+                            </div>
+                            <p>交叉观察器 2 / Intersection Observer 2</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="lazy-container">
+                                <img data-src="https://via.placeholder.com/800x600"
+                                     class="lazy"
+                                     alt="交叉观察器示例 3 / Intersection Observer example 3">
+                                <div class="placeholder">
+                                    <div class="spinner"></div>
+                                </div>
+                            </div>
+                            <p>交叉观察器 3 / Intersection Observer 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 渐进式加载 / Progressive Loading -->
+                <div class="demo-block">
+                    <h3>渐进式加载 / Progressive Loading</h3>
+                    <div class="image-grid">
+                        <div class="image-item">
+                            <div class="progressive-container">
+                                <img src="https://via.placeholder.com/50x50"
+                                     data-src="https://via.placeholder.com/800x600"
+                                     class="progressive"
+                                     alt="渐进式加载示例 1 / Progressive loading example 1">
+                            </div>
+                            <p>渐进式加载 1 / Progressive loading 1</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="progressive-container">
+                                <img src="https://via.placeholder.com/50x50"
+                                     data-src="https://via.placeholder.com/800x600"
+                                     class="progressive"
+                                     alt="渐进式加载示例 2 / Progressive loading example 2">
+                            </div>
+                            <p>渐进式加载 2 / Progressive loading 2</p>
+                        </div>
+                        <div class="image-item">
+                            <div class="progressive-container">
+                                <img src="https://via.placeholder.com/50x50"
+                                     data-src="https://via.placeholder.com/800x600"
+                                     class="progressive"
+                                     alt="渐进式加载示例 3 / Progressive loading example 3">
+                            </div>
+                            <p>渐进式加载 3 / Progressive loading 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 组件延迟加载示例 / Component Lazy Loading Examples -->
+        <section id="components" class="section">
+            <div class="container">
+                <h2>组件延迟加载 / Component Lazy Loading</h2>
+                <div class="component-demos">
+                    <!-- 组件将通过 JavaScript 动态加载 / Components will be loaded dynamically via JavaScript -->
+                    <div id="component-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 资源延迟加载示例 / Resource Lazy Loading Examples -->
+        <section id="resources" class="section">
+            <div class="container">
+                <h2>资源延迟加载 / Resource Lazy Loading</h2>
+                
+                <!-- 字体延迟加载 / Font Lazy Loading -->
+                <div class="demo-block">
+                    <h3>字体延迟加载 / Font Lazy Loading</h3>
+                    <div class="font-demo">
+                        <p class="custom-font">这段文字使用延迟加载的字体 / This text uses lazy loaded font</p>
+                    </div>
+                </div>
+
+                <!-- 视频延迟加载 / Video Lazy Loading -->
+                <div class="demo-block">
+                    <h3>视频延迟加载 / Video Lazy Loading</h3>
+                    <div class="video-container">
+                        <video data-src="video.mp4"
+                               class="lazy-video"
+                               controls
+                               poster="https://via.placeholder.com/800x450">
+                            <source type="video/mp4">
+                            您的浏览器不支持视频标签。/ Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- 脚本延迟加载 / Script Lazy Loading -->
+                <div class="demo-block">
+                    <h3>脚本延迟加载 / Script Lazy Loading</h3>
+                    <button id="load-feature" class="load-button">
+                        加载功能 / Load Feature
+                    </button>
+                    <div id="feature-container" class="feature-demo"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 延迟加载示例 / Lazy Loading Examples</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

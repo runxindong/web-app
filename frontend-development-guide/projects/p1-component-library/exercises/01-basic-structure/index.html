@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML基础结构练习</title>
+    <meta name="description" content="这是一个HTML基础结构练习页面">
+    <meta name="keywords" content="HTML,练习,基础结构">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- 1. 添加页头 -->
+    <header>
+        <h1>HTML基础结构练习</h1>
+        <!-- 添加导航菜单和搜索框 -->
+        <nav>
+            <ul>
+                <li><a href="#section1">关于我们</a></li>
+                <li><a href="#section2">产品服务</a></li>
+                <li><a href="#section3">联系方式</a></li>
+                <li>
+                    <form class="search-form">
+                        <input type="search" placeholder="搜索..." aria-label="搜索">
+                        <button type="submit">搜索</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 2. 添加主要内容 -->
+    <main>
+        <!-- 第一部分 -->
+        <section id="section1">
+            <h2>关于我们</h2>
+            <!-- 添加手风琴效果的内容展示 -->
+            <article>
+                <details>
+                    <summary><h3>公司简介</h3></summary>
+                    <p>我们是一家专注于数字化解决方案的科技公司，致力于为企业提供专业的网站建设、移动应用开发和数字营销服务。凭借丰富的行业经验和专业的技术团队，我们已经成功服务超过100家企业客户。</p>
+                </details>
+                
+                <details>
+                    <summary><h3>发展历程</h3></summary>
+                    <ul class="timeline">
+                        <li>
+                            <strong>2020年</strong>
+                            <p>公司成立，开始提供基础的网站建设服务</p>
+                        </li>
+                        <li>
+                            <strong>2021年</strong>
+                            <p>业务扩展至移动应用开发，团队规模扩大到50人</p>
+                        </li>
+                        <li>
+                            <strong>2022年</strong>
+                            <p>获得A轮融资，开始提供数字营销服务</p>
+                        </li>
+                        <li>
+                            <strong>2023年</strong>
+                            <p>服务客户突破100家，成为行业领先企业</p>
+                        </li>
+                    </ul>
+                </details>
+                
+                <details>
+                    <summary><h3>我们的优势</h3></summary>
+                    <ul class="advantages">
+                        <li>专业的技术团队</li>
+                        <li>丰富的项目经验</li>
+                        <li>完善的服务体系</li>
+                        <li>持续的创新能力</li>
+                    </ul>
+                </details>
+            </article>
+        </section>
+
+        <!-- 第二部分 -->
+        <section id="section2">
+            <h2>产品服务</h2>
+            <!-- 添加标签页切换 -->
+            <div class="product-tabs">
+                <div class="tab-buttons" role="tablist">
+                    <button role="tab" aria-selected="true" aria-controls="web-dev">网站建设</button>
+                    <button role="tab" aria-selected="false" aria-controls="app-dev">应用开发</button>
+                    <button role="tab" aria-selected="false" aria-controls="marketing">数字营销</button>
+                </div>
+                
+                <div class="products">
+                    <!-- 产品1 -->
+                    <div id="web-dev" role="tabpanel" class="product">
+                        <img src="https://via.placeholder.com/200x150" alt="产品图片1">
+                        <h3>企业网站建设</h3>
+                        <p>提供专业的企业网站开发服务，包括响应式设计、SEO优化等。</p>
+                        <details>
+                            <summary>服务详情</summary>
+                            <ul>
+                                <li>响应式网站设计</li>
+                                <li>电子商务解决方案</li>
+                                <li>企业门户网站</li>
+                                <li>网站性能优化</li>
+                            </ul>
+                        </details>
+                        <a href="#more">了解更多</a>
+                    </div>
+                    
+                    <!-- 产品2 -->
+                    <div id="app-dev" role="tabpanel" class="product" hidden>
+                        <img src="https://via.placeholder.com/200x150" alt="产品图片2">
+                        <h3>移动应用开发</h3>
+                        <p>专业的移动应用开发团队，提供iOS和Android平台的应用开发服务。</p>
+                        <details>
+                            <summary>服务详情</summary>
+                            <ul>
+                                <li>iOS应用开发</li>
+                                <li>Android应用开发</li>
+                                <li>跨平台解决方案</li>
+                                <li>应用维护更新</li>
+                            </ul>
+                        </details>
+                        <a href="#more">了解更多</a>
+                    </div>
+                    
+                    <!-- 产品3 -->
+                    <div id="marketing" role="tabpanel" class="product" hidden>
+                        <img src="https://via.placeholder.com/200x150" alt="产品图片3">
+                        <h3>数字营销服务</h3>
+                        <p>提供全方位的数字营销解决方案，帮助企业提升品牌影响力。</p>
+                        <details>
+                            <summary>服务详情</summary>
+                            <ul>
+                                <li>搜索引擎优化</li>
+                                <li>社交媒体营销</li>
+                                <li>内容营销策略</li>
+                                <li>数据分析报告</li>
+                            </ul>
+                        </details>
+                        <a href="#more">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分 -->
+        <section id="section3">
+            <h2>联系方式</h2>
+            <div class="contact-info">
+                <details open>
+                    <summary><h3>联系方式</h3></summary>
+                    <p>北京市朝阳区xxx大厦</p>
+                    <p>电话：400-123-4567</p>
+                    <p>邮箱：<a href="mailto:info@example.com">info@example.com</a></p>
+                </details>
+            </div>
+            
+            <div class="contact-form">
+                <h3>在线留言</h3>
+                <form action="#" method="post">
+                    <div>
+                        <label for="name">姓名：</label>
+                        <input type="text" id="name" name="name" required 
+                               pattern="[A-Za-z\u4e00-\u9fa5]{2,20}" 
+                               title="请输入2-20个字符的姓名">
+                    </div>
+                    
+                    <div>
+                        <label for="email">邮箱：</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div>
+                        <label for="phone">电话：</label>
+                        <input type="tel" id="phone" name="phone" 
+                               pattern="[0-9]{11}" 
+                               title="请输入11位手机号码">
+                    </div>
+                    
+                    <div>
+                        <label for="subject">主题：</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">请选择</option>
+                            <option value="consultation">产品咨询</option>
+                            <option value="cooperation">商务合作</option>
+                            <option value="suggestion">意见建议</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="message">留言内容：</label>
+                        <textarea id="message" name="message" rows="4" required 
+                                  minlength="10" maxlength="500"
+                                  placeholder="请输入10-500个字符的留言内容"></textarea>
+                        <small>还可以输入<span id="char-count">500</span>个字符</small>
+                    </div>
+                    
+                    <div>
+                        <label>
+                            <input type="checkbox" name="agreement" required>
+                            我同意隐私政策和服务条款
+                        </label>
+                    </div>
+                    
+                    <button type="submit">提交留言</button>
+                    <button type="reset">重置表单</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 1. 价格表格部分 -->
+        <section id="price-section">
+            <h2>产品价格</h2>
+            <table>
+                <caption>服务套餐价格表</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">套餐类型</th>
+                        <th scope="col">基础版</th>
+                        <th scope="col">专业版</th>
+                        <th scope="col">企业版</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">价格</th>
+                        <td>￥999/月</td>
+                        <td>￥1999/月</td>
+                        <td>定制</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">功能数量</th>
+                        <td>5个</td>
+                        <td>15个</td>
+                        <td>不限</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">技术支持</th>
+                        <td>邮件</td>
+                        <td>24/7在线</td>
+                        <td>专属客服</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">* 价格可能会随时调整，请以实际合同为准</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <!-- 2. 多媒体展示部分 -->
+        <section id="media-section">
+            <h2>产品展示</h2>
+            <!-- 视频播放器 -->
+            <div class="video-container">
+                <h3>产品介绍视频</h3>
+                <video controls poster="assets/images/video-poster.jpg" width="600">
+                    <source src="assets/videos/company-intro.mp4" type="video/mp4">
+                    <source src="assets/videos/company-intro.webm" type="video/webm">
+                    <track kind="subtitles" src="assets/videos/captions-zh.vtt" srclang="zh" label="中文字幕">
+                    <track kind="subtitles" src="assets/videos/captions-en.vtt" srclang="en" label="English">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <!-- 音频播放器 -->
+            <div class="audio-container">
+                <h3>公司介绍音频</h3>
+                <audio controls>
+                    <source src="assets/audios/company-intro.mp3" type="audio/mpeg">
+                    <source src="assets/audios/company-intro.ogg" type="audio/ogg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- 画布元素 -->
+            <div class="canvas-container">
+                <h3>互动演示</h3>
+                <canvas id="demoCanvas" width="400" height="200">
+                    您的浏览器不支持Canvas。
+                </canvas>
+            </div>
+        </section>
+
+        <!-- 3. 公司位置地图 -->
+        <section id="map-section">
+            <h2>公司位置</h2>
+            <iframe 
+                src="https://www.openstreetmap.org/export/embed.html?bbox=116.4,39.9,116.5,40.0&layer=mapnik"
+                width="600" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p>
+                <small>
+                    <a href="https://www.openstreetmap.org/#map=12/39.95/116.45" target="_blank">
+                        在 OpenStreetMap 中查看更大的地图
+                    </a>
+                </small>
+            </p>
+        </section>
+
+        <!-- 4. 技术能力展示 -->
+        <section id="skills-section">
+            <h2>技术能力</h2>
+            <!-- 搜索服务 -->
+            <div class="search-container">
+                <label for="service-search">搜索服务：</label>
+                <input type="text" id="service-search" list="services">
+                <datalist id="services">
+                    <option value="网站开发">
+                    <option value="APP开发">
+                    <option value="小程序开发">
+                    <option value="UI设计">
+                    <option value="数字营销">
+                </datalist>
+            </div>
+            <!-- 技能进度 -->
+            <div class="skill">
+                <label for="web-progress">Web开发进度：</label>
+                <progress id="web-progress" max="100" value="80">80%</progress>
+            </div>
+            <div class="skill">
+                <label for="app-meter">APP开发熟练度：</label>
+                <meter id="app-meter" min="0" max="100" value="75" 
+                       low="30" high="75" optimum="100">75%</meter>
+            </div>
+        </section>
+
+        <!-- 5. 客户评价 -->
+        <section id="testimonials">
+            <h2>客户评价</h2>
+            <!-- 评价1 -->
+            <blockquote cite="http://example.com/case1">
+                <p>这是一个非常专业的团队，他们帮助我们完成了网站的开发。响应速度快，技术实力强，是值得信赖的合作伙伴。</p>
+                <footer>
+                    — <cite>张总, ABC科技有限公司</cite>
+                </footer>
+            </blockquote>
+            
+            <!-- 评价2 -->
+            <blockquote cite="http://example.com/case2">
+                <p>他们的移动应用开发服务非常出色，从需求分析到上线运维，全程专业高效。</p>
+                <footer>
+                    — <cite>李经理, XYZ电子商务公司</cite>
+                </footer>
+            </blockquote>
+            
+            <!-- 评价3 -->
+            <blockquote cite="http://example.com/case3">
+                <p>数字营销团队的创意和执行力都很强，帮助我们显著提升了品牌知名度。</p>
+                <footer>
+                    — <cite>王总监, DEF品牌管理有限公司</cite>
+                </footer>
+            </blockquote>
+        </section>
+
+        <article class="technical-detail">
+            <h3>技术实现细节</h3>
+            
+            <!-- 前端技术 -->
+            <section class="tech-section">
+                <h4>前端技术栈</h4>
+                <p>我们使用现代化的前端技术栈：</p>
+                <pre><code>
+// React 组件示例
+const App = () => {
+    const [count, setCount] = useState(0);
+    
+    return (
+        &lt;div className="app"&gt;
+            &lt;h1&gt;Hello World&lt;/h1&gt;
+            &lt;button onClick={() => setCount(count + 1)}&gt;
+                Count: {count}
+            &lt;/button&gt;
+        &lt;/div&gt;
+    );
+};
+                </code></pre>
+            </section>
+            
+            <!-- 后端技术 -->
+            <section class="tech-section">
+                <h4>后端架构</h4>
+                <p>采用微服务架构，主要技术包括：</p>
+                <ul>
+                    <li>服务器：<code>Node.js</code> + <code>Express</code></li>
+                    <li>数据库：<code>MongoDB</code></li>
+                    <li>缓存：<code>Redis</code></li>
+                </ul>
+            </section>
+            
+            <!-- 开发工具 -->
+            <section class="tech-section">
+                <h4>开发工具</h4>
+                <p>推荐的开发环境配置：</p>
+                <ul>
+                    <li>编辑器：按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> 打开命令面板</li>
+                    <li>终端：使用 <kbd>Ctrl</kbd> + <kbd>`</kbd> 打开集成终端</li>
+                    <li>代码格式化：<kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd></li>
+                </ul>
+            </section>
+            
+            <!-- 性能指标 -->
+            <section class="tech-section">
+                <h4>性能指标</h4>
+                <p>关键性能变量：</p>
+                <ul>
+                    <li>首屏加载时间：<var>t</var> ≤ 2s</li>
+                    <li>API响应时间：<var>r</var> ≤ 200ms</li>
+                    <li>内存占用：<var>m</var> ≤ 100MB</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <!-- 3. 添加页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#section1">关于我们</a></li>
+                    <li><a href="#section2">产品服务</a></li>
+                    <li><a href="#section3">联系方式</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <address>
+                    <p>地址：北京市朝阳区xxx大厦</p>
+                    <p>电话：<a href="tel:400-123-4567">400-123-4567</a></p>
+                    <p>邮箱：<a href="mailto:info@example.com">info@example.com</a></p>
+                </address>
+            </div>
+            
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-links">
+                    <a href="#" title="微信">
+                        <img src="https://via.placeholder.com/30" alt="微信二维码">
+                        微信
+                    </a>
+                    <a href="#" title="微博">
+                        <img src="https://via.placeholder.com/30" alt="微博图标">
+                        微博
+                    </a>
+                    <a href="#" title="LinkedIn">
+                        <img src="https://via.placeholder.com/30" alt="LinkedIn图标">
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>订阅我们</h4>
+                <form class="newsletter-form">
+                    <label for="newsletter-email">订阅获取最新资讯：</label>
+                    <input type="email" id="newsletter-email" name="newsletter-email" 
+                           placeholder="请输入您的邮箱" required>
+                    <button type="submit">订阅</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>
+                版权所有 © 2024 HTML基础练习 | 
+                <a href="#">隐私政策</a> | 
+                <a href="#">使用条款</a> |
+                <a href="#">网站地图</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html> 

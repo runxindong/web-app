@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual List Examples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Virtual List Examples</h1>
+        <p>Demonstrating different virtual list implementations for optimal performance.</p>
+    </header>
+
+    <main>
+        <section id="basic-list" class="demo-section">
+            <h2>Basic Virtual List</h2>
+            <div class="controls">
+                <label>
+                    Total Items:
+                    <input type="number" id="total-items" value="10000" min="100" max="1000000">
+                </label>
+                <label>
+                    Item Height:
+                    <input type="number" id="item-height" value="50" min="20" max="200">
+                </label>
+                <button id="update-list">Update List</button>
+            </div>
+            <div class="virtual-list-container">
+                <div class="virtual-list" id="basic-virtual-list">
+                    <div class="virtual-list-content"></div>
+                </div>
+            </div>
+            <div class="metrics">
+                <div class="metric">
+                    <span>Rendered Items:</span>
+                    <span id="rendered-items-count">0</span>
+                </div>
+                <div class="metric">
+                    <span>Scroll Position:</span>
+                    <span id="scroll-position">0</span>
+                </div>
+                <div class="metric">
+                    <span>Memory Usage:</span>
+                    <span id="memory-usage">0 MB</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="dynamic-height" class="demo-section">
+            <h2>Dynamic Height List</h2>
+            <div class="controls">
+                <label>
+                    Content Type:
+                    <select id="content-type">
+                        <option value="text">Text Only</option>
+                        <option value="mixed">Mixed Content</option>
+                        <option value="cards">Card Layout</option>
+                    </select>
+                </label>
+                <button id="toggle-collapse">Toggle Collapse All</button>
+            </div>
+            <div class="virtual-list-container">
+                <div class="virtual-list" id="dynamic-virtual-list">
+                    <div class="virtual-list-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="infinite-scroll" class="demo-section">
+            <h2>Infinite Scroll List</h2>
+            <div class="controls">
+                <label>
+                    Batch Size:
+                    <input type="number" id="batch-size" value="50" min="10" max="200">
+                </label>
+                <div class="loading-indicator" id="loading-indicator" hidden>
+                    Loading more items...
+                </div>
+            </div>
+            <div class="virtual-list-container">
+                <div class="virtual-list" id="infinite-virtual-list">
+                    <div class="virtual-list-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="grouped-list" class="demo-section">
+            <h2>Grouped Virtual List</h2>
+            <div class="controls">
+                <label>
+                    Group By:
+                    <select id="group-by">
+                        <option value="category">Category</option>
+                        <option value="date">Date</option>
+                        <option value="status">Status</option>
+                    </select>
+                </label>
+                <button id="toggle-groups">Toggle All Groups</button>
+            </div>
+            <div class="virtual-list-container">
+                <div class="virtual-list" id="grouped-virtual-list">
+                    <div class="virtual-list-content"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="performance-metrics">
+            <h3>Performance Metrics</h3>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <span>FPS:</span>
+                    <span id="fps-counter">60</span>
+                </div>
+                <div class="metric">
+                    <span>Memory:</span>
+                    <span id="memory-counter">0 MB</span>
+                </div>
+                <div class="metric">
+                    <span>DOM Nodes:</span>
+                    <span id="dom-nodes-counter">0</span>
+                </div>
+                <div class="metric">
+                    <span>Render Time:</span>
+                    <span id="render-time">0ms</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load modules -->
+    <script type="module" src="js/main.js"></script>
+
+    <!-- Performance monitoring -->
+    <script>
+        // Initialize performance monitoring
+        performance.mark('app-start');
+
+        // Monitor FPS
+        let frameCount = 0;
+        let lastTime = performance.now();
+        const fpsCounter = document.getElementById('fps-counter');
+
+        function updateFPS() {
+            frameCount++;
+            const currentTime = performance.now();
+            if (currentTime - lastTime >= 1000) {
+                fpsCounter.textContent = frameCount;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+            requestAnimationFrame(updateFPS);
+        }
+        requestAnimationFrame(updateFPS);
+
+        // Monitor memory usage
+        if (performance.memory) {
+            setInterval(() => {
+                const memoryUsage = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                document.getElementById('memory-counter').textContent = `${memoryUsage} MB`;
+            }, 1000);
+        }
+
+        // Monitor DOM nodes
+        setInterval(() => {
+            const domNodes = document.getElementsByTagName('*').length;
+            document.getElementById('dom-nodes-counter').textContent = domNodes;
+        }, 1000);
+
+        // Track render time
+        const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                if (entry.entryType === 'measure' && entry.name === 'render') {
+                    document.getElementById('render-time').textContent = `${Math.round(entry.duration)}ms`;
+                }
+            }
+        });
+        observer.observe({ entryTypes: ['measure'] });
+    </script>
+</body>
+</html> 

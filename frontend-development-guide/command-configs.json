@@ -1,0 +1,121 @@
+{
+  "version": "1.0",
+  "description": "命令执行配置清单",
+  "categories": {
+    "simple_operations": {
+      "description": "简单的文件操作命令",
+      "commands": [
+        {
+          "name": "create_directory",
+          "command": "mkdir -p {directory_path}",
+          "explanation": "创建目录结构",
+          "is_background": false,
+          "require_user_approval": false,
+          "variables": {
+            "directory_path": "要创建的目录路径"
+          }
+        },
+        {
+          "name": "copy_file",
+          "command": "cp {source} {destination}",
+          "explanation": "复制文件",
+          "is_background": false,
+          "require_user_approval": false,
+          "variables": {
+            "source": "源文件路径",
+            "destination": "目标文件路径"
+          }
+        },
+        {
+          "name": "create_file",
+          "command": "touch {file_path}",
+          "explanation": "创建空文件",
+          "is_background": false,
+          "require_user_approval": false,
+          "variables": {
+            "file_path": "要创建的文件路径"
+          }
+        }
+      ]
+    },
+    "long_running": {
+      "description": "需要长时间运行的命令",
+      "commands": [
+        {
+          "name": "dev_server",
+          "command": "npm run dev",
+          "explanation": "启动开发服务器",
+          "is_background": true,
+          "require_user_approval": false,
+          "working_directory": "{project_root}"
+        },
+        {
+          "name": "watch_files",
+          "command": "npm run watch",
+          "explanation": "监视文件变化",
+          "is_background": true,
+          "require_user_approval": false,
+          "working_directory": "{project_root}"
+        },
+        {
+          "name": "live_server",
+          "command": "python -m http.server {port}",
+          "explanation": "启动简单的HTTP服务器",
+          "is_background": true,
+          "require_user_approval": false,
+          "variables": {
+            "port": "服务器端口号，默认8000"
+          }
+        }
+      ]
+    },
+    "dangerous_operations": {
+      "description": "潜在危险的命令",
+      "commands": [
+        {
+          "name": "remove_directory",
+          "command": "rm -rf {directory_path}",
+          "explanation": "删除目录及其内容",
+          "is_background": false,
+          "require_user_approval": true,
+          "variables": {
+            "directory_path": "要删除的目录路径"
+          },
+          "confirmation_message": "确定要删除该目录及其所有内容吗？"
+        },
+        {
+          "name": "git_force_push",
+          "command": "git push --force {remote} {branch}",
+          "explanation": "强制推送Git分支",
+          "is_background": false,
+          "require_user_approval": true,
+          "variables": {
+            "remote": "远程仓库名称",
+            "branch": "分支名称"
+          },
+          "confirmation_message": "确定要强制推送吗？这可能会覆盖远程更改。"
+        },
+        {
+          "name": "database_reset",
+          "command": "npm run db:reset",
+          "explanation": "重置数据库",
+          "is_background": false,
+          "require_user_approval": true,
+          "working_directory": "{project_root}",
+          "confirmation_message": "确定要重置数据库吗？这将删除所有现有数据。"
+        }
+      ]
+    }
+  },
+  "variables": {
+    "project_root": "项目根目录路径",
+    "confirmation_timeout": 30
+  },
+  "notes": [
+    "1. 用户可以根据需要修改或添加新的命令配置",
+    "2. variables 中的变量在命令执行时需要被实际值替换",
+    "3. confirmation_message 仅在 require_user_approval 为 true 时有效",
+    "4. working_directory 如果未指定，则使用当前目录",
+    "5. 可以通过修改此文件来自定义命令的执行行为"
+  ]
+} 

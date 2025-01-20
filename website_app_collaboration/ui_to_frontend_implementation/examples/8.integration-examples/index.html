@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集成示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>集成示例</h1>
+        <nav>
+            <ul>
+                <li><a href="#api-integration">API集成</a></li>
+                <li><a href="#third-party">第三方服务集成</a></li>
+                <li><a href="#data-visualization">数据可视化</a></li>
+                <li><a href="#real-time">实时通信</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- API集成示例 -->
+        <section id="api-integration">
+            <h2>API集成示例</h2>
+            
+            <!-- RESTful API示例 -->
+            <div class="example-section">
+                <h3>RESTful API集成</h3>
+                <div class="api-demo">
+                    <div class="user-list">
+                        <h4>用户列表</h4>
+                        <ul id="userList"></ul>
+                        <button id="loadUsers">加载用户</button>
+                    </div>
+                    
+                    <div class="user-form">
+                        <h4>添加用户</h4>
+                        <form id="addUserForm">
+                            <div class="form-group">
+                                <label for="userName">姓名:</label>
+                                <input type="text" id="userName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail">邮箱:</label>
+                                <input type="email" id="userEmail" required>
+                            </div>
+                            <button type="submit">添加</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GraphQL示例 -->
+            <div class="example-section">
+                <h3>GraphQL集成</h3>
+                <div class="graphql-demo">
+                    <div class="post-list">
+                        <h4>文章列表</h4>
+                        <div id="postList"></div>
+                        <button id="loadPosts">加载文章</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三方服务集成 -->
+        <section id="third-party">
+            <h2>第三方服务集成</h2>
+            
+            <!-- 地图集成 -->
+            <div class="example-section">
+                <h3>地图服务集成</h3>
+                <div id="mapContainer" class="map-container"></div>
+                <div class="map-controls">
+                    <input type="text" id="searchLocation" placeholder="搜索地点">
+                    <button id="searchButton">搜索</button>
+                </div>
+            </div>
+
+            <!-- 支付集成 -->
+            <div class="example-section">
+                <h3>支付服务集成</h3>
+                <div class="payment-demo">
+                    <div class="product-info">
+                        <h4>商品信息</h4>
+                        <p>测试商品 - ¥0.01</p>
+                    </div>
+                    <div class="payment-methods">
+                        <button id="payWithAlipay" class="payment-button alipay">
+                            支付宝支付
+                        </button>
+                        <button id="payWithWechat" class="payment-button wechat">
+                            微信支付
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据可视化 -->
+        <section id="data-visualization">
+            <h2>数据可视化集成</h2>
+            
+            <!-- 图表示例 -->
+            <div class="example-section">
+                <h3>图表集成</h3>
+                <div class="chart-container">
+                    <div id="lineChart" class="chart"></div>
+                    <div id="barChart" class="chart"></div>
+                    <div id="pieChart" class="chart"></div>
+                </div>
+                <div class="chart-controls">
+                    <select id="chartDataRange">
+                        <option value="7">最近7天</option>
+                        <option value="30">最近30天</option>
+                        <option value="90">最近90天</option>
+                    </select>
+                    <button id="updateCharts">更新图表</button>
+                </div>
+            </div>
+
+            <!-- 数据表格 -->
+            <div class="example-section">
+                <h3>数据表格集成</h3>
+                <div class="table-container">
+                    <div id="dataGrid"></div>
+                    <div class="grid-controls">
+                        <button id="exportData">导出数据</button>
+                        <button id="printData">打印数据</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实时通信 -->
+        <section id="real-time">
+            <h2>实时通信集成</h2>
+            
+            <!-- WebSocket示例 -->
+            <div class="example-section">
+                <h3>WebSocket通信</h3>
+                <div class="chat-demo">
+                    <div id="chatMessages" class="chat-messages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="输入消息">
+                        <button id="sendMessage">发送</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Server-Sent Events示例 -->
+            <div class="example-section">
+                <h3>服务器推送事件</h3>
+                <div class="notification-demo">
+                    <div id="notificationList" class="notification-list"></div>
+                    <button id="subscribeNotifications">订阅通知</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>集成示例 - 展示各种集成实现</p>
+    </footer>
+
+    <!-- 第三方库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
+    <script src="https://unpkg.com/graphql.js/graphql.min.js"></script>
+    
+    <!-- 自定义脚本 -->
+    <script src="js/api-integration.js"></script>
+    <script src="js/third-party.js"></script>
+    <script src="js/data-visualization.js"></script>
+    <script src="js/real-time.js"></script>
+</body>
+</html> 

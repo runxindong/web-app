@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式断点设计示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>响应式断点设计</h1>
+        <nav>
+            <ul>
+                <li><a href="#intro">简介</a></li>
+                <li><a href="#examples">示例</a></li>
+                <li><a href="#tools">工具</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro" class="content-section">
+            <h2>断点设计简介</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>移动设备</h3>
+                    <p>针对小屏幕设备的布局和内容展示</p>
+                </div>
+                <div class="card">
+                    <h3>平板设备</h3>
+                    <p>适合中等屏幕尺寸的布局方案</p>
+                </div>
+                <div class="card">
+                    <h3>桌面设备</h3>
+                    <p>大屏幕显示器的最佳展示效果</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="content-section">
+            <h2>响应式示例</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="https://via.placeholder.com/300" alt="示例图片">
+                    <h3>图片响应</h3>
+                    <p>根据屏幕大小自动调整图片尺寸</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://via.placeholder.com/300" alt="示例图片">
+                    <h3>布局响应</h3>
+                    <p>不同设备下的布局适配</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://via.placeholder.com/300" alt="示例图片">
+                    <h3>导航响应</h3>
+                    <p>导航菜单的响应式变化</p>
+                </div>
+                <div class="grid-item">
+                    <img src="https://via.placeholder.com/300" alt="示例图片">
+                    <h3>字体响应</h3>
+                    <p>文字大小的自适应调整</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="content-section">
+            <h2>响应式工具</h2>
+            <div class="tool-list">
+                <div class="tool-item">
+                    <h3>媒体查询</h3>
+                    <pre><code>@media (min-width: 768px) {
+    /* 平板样式 */
+}
+
+@media (min-width: 1024px) {
+    /* 桌面样式 */
+}</code></pre>
+                </div>
+                <div class="tool-item">
+                    <h3>视口单位</h3>
+                    <pre><code>/* 响应式字体大小 */
+.responsive-text {
+    font-size: calc(16px + 2vw);
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2>联系我们</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱：</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">留言：</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">发送</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 响应式设计示例. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

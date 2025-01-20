@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可访问性示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 跳转链接 -->
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
+
+    <header role="banner">
+        <h1>可访问性示例</h1>
+        <nav role="navigation" aria-label="主导航">
+            <ul>
+                <li><a href="#keyboard">键盘导航</a></li>
+                <li><a href="#screen-reader">屏幕阅读器</a></li>
+                <li><a href="#focus">焦点管理</a></li>
+                <li><a href="#contrast">颜色对比度</a></li>
+                <li><a href="#alt-text">替代文本</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content" role="main">
+        <!-- 键盘导航示例 -->
+        <section id="keyboard" aria-labelledby="keyboard-heading">
+            <h2 id="keyboard-heading">键盘导航示例</h2>
+
+            <!-- 模态框示例 -->
+            <div class="example-section">
+                <h3>模态框键盘交互</h3>
+                <button id="openModalBtn">打开模态框</button>
+                <div id="modal" class="modal" hidden>
+                    <div class="modal-content" role="dialog" aria-labelledby="modal-title">
+                        <h4 id="modal-title">模态框标题</h4>
+                        <p>使用Tab键在模态框内导航，使用Esc键关闭模态框。</p>
+                        <button id="closeModalBtn">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab序列示例 -->
+            <div class="example-section">
+                <h3>Tab序列导航</h3>
+                <div class="tab-order">
+                    <button tabindex="1">第一项</button>
+                    <button tabindex="2">第二项</button>
+                    <button tabindex="3">第三项</button>
+                    <button tabindex="4">第四项</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 屏幕阅读器示例 -->
+        <section id="screen-reader" aria-labelledby="screen-reader-heading">
+            <h2 id="screen-reader-heading">屏幕阅读器支持示例</h2>
+
+            <!-- 动态内容更新 -->
+            <div class="example-section">
+                <h3>动态内容更新</h3>
+                <button id="updateButton">更新内容</button>
+                <div id="dynamicContent" aria-live="polite"></div>
+                <div id="statusRegion" role="status" aria-live="polite"></div>
+            </div>
+
+            <!-- 数据表格 -->
+            <div class="example-section">
+                <h3>可访问的数据表格</h3>
+                <table id="dataTable" role="grid">
+                    <thead>
+                        <tr>
+                            <th id="header1" scope="col">列标题1</th>
+                            <th id="header2" scope="col">列标题2</th>
+                            <th id="header3" scope="col">列标题3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>数据1</td>
+                            <td>数据2</td>
+                            <td>数据3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 进度指示器 -->
+            <div class="example-section">
+                <h3>进度指示器</h3>
+                <div class="progress-container">
+                    <div id="progressBar" 
+                         role="progressbar" 
+                         aria-valuemin="0" 
+                         aria-valuemax="100" 
+                         aria-valuenow="0">
+                        <span id="progressText"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 焦点管理示例 -->
+        <section id="focus" aria-labelledby="focus-heading">
+            <h2 id="focus-heading">焦点管理示例</h2>
+
+            <!-- 焦点陷阱 -->
+            <div class="example-section">
+                <h3>焦点陷阱</h3>
+                <div data-focus-trap class="focus-trap-container">
+                    <button>第一个按钮</button>
+                    <input type="text" placeholder="输入框">
+                    <button>最后一个按钮</button>
+                </div>
+            </div>
+
+            <!-- 焦点指示器 -->
+            <div class="example-section">
+                <h3>焦点指示器</h3>
+                <div class="focus-indicator-container">
+                    <button class="focus-visible-button">可见焦点按钮</button>
+                    <a href="#" class="focus-visible-link">可见焦点链接</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 颜色对比度示例 -->
+        <section id="contrast" aria-labelledby="contrast-heading">
+            <h2 id="contrast-heading">颜色对比度示例</h2>
+
+            <!-- 颜色选择器 -->
+            <div class="example-section">
+                <h3>颜色对比度检查器</h3>
+                <div class="color-picker-container">
+                    <div class="color-inputs">
+                        <label>
+                            背景色:
+                            <input type="color" class="background-color">
+                        </label>
+                        <label>
+                            文本色:
+                            <input type="color" class="text-color">
+                        </label>
+                    </div>
+                    <div class="preview-text">预览文本</div>
+                    <div class="contrast-info">
+                        <p class="contrast-ratio"></p>
+                        <p class="wcag-aa"></p>
+                        <p class="wcag-aaa"></p>
+                        <p class="suggested-color" hidden></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 高对比度模式 -->
+            <div class="example-section">
+                <h3>高对比度模式</h3>
+                <button id="highContrastToggle">切换高对比度模式</button>
+            </div>
+        </section>
+
+        <!-- 替代文本示例 -->
+        <section id="alt-text" aria-labelledby="alt-text-heading">
+            <h2 id="alt-text-heading">替代文本示例</h2>
+
+            <!-- 图片替代文本 -->
+            <div class="example-section">
+                <h3>图片替代文本</h3>
+                <img src="images/example.jpg" 
+                     alt="示例图片" 
+                     data-description="这是一张用于演示替代文本的示例图片">
+            </div>
+
+            <!-- SVG图标 -->
+            <div class="example-section">
+                <h3>SVG图标</h3>
+                <div class="icon-container">
+                    <svg class="icon-menu" role="img" aria-label="菜单图标">
+                        <title>菜单</title>
+                        <rect x="2" y="4" width="20" height="2"></rect>
+                        <rect x="2" y="11" width="20" height="2"></rect>
+                        <rect x="2" y="18" width="20" height="2"></rect>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- 表单验证示例 -->
+        <section id="form" aria-labelledby="form-heading">
+            <h2 id="form-heading">可访问的表单示例</h2>
+            <form id="accessibleForm" novalidate>
+                <div class="form-group">
+                    <label for="name">姓名 (必填)</label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           required 
+                           aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">邮箱 (必填)</label>
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           required 
+                           aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">留言</label>
+                    <textarea id="message" 
+                              name="message" 
+                              aria-describedby="message-help"></textarea>
+                    <div id="message-help" class="help-text">
+                        请输入您的留言内容
+                    </div>
+                </div>
+
+                <button type="submit">提交</button>
+            </form>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>可访问性示例 - 展示Web可访问性最佳实践</p>
+    </footer>
+
+    <!-- JavaScript文件 -->
+    <script src="js/keyboard.js"></script>
+    <script src="js/screen-reader.js"></script>
+    <script src="js/focus.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/alt-text.js"></script>
+    <script src="js/aria.js"></script>
+</body>
+</html> 

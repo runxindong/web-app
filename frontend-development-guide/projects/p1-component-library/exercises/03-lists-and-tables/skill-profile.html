@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人技能清单 - 前端开发工程师</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* 技能树样式 */
+        .skill-tree {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .skill-tree li {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+
+        .skill-tree ul {
+            list-style-type: circle;
+            margin-top: 10px;
+        }
+
+        /* 项目经验表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* 证书列表样式 */
+        .certificates {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .certificates dt {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .certificates dd {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        /* 进度条样式 */
+        .skill-level {
+            width: 150px;
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            display: inline-block;
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .skill-level div {
+            height: 100%;
+            background-color: #3498db;
+            position: relative;
+        }
+
+        .skill-level div::after {
+            content: attr(data-percent);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .skill-level:hover div::after {
+            opacity: 1;
+        }
+
+        .skill-level div:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>个人技能清单</h1>
+
+    <!-- 技能树 -->
+    <section>
+        <h2>专业技能</h2>
+        <ul class="skill-tree">
+            <li>前端开发
+                <ul>
+                    <li>基础技术
+                        <ul>
+                            <li>HTML5
+                                <ul>
+                                    <li>语义化标签 <span class="skill-level"><div style="width: 95%" data-percent="95%"></div></span></li>
+                                    <li>Canvas/SVG <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                    <li>Web Components <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>CSS3
+                                <ul>
+                                    <li>Flexbox/Grid <span class="skill-level"><div style="width: 90%" data-percent="90%"></div></span></li>
+                                    <li>动画/过渡 <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                    <li>响应式设计 <span class="skill-level"><div style="width: 88%" data-percent="88%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>JavaScript
+                                <ul>
+                                    <li>ES6+ <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                    <li>TypeScript <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                    <li>设计模式 <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>框架和库
+                        <ul>
+                            <li>React生态
+                                <ul>
+                                    <li>React Hooks <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                    <li>Redux <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                    <li>Next.js <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>Vue.js生态
+                                <ul>
+                                    <li>Vue 3 <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                    <li>Vuex/Pinia <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                    <li>Nuxt.js <span class="skill-level"><div style="width: 70%" data-percent="70%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>后端开发
+                <ul>
+                    <li>服务端技术
+                        <ul>
+                            <li>Node.js
+                                <ul>
+                                    <li>Express <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                    <li>Nest.js <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                    <li>GraphQL <span class="skill-level"><div style="width: 70%" data-percent="70%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>数据库
+                                <ul>
+                                    <li>MongoDB <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                    <li>MySQL <span class="skill-level"><div style="width: 70%" data-percent="70%"></div></span></li>
+                                    <li>Redis <span class="skill-level"><div style="width: 65%" data-percent="65%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>开发工具与DevOps
+                <ul>
+                    <li>版本控制
+                        <ul>
+                            <li>Git
+                                <ul>
+                                    <li>分支管理 <span class="skill-level"><div style="width: 90%" data-percent="90%"></div></span></li>
+                                    <li>工作流程 <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>开发环境
+                        <ul>
+                            <li>编辑器和IDE
+                                <ul>
+                                    <li>VS Code <span class="skill-level"><div style="width: 95%" data-percent="95%"></div></span></li>
+                                    <li>WebStorm <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>调试工具
+                                <ul>
+                                    <li>Chrome DevTools <span class="skill-level"><div style="width: 90%" data-percent="90%"></div></span></li>
+                                    <li>性能优化工具 <span class="skill-level"><div style="width: 85%" data-percent="85%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>部署与CI/CD
+                        <ul>
+                            <li>容器化
+                                <ul>
+                                    <li>Docker <span class="skill-level"><div style="width: 75%" data-percent="75%"></div></span></li>
+                                    <li>Kubernetes <span class="skill-level"><div style="width: 65%" data-percent="65%"></div></span></li>
+                                </ul>
+                            </li>
+                            <li>自动化部署
+                                <ul>
+                                    <li>Jenkins <span class="skill-level"><div style="width: 70%" data-percent="70%"></div></span></li>
+                                    <li>GitHub Actions <span class="skill-level"><div style="width: 80%" data-percent="80%"></div></span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 项目经验 -->
+    <section>
+        <h2>项目经验</h2>
+        <table>
+            <caption>近期项目列表</caption>
+            <thead>
+                <tr>
+                    <th>项目名称</th>
+                    <th>技术栈</th>
+                    <th>角色</th>
+                    <th>完成时间</th>
+                    <th>项目评级</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>电商平台重构</td>
+                    <td>React + Node.js</td>
+                    <td>前端负责人</td>
+                    <td>2024-02</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>企业管理系统</td>
+                    <td>Vue.js + Express</td>
+                    <td>全栈开发</td>
+                    <td>2023-12</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>移动端APP</td>
+                    <td>React Native</td>
+                    <td>开发工程师</td>
+                    <td>2023-09</td>
+                    <td>A</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">注：项目评级范围 A+ 到 C，A+ 为最高评级</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <!-- 专业证书 -->
+    <section>
+        <h2>专业证书</h2>
+        <dl class="certificates">
+            <dt>前端开发认证</dt>
+            <dd>
+                <ul>
+                    <li>证书编号：FE2024001</li>
+                    <li>发证时间：2024年1月</li>
+                    <li>有效期：3年</li>
+                </ul>
+            </dd>
+
+            <dt>AWS 云计算认证</dt>
+            <dd>
+                <ul>
+                    <li>证书编号：AWS2023089</li>
+                    <li>发证时间：2023年12月</li>
+                    <li>有效期：2年</li>
+                </ul>
+            </dd>
+
+            <dt>Google Analytics 认证</dt>
+            <dd>
+                <ul>
+                    <li>证书编号：GA2023456</li>
+                    <li>发证时间：2023年10月</li>
+                    <li>有效期：2年</li>
+                </ul>
+            </dd>
+        </dl>
+    </section>
+</body>
+</html> 

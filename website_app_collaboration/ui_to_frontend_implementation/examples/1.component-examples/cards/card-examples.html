@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卡片组件示例 | Card Examples</title>
+    <link rel="stylesheet" href="card-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>卡片组件示例 | Card Examples</h1>
+
+        <section class="example-section">
+            <h2>基础卡片 | Basic Cards</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card__content">
+                        <h3 class="card__title">基础卡片标题</h3>
+                        <p class="card__text">这是一个基础卡片的示例，展示了最简单的卡片样式。</p>
+                    </div>
+                </div>
+
+                <div class="card card--outlined">
+                    <div class="card__content">
+                        <h3 class="card__title">描边卡片</h3>
+                        <p class="card__text">这是一个带有边框的卡片示例。</p>
+                    </div>
+                </div>
+
+                <div class="card card--elevated">
+                    <div class="card__content">
+                        <h3 class="card__title">浮起卡片</h3>
+                        <p class="card__text">这是一个带有阴影效果的卡片示例。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>媒体卡片 | Media Cards</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <img src="https://via.placeholder.com/400x200" alt="示例图片" class="card__image">
+                    <div class="card__content">
+                        <h3 class="card__title">顶部图片卡片</h3>
+                        <p class="card__text">这是一个顶部带有图片的卡片示例。</p>
+                    </div>
+                </div>
+
+                <div class="card card--horizontal">
+                    <img src="https://via.placeholder.com/200x200" alt="示例图片" class="card__image">
+                    <div class="card__content">
+                        <h3 class="card__title">横向布局卡片</h3>
+                        <p class="card__text">这是一个横向布局的卡片示例，图片在左侧。</p>
+                    </div>
+                </div>
+
+                <div class="card card--overlay">
+                    <img src="https://via.placeholder.com/400x300" alt="示例图片" class="card__image">
+                    <div class="card__content">
+                        <h3 class="card__title">覆盖式卡片</h3>
+                        <p class="card__text">这是一个内容覆盖在图片上的卡片示例。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>交互卡片 | Interactive Cards</h2>
+            <div class="card-grid">
+                <a href="#" class="card card--clickable">
+                    <div class="card__content">
+                        <h3 class="card__title">可点击卡片</h3>
+                        <p class="card__text">这是一个可以点击的卡片示例。</p>
+                    </div>
+                </a>
+
+                <div class="card">
+                    <div class="card__content">
+                        <h3 class="card__title">带操作按钮</h3>
+                        <p class="card__text">这是一个底部带有操作按钮的卡片示例。</p>
+                    </div>
+                    <div class="card__actions">
+                        <button class="card__button card__button--primary">确认</button>
+                        <button class="card__button">取消</button>
+                    </div>
+                </div>
+
+                <div class="card card--expandable">
+                    <div class="card__header">
+                        <h3 class="card__title">可展开卡片</h3>
+                        <button class="card__expand-button">展开</button>
+                    </div>
+                    <div class="card__content">
+                        <p class="card__text">这是一个可以展开查看更多内容的卡片示例。这里是展开后显示的详细内容。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>特殊卡片 | Special Cards</h2>
+            <div class="card-grid">
+                <div class="card card--status card--success">
+                    <div class="card__content">
+                        <h3 class="card__title">成功状态</h3>
+                        <p class="card__text">这是一个表示成功状态的卡片示例。</p>
+                    </div>
+                </div>
+
+                <div class="card card--status card--warning">
+                    <div class="card__content">
+                        <h3 class="card__title">警告状态</h3>
+                        <p class="card__text">这是一个表示警告状态的卡片示例。</p>
+                    </div>
+                </div>
+
+                <div class="card card--status card--error">
+                    <div class="card__content">
+                        <h3 class="card__title">错误状态</h3>
+                        <p class="card__text">这是一个表示错误状态的卡片示例。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 

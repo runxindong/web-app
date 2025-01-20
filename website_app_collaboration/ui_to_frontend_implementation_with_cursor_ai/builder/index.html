@@ -1,0 +1,381 @@
+<style>
+    .blog-container {
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      align-items: center;
+      padding: 30px 80px 153px;
+    }
+    
+    .blog-wrapper {
+      display: flex;
+      width: 1280px;
+      max-width: 100%;
+      flex-direction: column;
+    }
+    
+    .header-nav {
+      display: flex;
+      width: 100%;
+      gap: 20px;
+      color: #000;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    
+    .blog-title {
+      font: 400 40px Amarante, sans-serif;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px 45px;
+      margin: auto 0;
+      font: 500 16px Poppins, sans-serif;
+    }
+    
+    .content-wrapper {
+      align-self: end;
+      display: flex;
+      margin-top: 79px;
+      width: 1237px;
+      max-width: 100%;
+      gap: 40px 45px;
+      flex-wrap: wrap;
+    }
+    
+    .social-stats {
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      color: #000;
+      text-align: center;
+      font: 350 14px Segoe UI, sans-serif;
+    }
+    
+    .stat-icon {
+      aspect-ratio: 0.95;
+      object-fit: contain;
+      width: 18px;
+      margin: 8px 0;
+    }
+    
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-basis: 0;
+      width: fit-content;
+    }
+    
+    .article-header-image {
+      aspect-ratio: 2.82;
+      object-fit: contain;
+      width: 100%;
+    }
+    
+    .article-content {
+      background-color: #fff;
+      padding: 45px 32px;
+      width: 100%;
+    }
+    
+    .article-title {
+      color: #000;
+      font: 700 48px/60px Segoe UI, sans-serif;
+    }
+    
+    .tag-list {
+      display: flex;
+      margin-top: 15px;
+      gap: 15px;
+      color: #000;
+      font: 400 13px Segoe UI, sans-serif;
+    }
+    
+    .tag {
+      border-radius: 7px;
+      padding: 6px;
+    }
+    
+    .tag-webdev { background-color: #ebf3ff; }
+    .tag-git { background-color: #fbebff; }
+    .tag-github { background-color: #efebff; }
+    .tag-javascript { background-color: #fffdeb; }
+    
+    .author-info {
+      display: flex;
+      margin-top: 15px;
+      gap: 15px;
+      font-family: Segoe UI, sans-serif;
+      color: #000;
+    }
+    
+    .author-avatar {
+      aspect-ratio: 1;
+      object-fit: contain;
+      width: 40px;
+      border-radius: 50%;
+    }
+    
+    .author-details {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .author-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .publish-date {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    
+    .article-text {
+      color: #000;
+      font: 400 16px/27px PT Serif, sans-serif;
+      margin: 15px 0;
+    }
+    
+    .code-block {
+      border-radius: 8px;
+      background-color: #211e2b;
+      color: #fff;
+      font: 400 14px Consolas, sans-serif;
+      padding: 15px 20px;
+      margin: 15px 0;
+    }
+    
+    .related-posts {
+      background-color: #fff;
+      padding: 30px 40px;
+      margin-top: 40px;
+    }
+    
+    .related-posts-title {
+      font-size: 24px;
+      font-weight: 700;
+      font-family: Segoe UI, sans-serif;
+    }
+    
+    .related-post-item {
+      display: flex;
+      gap: 15px;
+      margin-top: 22px;
+    }
+    
+    .related-post-image {
+      aspect-ratio: 1;
+      object-fit: contain;
+      width: 55px;
+      border-radius: 50%;
+    }
+    
+    .related-post-details {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .related-post-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .related-post-meta {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    .sidebar {
+      width: 26%;
+      margin-left: 20px;
+    }
+    
+    .profile-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    
+    .profile-header {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .profile-stats {
+      display: flex;
+      margin-top: 20px;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    
+    .follow-button {
+      background-color: #034aff;
+      color: #fff;
+      border-radius: 8px;
+      padding: 11px;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 20px;
+      width: 100%;
+    }
+    
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    
+    @media (max-width: 991px) {
+      .blog-container {
+        padding: 0 20px 100px;
+      }
+      
+      .content-wrapper {
+        margin-top: 40px;
+      }
+      
+      .article-title {
+        font-size: 40px;
+        line-height: 56px;
+      }
+      
+      .sidebar {
+        width: 100%;
+        margin: 30px 0 0;
+      }
+    }
+    </style>
+    
+    <main class="blog-container">
+      <div class="blog-wrapper">
+        <header class="header-nav">
+          <h1 class="blog-title">The Blog</h1>
+          <nav class="nav-links" aria-label="Main navigation">
+            <a href="#about">About Us</a>
+            <a href="#projects">Projects</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </header>
+    
+        <div class="content-wrapper">
+          <aside class="social-stats" aria-label="Social engagement stats">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1097133f10b2deeb716eed0621b9de11122db39676eed06cf9dbdfc1fdfb9f70?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="stat-icon" />
+            <span>125</span>
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/63d22657027e79fbdfc44a36cc87e36471691ccf87b4abbc25e664b8cbb08d88?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="stat-icon" />
+            <span>46</span>
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/39827d9bbf2e6f15313cda4677aa4397c1d38b38c1f007bb343c1fb42ffc0b21?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="stat-icon" />
+            <span>70</span>
+          </aside>
+    
+          <article class="main-content">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4657376388999b09952a132f8644adfe659e0777948d0c9282d4ea7ce4d009d?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="Article featured image" class="article-header-image" />
+            
+            <div class="article-content">
+              <h2 class="article-title">Learn the hidden feature in Git - Stash</h2>
+              
+              <div class="tag-list">
+                <span class="tag tag-webdev">#webdev</span>
+                <span class="tag tag-git">#git</span>
+                <span class="tag tag-github">#github</span>
+                <span class="tag tag-javascript">#javascript</span>
+              </div>
+              
+              <div class="author-info">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/7ec5860e4cb2d100cd6577826f8c723c6ce14376fd60b45725d6788591624901?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="John Doe's profile picture" class="author-avatar" />
+                <div class="author-details">
+                  <span class="author-name">John Doe</span>
+                  <span class="publish-date">May 12 | Originally published at boburjon.netlify.app | 3 min read</span>
+                </div>
+              </div>
+    
+              <p class="article-text">Lorem ipsum, everyone 👏</p>
+              
+              <h3>1. What is Stash</h3>
+              <p class="article-text">Lacinia ut gravida tempus sollicitudin condimentum sit urna cursus malesuada. Eu lacus dis et tempor non. Odio tristique dignissim lorem ipsum vestibulum. Cras quisque praesent.</p>
+              
+              <h3>2. When to use Stash</h3>
+              <p class="article-text">Lacinia ut gravida tempus sollicitudin condimentum sit urna cursus malesuada. Eu lacus dis et tempor non. Odio tristique dignissim lorem ipsum.com vestibulum. Cras quisque praesent.</p>
+              
+              <h3>3. How to use Stash</h3>
+              <p class="article-text">Lacinia ut gravida tempus sollicitudin condimentum sit urna cursus malesuada. Eu lacus dis et tempor non. Odio</p>
+    
+              <div class="code-block">
+                class Car {
+                  constructor(name) {
+                    this.name = name;
+                  }
+                  static hello() {
+                    return "Hello!!";
+                  }
+                }
+    
+                let myCar = new Car("Ford");
+              </div>
+            </div>
+    
+            <section class="related-posts">
+              <h3 class="related-posts-title">Read next</h3>
+              
+              <div class="related-post-item">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c1403e8051bba5ba5ced8a5a674f1116cf2bda7d6fd661751f3914c4f60eb36?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="related-post-image" />
+                <div class="related-post-details">
+                  <h4 class="related-post-title">3 Years of VueJS (2021) Link Only</h4>
+                  <span class="related-post-meta">Bobur Mavlonov - Apr 20</span>
+                </div>
+              </div>
+              
+              <div class="related-post-item">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c1403e8051bba5ba5ced8a5a674f1116cf2bda7d6fd661751f3914c4f60eb36?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="related-post-image" />
+                <div class="related-post-details">
+                  <h4 class="related-post-title">How to choose colors and fonts correctly for your website</h4>
+                  <span class="related-post-meta">Sundar Pichai - Apr 20</span>
+                </div>
+              </div>
+              
+              <div class="related-post-item">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c1403e8051bba5ba5ced8a5a674f1116cf2bda7d6fd661751f3914c4f60eb36?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="" class="related-post-image" />
+                <div class="related-post-details">
+                  <h4 class="related-post-title">Does PHP still live in 2021 despite of Wordpress and Laravel?</h4>
+                  <span class="related-post-meta">Pavel Durov - Apr 20</span>
+                </div>
+              </div>
+            </section>
+          </article>
+    
+          <aside class="sidebar">
+            <div class="profile-card">
+              <div class="profile-header">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c1403e8051bba5ba5ced8a5a674f1116cf2bda7d6fd661751f3914c4f60eb36?placeholderIfAbsent=true&apiKey=233e5d278d064fb1b500c837f078cfa5" alt="John Doe's profile picture" class="author-avatar" />
+                <div class="author-details">
+                  <span class="author-name">John Doe</span>
+                  <span>nodejs developer</span>
+                </div>
+              </div>
+              
+              <div class="profile-stats">
+                <div>
+                  <span class="visually-hidden">Number of followers</span>
+                  <span>1.5k followers</span>
+                </div>
+                <div>
+                  <span class="visually-hidden">Join date</span>
+                  <span>Joined May 12, 2020</span>
+                </div>
+              </div>
+              
+              <button class="follow-button">Follow</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>

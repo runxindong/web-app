@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航组件示例 | Navigation Examples</title>
+    <link rel="stylesheet" href="nav-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>导航组件示例 | Navigation Examples</h1>
+
+        <section class="example-section">
+            <h2>顶部导航栏 | Top Navigation Bar</h2>
+            <nav class="nav nav--top">
+                <div class="nav__brand">
+                    <a href="#" class="nav__logo">Logo</a>
+                </div>
+                <ul class="nav__menu">
+                    <li class="nav__item"><a href="#" class="nav__link nav__link--active">首页</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">产品</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">服务</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">关于我们</a></li>
+                </ul>
+                <div class="nav__actions">
+                    <button class="nav__button">登录</button>
+                    <button class="nav__button nav__button--primary">注册</button>
+                </div>
+                <button class="nav__toggle">
+                    <span class="nav__toggle-icon"></span>
+                </button>
+            </nav>
+        </section>
+
+        <section class="example-section">
+            <h2>侧边导航栏 | Side Navigation</h2>
+            <nav class="nav nav--side">
+                <div class="nav__brand">
+                    <a href="#" class="nav__logo">Logo</a>
+                </div>
+                <ul class="nav__menu nav__menu--vertical">
+                    <li class="nav__item">
+                        <a href="#" class="nav__link nav__link--active">
+                            <i class="fas fa-home"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <i class="fas fa-box"></i>
+                            <span>产品</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <i class="fas fa-cog"></i>
+                            <span>服务</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">
+                            <i class="fas fa-info-circle"></i>
+                            <span>关于我们</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="example-section">
+            <h2>下拉菜单 | Dropdown Menu</h2>
+            <nav class="nav">
+                <ul class="nav__menu">
+                    <li class="nav__item nav__item--has-dropdown">
+                        <a href="#" class="nav__link">
+                            产品
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="nav__dropdown">
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">产品类别 1</a>
+                            </li>
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">产品类别 2</a>
+                            </li>
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">产品类别 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav__item nav__item--has-dropdown">
+                        <a href="#" class="nav__link">
+                            服务
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="nav__dropdown">
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">服务类别 1</a>
+                            </li>
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">服务类别 2</a>
+                            </li>
+                            <li class="nav__dropdown-item">
+                                <a href="#" class="nav__dropdown-link">服务类别 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="example-section">
+            <h2>面包屑导航 | Breadcrumb</h2>
+            <nav class="breadcrumb">
+                <ul class="breadcrumb__list">
+                    <li class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">首页</a>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">产品</a>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">类别</a>
+                    </li>
+                    <li class="breadcrumb__item breadcrumb__item--active">
+                        <span class="breadcrumb__text">产品详情</span>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="example-section">
+            <h2>标签导航 | Tab Navigation</h2>
+            <nav class="tabs">
+                <ul class="tabs__list">
+                    <li class="tabs__item">
+                        <a href="#" class="tabs__link tabs__link--active">概述</a>
+                    </li>
+                    <li class="tabs__item">
+                        <a href="#" class="tabs__link">详情</a>
+                    </li>
+                    <li class="tabs__item">
+                        <a href="#" class="tabs__link">评价</a>
+                    </li>
+                    <li class="tabs__item">
+                        <a href="#" class="tabs__link">相关</a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="example-section">
+            <h2>分页导航 | Pagination</h2>
+            <nav class="pagination">
+                <ul class="pagination__list">
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link pagination__link--prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link pagination__link--active">1</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link">2</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link">3</a>
+                    </li>
+                    <li class="pagination__item">
+                        <span class="pagination__ellipsis">...</span>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link">10</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="#" class="pagination__link pagination__link--next">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+    </div>
+</body>
+</html> 

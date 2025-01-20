@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Optimization Examples</title>
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="fonts/roboto-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/roboto-v20-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Font loading strategies -->
+    <script>
+        // Font loading API implementation
+        if ("fonts" in document) {
+            // Stage 1: Load critical fonts
+            Promise.all([
+                document.fonts.load("1em Roboto"),
+                document.fonts.load("bold 1em Roboto")
+            ]).then(() => {
+                document.documentElement.classList.add('fonts-stage-1');
+            });
+
+            // Stage 2: Load non-critical fonts
+            Promise.all([
+                document.fonts.load("italic 1em Roboto"),
+                document.fonts.load("bold italic 1em Roboto")
+            ]).then(() => {
+                document.documentElement.classList.add('fonts-stage-2');
+            });
+        }
+    </script>
+
+    <!-- Critical CSS for font loading -->
+    <style>
+        /* Font-display strategy */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Roboto'),
+                 url('fonts/roboto-v20-latin-regular.woff2') format('woff2'),
+                 url('fonts/roboto-v20-latin-regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local('Roboto Bold'),
+                 url('fonts/roboto-v20-latin-700.woff2') format('woff2'),
+                 url('fonts/roboto-v20-latin-700.woff') format('woff');
+        }
+
+        /* System font fallback */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* Font loading stages */
+        .fonts-stage-1 body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Font Optimization Examples</h1>
+        <p>This page demonstrates various font optimization techniques.</p>
+    </header>
+
+    <main>
+        <section id="font-loading">
+            <h2>Font Loading Strategies</h2>
+            
+            <div class="example">
+                <h3>System Font Fallback</h3>
+                <p class="system-font">
+                    This text uses system fonts for immediate rendering while custom fonts load.
+                </p>
+            </div>
+
+            <div class="example">
+                <h3>Font Display: Swap</h3>
+                <p class="font-display-swap">
+                    This text uses font-display: swap for a smooth font loading experience.
+                </p>
+            </div>
+
+            <div class="example">
+                <h3>Font Display: Optional</h3>
+                <p class="font-display-optional">
+                    This text uses font-display: optional to prevent layout shifts.
+                </p>
+            </div>
+        </section>
+
+        <section id="font-subsetting">
+            <h2>Font Subsetting Examples</h2>
+            
+            <div class="example">
+                <h3>Latin Subset</h3>
+                <p class="latin-subset">
+                    This text uses a subset of characters for Latin languages.
+                </p>
+            </div>
+
+            <div class="example">
+                <h3>Custom Subset</h3>
+                <p class="custom-subset">
+                    This text uses a custom subset with only required characters.
+                </p>
+            </div>
+        </section>
+
+        <section id="variable-fonts">
+            <h2>Variable Fonts</h2>
+            
+            <div class="example">
+                <h3>Weight Variations</h3>
+                <div class="weight-demo">
+                    <p style="font-weight: 100">Thin text (100)</p>
+                    <p style="font-weight: 400">Regular text (400)</p>
+                    <p style="font-weight: 700">Bold text (700)</p>
+                    <p style="font-weight: 900">Black text (900)</p>
+                </div>
+            </div>
+
+            <div class="example">
+                <h3>Width Variations</h3>
+                <div class="width-demo">
+                    <p class="condensed">Condensed text</p>
+                    <p class="normal-width">Normal width text</p>
+                    <p class="expanded">Expanded text</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="performance-metrics">
+            <h2>Performance Metrics</h2>
+            
+            <div class="example">
+                <h3>Font Loading Times</h3>
+                <div id="font-metrics"></div>
+            </div>
+
+            <div class="example">
+                <h3>Font Size Comparison</h3>
+                <div id="font-sizes"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="font-optimization.js"></script>
+</body>
+</html> 

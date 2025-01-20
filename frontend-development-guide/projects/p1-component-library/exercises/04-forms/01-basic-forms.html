@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础表单元素练习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        input:invalid {
+            border-color: #e74c3c;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .required::after {
+            content: "*";
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .range-container {
+            position: relative;
+            display: block;
+            padding-top: 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 0;
+        }
+
+        .range-value {
+            position: absolute;
+            top: 0;
+            padding: 2px 6px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            transform: translateX(-50%);
+            transition: left 0.1s;
+        }
+
+        .range-value::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>基础表单元素练习</h1>
+    <p>这个练习展示了各种基本的表单输入元素及其用法。</p>
+
+    <form action="#" method="POST" id="basic-form">
+        <!-- 文本输入 -->
+        <div class="form-group">
+            <label for="username" class="required">用户名</label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username" 
+                required
+                minlength="3"
+                maxlength="20"
+                placeholder="请输入3-20个字符"
+            >
+            <p class="help-text">用户名将用于登录，请使用字母、数字或下划线</p>
+        </div>
+
+        <!-- 密码输入 -->
+        <div class="form-group">
+            <label for="password" class="required">密码</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required
+                minlength="8"
+                placeholder="请输入至少8位密码"
+            >
+            <p class="help-text">密码必须包含字母和数字，长度至少8位</p>
+        </div>
+
+        <!-- 邮箱输入 -->
+        <div class="form-group">
+            <label for="email" class="required">电子邮箱</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                placeholder="example@domain.com"
+            >
+            <p class="help-text">请输入有效的电子邮箱地址</p>
+        </div>
+
+        <!-- 电话输入 -->
+        <div class="form-group">
+            <label for="phone">手机号码</label>
+            <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                pattern="[0-9]{11}"
+                placeholder="请输入11位手机号"
+            >
+            <p class="help-text">可选，用于接收通知</p>
+        </div>
+
+        <!-- 数字输入 -->
+        <div class="form-group">
+            <label for="age">年龄</label>
+            <input 
+                type="number" 
+                id="age" 
+                name="age"
+                min="18"
+                max="120"
+                placeholder="请输入年龄"
+            >
+            <p class="help-text">必须年满18岁</p>
+        </div>
+
+        <!-- URL输入 -->
+        <div class="form-group">
+            <label for="website">个人网站</label>
+            <input 
+                type="url" 
+                id="website" 
+                name="website"
+                placeholder="https://example.com"
+            >
+            <p class="help-text">请输入完整的URL地址，包含http://或https://</p>
+        </div>
+
+        <!-- 搜索输入 -->
+        <div class="form-group">
+            <label for="search">搜索</label>
+            <input 
+                type="search" 
+                id="search" 
+                name="search"
+                placeholder="输入关键词搜索"
+            >
+            <p class="help-text">支持模糊搜索</p>
+        </div>
+
+        <!-- 范围滑块 -->
+        <div class="form-group">
+            <label for="experience">工作经验（年）</label>
+            <div class="range-container">
+                <input 
+                    type="range" 
+                    id="experience" 
+                    name="experience"
+                    min="0"
+                    max="20"
+                    step="1"
+                    value="0"
+                >
+                <span id="experienceValue" class="range-value">0</span>
+            </div>
+            <p class="help-text">拖动滑块选择工作年限</p>
+        </div>
+    </form>
+
+    <script>
+        // 获取元素
+        const experienceInput = document.getElementById('experience');
+        const experienceValue = document.getElementById('experienceValue');
+
+        // 更新显示的值和位置
+        function updateExperienceValue() {
+            const value = experienceInput.value;
+            experienceValue.textContent = value + '年';
+            
+            // 计算滑块的值在总范围中的百分比
+            const min = parseInt(experienceInput.min);
+            const max = parseInt(experienceInput.max);
+            const percentage = ((value - min) / (max - min)) * 100;
+            
+            // 设置数值显示的位置
+            experienceValue.style.left = `${percentage}%`;
+        }
+
+        // 添加事件监听器
+        experienceInput.addEventListener('input', updateExperienceValue);
+
+        // 初始化显示
+        updateExperienceValue();
+    </script>
+</body>
+</html> 

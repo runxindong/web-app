@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式布局示例 / Responsive Layouts Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 头部导航 / Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <h1>响应式布局示例 / Responsive Layouts Example</h1>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#fluid">流式布局 / Fluid Layout</a></li>
+                    <li><a href="#grid">网格系统 / Grid System</a></li>
+                    <li><a href="#flex">弹性布局 / Flexible Layout</a></li>
+                    <li><a href="#hybrid">混合布局 / Hybrid Layout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 流式布局 / Fluid Layout -->
+        <section id="fluid" class="section">
+            <div class="container">
+                <h2>流式布局 / Fluid Layout</h2>
+                <div class="fluid-layout">
+                    <div class="fluid-item">
+                        <h3>百分比宽度 / Percentage Width</h3>
+                        <p>使用相对单位实现流式布局 / Using relative units for fluid layout</p>
+                    </div>
+                    <div class="fluid-item">
+                        <h3>最大最小宽度 / Min-Max Width</h3>
+                        <p>控制元素尺寸范围 / Control element size range</p>
+                    </div>
+                    <div class="fluid-item">
+                        <h3>视口单位 / Viewport Units</h3>
+                        <p>基于视口的响应式设计 / Viewport-based responsive design</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 网格系统 / Grid System -->
+        <section id="grid" class="section">
+            <div class="container">
+                <h2>网格系统 / Grid System</h2>
+                <div class="grid-layout">
+                    <!-- 基础网格 / Basic Grid -->
+                    <div class="grid-demo">
+                        <h3>基础网格 / Basic Grid</h3>
+                        <div class="grid-container">
+                            <div class="grid-item">1</div>
+                            <div class="grid-item">2</div>
+                            <div class="grid-item">3</div>
+                            <div class="grid-item">4</div>
+                            <div class="grid-item">5</div>
+                            <div class="grid-item">6</div>
+                        </div>
+                    </div>
+
+                    <!-- 自适应网格 / Auto-fit Grid -->
+                    <div class="grid-demo">
+                        <h3>自适应网格 / Auto-fit Grid</h3>
+                        <div class="auto-grid">
+                            <div class="grid-item">A</div>
+                            <div class="grid-item">B</div>
+                            <div class="grid-item">C</div>
+                            <div class="grid-item">D</div>
+                        </div>
+                    </div>
+
+                    <!-- 区域布局 / Area Layout -->
+                    <div class="grid-demo">
+                        <h3>区域布局 / Area Layout</h3>
+                        <div class="area-grid">
+                            <header class="area-header">Header</header>
+                            <nav class="area-nav">Nav</nav>
+                            <main class="area-main">Main</main>
+                            <aside class="area-aside">Aside</aside>
+                            <footer class="area-footer">Footer</footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 弹性布局 / Flexible Layout -->
+        <section id="flex" class="section">
+            <div class="container">
+                <h2>弹性布局 / Flexible Layout</h2>
+                <div class="flex-layout">
+                    <!-- 基础弹性盒子 / Basic Flexbox -->
+                    <div class="flex-demo">
+                        <h3>基础弹性盒子 / Basic Flexbox</h3>
+                        <div class="flex-container">
+                            <div class="flex-item">1</div>
+                            <div class="flex-item">2</div>
+                            <div class="flex-item">3</div>
+                        </div>
+                    </div>
+
+                    <!-- 弹性导航 / Flexible Navigation -->
+                    <div class="flex-demo">
+                        <h3>弹性导航 / Flexible Navigation</h3>
+                        <nav class="flex-nav">
+                            <a href="#" class="nav-item">首页 / Home</a>
+                            <a href="#" class="nav-item">关于 / About</a>
+                            <a href="#" class="nav-item">服务 / Services</a>
+                            <a href="#" class="nav-item">联系 / Contact</a>
+                        </nav>
+                    </div>
+
+                    <!-- 弹性卡片 / Flexible Cards -->
+                    <div class="flex-demo">
+                        <h3>弹性卡片 / Flexible Cards</h3>
+                        <div class="card-container">
+                            <div class="card">
+                                <h4>卡片1 / Card 1</h4>
+                                <p>弹性布局示例 / Flexbox example</p>
+                            </div>
+                            <div class="card">
+                                <h4>卡片2 / Card 2</h4>
+                                <p>自适应内容 / Adaptive content</p>
+                            </div>
+                            <div class="card">
+                                <h4>卡片3 / Card 3</h4>
+                                <p>响应式设计 / Responsive design</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 混合布局 / Hybrid Layout -->
+        <section id="hybrid" class="section">
+            <div class="container">
+                <h2>混合布局 / Hybrid Layout</h2>
+                <div class="hybrid-layout">
+                    <!-- 网格弹性混合 / Grid-Flex Hybrid -->
+                    <div class="hybrid-demo">
+                        <h3>网格弹性混合 / Grid-Flex Hybrid</h3>
+                        <div class="hybrid-container">
+                            <header class="hybrid-header">
+                                <h4>头部 / Header</h4>
+                                <nav class="hybrid-nav">
+                                    <a href="#">链接1 / Link 1</a>
+                                    <a href="#">链接2 / Link 2</a>
+                                </nav>
+                            </header>
+                            <main class="hybrid-main">
+                                <article class="hybrid-content">
+                                    <h4>主要内容 / Main Content</h4>
+                                    <p>混合布局示例 / Hybrid layout example</p>
+                                </article>
+                                <aside class="hybrid-sidebar">
+                                    <h4>侧边栏 / Sidebar</h4>
+                                    <p>辅助内容 / Supporting content</p>
+                                </aside>
+                            </main>
+                            <footer class="hybrid-footer">
+                                <p>页脚 / Footer</p>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 响应式布局示例 / Responsive Layouts Example</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画示例 | Animation Examples</title>
+    <link rel="stylesheet" href="animation-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>动画示例 | Animation Examples</h1>
+
+        <section class="example-section">
+            <h2>过渡效果 | Transitions</h2>
+            <div class="transition-demo">
+                <button class="btn btn--hover">悬停效果</button>
+                <div class="box box--scale">缩放效果</div>
+                <div class="box box--rotate">旋转效果</div>
+                <div class="box box--translate">位移效果</div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>关键帧动画 | Keyframe Animations</h2>
+            <div class="keyframe-demo">
+                <div class="box box--pulse">脉冲效果</div>
+                <div class="box box--bounce">弹跳效果</div>
+                <div class="box box--shake">抖动效果</div>
+                <div class="box box--flip">翻转效果</div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>加载动画 | Loading Animations</h2>
+            <div class="loading-demo">
+                <div class="loading loading--spinner">
+                    <div class="loading__spinner"></div>
+                    <span>加载中...</span>
+                </div>
+                <div class="loading loading--dots">
+                    <div class="loading__dot"></div>
+                    <div class="loading__dot"></div>
+                    <div class="loading__dot"></div>
+                </div>
+                <div class="loading loading--progress">
+                    <div class="loading__bar"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>滚动动画 | Scroll Animations</h2>
+            <div class="scroll-demo">
+                <div class="scroll-item">从下方滑入</div>
+                <div class="scroll-item">从右方滑入</div>
+                <div class="scroll-item">淡入效果</div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>状态变化动画 | State Change Animations</h2>
+            <div class="state-demo">
+                <div class="accordion">
+                    <div class="accordion__item">
+                        <div class="accordion__header">点击展开</div>
+                        <div class="accordion__content">
+                            这是可展开的内容区域，带有平滑的展开/收起动画效果。
+                        </div>
+                    </div>
+                </div>
+                <div class="notification">
+                    <div class="notification__content">这是一条通知消息</div>
+                    <button class="notification__close">&times;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>悬停效果集合 | Hover Effects</h2>
+            <div class="hover-demo">
+                <div class="card card--hover">
+                    <div class="card__image"></div>
+                    <div class="card__content">
+                        <h3>卡片标题</h3>
+                        <p>卡片描述文本</p>
+                    </div>
+                    <div class="card__overlay">
+                        <button class="card__btn">查看详情</button>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn--shine">光效按钮</button>
+                    <button class="btn btn--ripple">涟漪按钮</button>
+                    <button class="btn btn--float">悬浮按钮</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 折叠面板动画
+        document.querySelectorAll('.accordion__header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isExpanded = content.style.maxHeight;
+                
+                if (isExpanded) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // 通知关闭动画
+        document.querySelectorAll('.notification__close').forEach(close => {
+            close.addEventListener('click', () => {
+                const notification = close.closest('.notification');
+                notification.classList.add('notification--hide');
+                setTimeout(() => notification.remove(), 300);
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-item--visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-item').forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单组件示例 | Form Examples</title>
+    <link rel="stylesheet" href="form-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>表单组件示例 | Form Examples</h1>
+        
+        <section class="example-section">
+            <h2>文本输入 | Text Inputs</h2>
+            <div class="form-group">
+                <label class="form-label" for="text-input">文本输入框</label>
+                <input type="text" id="text-input" class="form-input" placeholder="请输入文本">
+                <span class="form-help">这是一个帮助文本</span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password-input">密码输入框</label>
+                <input type="password" id="password-input" class="form-input" placeholder="请输入密码">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="textarea">多行文本框</label>
+                <textarea id="textarea" class="form-input" rows="3" placeholder="请输入多行文本"></textarea>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>选择控件 | Select Controls</h2>
+            <div class="form-group">
+                <label class="form-label" for="select">下拉选择框</label>
+                <select id="select" class="form-select">
+                    <option value="">请选择</option>
+                    <option value="1">选项一</option>
+                    <option value="2">选项二</option>
+                    <option value="3">选项三</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">复选框组</label>
+                <div class="checkbox-group">
+                    <label class="checkbox">
+                        <input type="checkbox" name="checkbox1">
+                        <span class="checkbox__label">选项一</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="checkbox2">
+                        <span class="checkbox__label">选项二</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="checkbox3">
+                        <span class="checkbox__label">选项三</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">单选框组</label>
+                <div class="radio-group">
+                    <label class="radio">
+                        <input type="radio" name="radio" value="1">
+                        <span class="radio__label">选项一</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" value="2">
+                        <span class="radio__label">选项二</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="radio" value="3">
+                        <span class="radio__label">选项三</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>状态展示 | States</h2>
+            <div class="form-group">
+                <label class="form-label" for="success-input">成功状态</label>
+                <input type="text" id="success-input" class="form-input form-input--success" value="输入正确">
+                <span class="form-message form-message--success">验证通过</span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="error-input">错误状态</label>
+                <input type="text" id="error-input" class="form-input form-input--error" value="输入错误">
+                <span class="form-message form-message--error">请输入正确的内容</span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="disabled-input">禁用状态</label>
+                <input type="text" id="disabled-input" class="form-input" disabled value="禁用输入框">
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>特殊输入 | Special Inputs</h2>
+            <div class="form-group">
+                <label class="form-label" for="search-input">搜索框</label>
+                <div class="input-group">
+                    <input type="search" id="search-input" class="form-input" placeholder="搜索...">
+                    <button class="input-group__addon">搜索</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="file-input">文件上传</label>
+                <input type="file" id="file-input" class="form-file">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="range-input">范围滑块</label>
+                <input type="range" id="range-input" class="form-range" min="0" max="100">
+            </div>
+        </section>
+    </div>
+</body>
+</html> 

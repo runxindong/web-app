@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框组件示例 | Modal Examples</title>
+    <link rel="stylesheet" href="modal-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>模态框组件示例 | Modal Examples</h1>
+
+        <section class="example-section">
+            <h2>基础模态框 | Basic Modal</h2>
+            <button class="button" data-modal-target="basic-modal">打开基础模态框</button>
+
+            <div class="modal" id="basic-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container">
+                    <div class="modal__header">
+                        <h3 class="modal__title">基础模态框</h3>
+                        <button class="modal__close" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal__content">
+                        <p>这是一个基础模态框的示例，展示了最简单的模态框样式。</p>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>取消</button>
+                        <button class="button button--primary">确认</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>尺寸变体 | Size Variants</h2>
+            <div class="button-group">
+                <button class="button" data-modal-target="small-modal">小型模态框</button>
+                <button class="button" data-modal-target="large-modal">大型模态框</button>
+                <button class="button" data-modal-target="fullscreen-modal">全屏模态框</button>
+            </div>
+
+            <div class="modal" id="small-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container modal__container--small">
+                    <div class="modal__header">
+                        <h3 class="modal__title">小型模态框</h3>
+                        <button class="modal__close" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal__content">
+                        <p>这是一个小型模态框的示例。</p>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>关闭</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="large-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container modal__container--large">
+                    <div class="modal__header">
+                        <h3 class="modal__title">大型模态框</h3>
+                        <button class="modal__close" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal__content">
+                        <p>这是一个大型模态框的示例，适合展示更多的内容。</p>
+                        <div class="placeholder-content"></div>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>关闭</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="fullscreen-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container modal__container--fullscreen">
+                    <div class="modal__header">
+                        <h3 class="modal__title">全屏模态框</h3>
+                        <button class="modal__close" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal__content">
+                        <p>这是一个全屏模态框的示例，可以展示大量内容或复杂的界面。</p>
+                        <div class="placeholder-content"></div>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>关闭</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>功能模态框 | Functional Modals</h2>
+            <div class="button-group">
+                <button class="button" data-modal-target="form-modal">表单模态框</button>
+                <button class="button" data-modal-target="alert-modal">提示模态框</button>
+                <button class="button" data-modal-target="confirm-modal">确认模态框</button>
+            </div>
+
+            <div class="modal" id="form-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container">
+                    <div class="modal__header">
+                        <h3 class="modal__title">表单模态框</h3>
+                        <button class="modal__close" data-modal-close>&times;</button>
+                    </div>
+                    <div class="modal__content">
+                        <form class="form">
+                            <div class="form-group">
+                                <label class="form-label" for="name">姓名</label>
+                                <input type="text" id="name" class="form-input" placeholder="请输入姓名">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">邮箱</label>
+                                <input type="email" id="email" class="form-input" placeholder="请输入邮箱">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="message">留言</label>
+                                <textarea id="message" class="form-input" rows="3" placeholder="请输入留言"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>取消</button>
+                        <button class="button button--primary">提交</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="alert-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container modal__container--small">
+                    <div class="modal__header modal__header--alert">
+                        <div class="modal__icon modal__icon--success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="modal__title">操作成功</h3>
+                    </div>
+                    <div class="modal__content modal__content--centered">
+                        <p>您的操作已经成功完成！</p>
+                    </div>
+                    <div class="modal__footer modal__footer--centered">
+                        <button class="button button--primary" data-modal-close>确定</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="confirm-modal">
+                <div class="modal__overlay"></div>
+                <div class="modal__container modal__container--small">
+                    <div class="modal__header modal__header--warning">
+                        <div class="modal__icon modal__icon--warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="modal__title">确认删除</h3>
+                    </div>
+                    <div class="modal__content modal__content--centered">
+                        <p>您确定要删除这个项目吗？此操作无法撤销。</p>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="button button--secondary" data-modal-close>取消</button>
+                        <button class="button button--danger">删除</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 模态框功能实现
+        document.addEventListener('DOMContentLoaded', () => {
+            // 打开模态框
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.getElementById(button.dataset.modalTarget);
+                    openModal(modal);
+                });
+            });
+
+            // 关闭模态框
+            document.querySelectorAll('[data-modal-close]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+
+            // 点击遮罩层关闭模态框
+            document.querySelectorAll('.modal__overlay').forEach(overlay => {
+                overlay.addEventListener('click', () => {
+                    const modal = overlay.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+        });
+
+        function openModal(modal) {
+            if (modal) {
+                modal.classList.add('modal--active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modal) {
+            if (modal) {
+                modal.classList.remove('modal--active');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+</body>
+</html> 

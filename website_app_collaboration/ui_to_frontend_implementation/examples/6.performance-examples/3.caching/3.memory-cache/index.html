@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内存缓存示例 / Memory Cache Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>内存缓存示例 / Memory Cache Example</h1>
+            <p class="description">
+                演示不同的内存缓存策略和实现方法
+                Demonstrate different memory caching strategies and implementations
+            </p>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>数据缓存 / Data Caching</h2>
+                <div class="cache-demo" id="dataCache">
+                    <div class="demo-controls">
+                        <button onclick="fetchDataWithCache('fresh')">
+                            获取新数据 / Fetch Fresh Data
+                        </button>
+                        <button onclick="fetchDataWithCache('cached')">
+                            获取缓存数据 / Fetch Cached Data
+                        </button>
+                        <button onclick="clearDataCache()">
+                            清除缓存 / Clear Cache
+                        </button>
+                    </div>
+                    <div class="demo-result">
+                        <pre class="data-display"></pre>
+                        <div class="performance-info">
+                            <span class="fetch-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>计算结果缓存 / Computation Cache</h2>
+                <div class="cache-demo" id="computationCache">
+                    <div class="input-group">
+                        <label>
+                            数字 / Number:
+                            <input type="number" id="computeInput" value="40">
+                        </label>
+                        <div class="demo-controls">
+                            <button onclick="computeWithCache()">
+                                计算 / Compute
+                            </button>
+                            <button onclick="clearComputationCache()">
+                                清除缓存 / Clear Cache
+                            </button>
+                        </div>
+                    </div>
+                    <div class="demo-result">
+                        <div class="result-display">
+                            <span class="result-label">结果 / Result:</span>
+                            <span class="result-value">-</span>
+                        </div>
+                        <div class="performance-info">
+                            <span class="computation-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>LRU 缓存 / LRU Cache</h2>
+                <div class="cache-demo" id="lruCache">
+                    <div class="cache-config">
+                        <label>
+                            缓存大小 / Cache Size:
+                            <input type="number" id="lruSize" value="5" min="1" max="10">
+                        </label>
+                    </div>
+                    <div class="demo-controls">
+                        <button onclick="addToLRUCache()">
+                            添加数据 / Add Data
+                        </button>
+                        <button onclick="getFromLRUCache()">
+                            获取数据 / Get Data
+                        </button>
+                        <button onclick="clearLRUCache()">
+                            清除缓存 / Clear Cache
+                        </button>
+                    </div>
+                    <div class="demo-result">
+                        <div class="lru-visualization">
+                            <h3>缓存状态 / Cache State</h3>
+                            <div class="cache-entries"></div>
+                        </div>
+                        <div class="performance-info">
+                            <span class="operation-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>缓存统计 / Cache Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">数据缓存命中 / Data Cache Hits:</span>
+                    <span class="stat-value" id="dataHits">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">计算缓存命中 / Computation Cache Hits:</span>
+                    <span class="stat-value" id="computeHits">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">LRU缓存命中 / LRU Cache Hits:</span>
+                    <span class="stat-value" id="lruHits">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">总内存使用 / Total Memory Usage:</span>
+                    <span class="stat-value" id="memoryUsage">0 KB</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="cache-controls">
+                <button onclick="clearAllCaches()">
+                    清除所有缓存 / Clear All Caches
+                </button>
+                <button onclick="refreshStats()">
+                    刷新统计 / Refresh Stats
+                </button>
+            </div>
+            <p class="cache-note">
+                注意：内存缓存在页面刷新后会被清除
+                Note: Memory cache will be cleared after page refresh
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

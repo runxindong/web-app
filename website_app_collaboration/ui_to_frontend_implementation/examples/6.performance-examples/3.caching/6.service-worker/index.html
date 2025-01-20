@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Worker 缓存示例 / Service Worker Cache Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Service Worker 缓存示例 / Service Worker Cache Example</h1>
+            <p class="description">
+                演示使用 Service Worker 进行资源缓存和离线访问
+                Demonstrate resource caching and offline access using Service Worker
+            </p>
+            <div class="status-panel">
+                <div class="status-indicator"></div>
+                <span class="status-text">检查中... / Checking...</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>资源缓存 / Resource Caching</h2>
+                <div class="resource-demo">
+                    <div class="resource-list">
+                        <h3>缓存资源 / Cached Resources</h3>
+                        <div class="list-container"></div>
+                    </div>
+                    <div class="cache-controls">
+                        <button onclick="updateCache()">
+                            更新缓存 / Update Cache
+                        </button>
+                        <button onclick="clearCache()">
+                            清除缓存 / Clear Cache
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>离线功能 / Offline Features</h2>
+                <div class="offline-demo">
+                    <div class="network-status">
+                        <h3>网络状态 / Network Status</h3>
+                        <div class="status-display">
+                            <div class="network-indicator"></div>
+                            <span class="network-text">在线 / Online</span>
+                        </div>
+                    </div>
+                    <div class="test-controls">
+                        <button onclick="testOffline()">
+                            测试离线访问 / Test Offline Access
+                        </button>
+                        <button onclick="loadImage()">
+                            加载图片 / Load Image
+                        </button>
+                    </div>
+                    <div class="image-container">
+                        <img src="images/test-image.jpg" alt="测试图片 / Test Image" class="test-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>后台同步 / Background Sync</h2>
+                <div class="sync-demo">
+                    <div class="message-form">
+                        <div class="form-group">
+                            <label>
+                                消息 / Message:
+                                <input type="text" id="messageInput" required>
+                            </label>
+                        </div>
+                        <button onclick="sendMessage()">
+                            发送消息 / Send Message
+                        </button>
+                    </div>
+                    <div class="sync-status">
+                        <h3>同步状态 / Sync Status</h3>
+                        <div class="status-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>推送通知 / Push Notifications</h2>
+                <div class="push-demo">
+                    <div class="permission-status">
+                        <h3>通知权限 / Notification Permission</h3>
+                        <div class="permission-display">
+                            <span class="permission-text">未请求 / Not Requested</span>
+                            <button onclick="requestNotificationPermission()">
+                                请求权限 / Request Permission
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-test">
+                        <button onclick="sendTestNotification()">
+                            发送测试通知 / Send Test Notification
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>Service Worker 信息 / Service Worker Information</h3>
+            <div class="worker-info">
+                <div class="info-item">
+                    <span class="info-label">状态 / Status:</span>
+                    <span class="worker-status">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">范围 / Scope:</span>
+                    <span class="worker-scope">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">版本 / Version:</span>
+                    <span class="worker-version">-</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="worker-controls">
+                <button onclick="unregisterServiceWorker()">
+                    注销 Service Worker / Unregister Service Worker
+                </button>
+                <button onclick="skipWaiting()">
+                    跳过等待 / Skip Waiting
+                </button>
+            </div>
+            <p class="worker-note">
+                注意：Service Worker 需要 HTTPS 或 localhost 环境
+                Note: Service Worker requires HTTPS or localhost environment
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

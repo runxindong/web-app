@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网络优化示例</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="js/utils.js" as="script">
+    <link rel="preload" href="images/hero.jpg" as="image">
+    <!-- 预连接第三方域名 -->
+    <link rel="preconnect" href="https://api.example.com">
+    <link rel="dns-prefetch" href="https://api.example.com">
+</head>
+<body>
+    <div class="container">
+        <h1>网络优化示例</h1>
+
+        <section class="demo-section">
+            <h2>1. 资源预加载</h2>
+            <div class="preload-demo">
+                <button id="loadImageBtn">加载大图</button>
+                <div id="imageContainer" class="image-container"></div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>2. HTTP缓存策略</h2>
+            <div class="cache-demo">
+                <button id="fetchDataBtn">获取数据</button>
+                <div id="cacheStatus" class="status-container"></div>
+                <div id="dataContainer" class="data-container"></div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>3. 请求合并和批处理</h2>
+            <div class="batch-demo">
+                <div class="controls">
+                    <button id="singleRequestBtn">单独请求</button>
+                    <button id="batchRequestBtn">批量请求</button>
+                </div>
+                <div id="requestMetrics" class="metrics-container"></div>
+                <div id="batchResults" class="results-container"></div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>4. 增量加载</h2>
+            <div class="incremental-demo">
+                <div class="content-container" id="contentContainer"></div>
+                <button id="loadMoreBtn">加载更多</button>
+                <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                    加载中...
+                </div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>5. 性能指标</h2>
+            <div id="performanceMetrics" class="performance-metrics"></div>
+        </section>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/preload.js"></script>
+    <script src="js/cache.js"></script>
+    <script src="js/batch.js"></script>
+    <script src="js/incremental.js"></script>
+    <script src="js/metrics.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

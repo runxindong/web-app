@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 开发学习路径 - 课程目录</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* 列表样式 */
+        .custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .nested-list {
+            margin-left: 20px;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        caption {
+            padding: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* 定义列表样式 */
+        dl {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web 开发学习路径</h1>
+
+    <!-- 有序列表示例 -->
+    <section>
+        <h2>学习阶段</h2>
+        <ol>
+            <li>基础阶段
+                <ol type="a">
+                    <li>HTML 基础</li>
+                    <li>CSS 基础</li>
+                    <li>JavaScript 基础</li>
+                </ol>
+            </li>
+            <li>进阶阶段
+                <ol type="a">
+                    <li>前端框架</li>
+                    <li>后端开发</li>
+                    <li>数据库</li>
+                </ol>
+            </li>
+            <li>专业阶段
+                <ol type="a">
+                    <li>性能优化</li>
+                    <li>安全防护</li>
+                    <li>项目部署</li>
+                </ol>
+            </li>
+        </ol>
+    </section>
+
+    <!-- 无序列表示例 -->
+    <section>
+        <h2>推荐学习资源</h2>
+        <ul class="custom-list">
+            <li>在线学习平台
+                <ul class="nested-list">
+                    <li>Udemy</li>
+                    <li>Coursera</li>
+                    <li>freeCodeCamp</li>
+                </ul>
+            </li>
+            <li>技术文档
+                <ul class="nested-list">
+                    <li>MDN Web Docs</li>
+                    <li>W3Schools</li>
+                    <li>DevDocs</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- 定义列表示例 -->
+    <section>
+        <h2>核心概念解释</h2>
+        <dl>
+            <dt>HTML</dt>
+            <dd>超文本标记语言，用于构建网页的基本结构。</dd>
+
+            <dt>CSS</dt>
+            <dd>层叠样式表，用于设计网页的视觉样式。</dd>
+
+            <dt>JavaScript</dt>
+            <dd>一种脚本语言，用于实现网页的交互功能。</dd>
+        </dl>
+    </section>
+
+    <!-- 表格示例 -->
+    <section>
+        <h2>课程安排表</h2>
+        <table>
+            <caption>2024年第一季度课程表</caption>
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>上午</td>
+                    <td>HTML基础</td>
+                    <td>CSS基础</td>
+                    <td>JavaScript基础</td>
+                    <td>前端框架</td>
+                    <td>项目实战</td>
+                </tr>
+                <tr>
+                    <td>下午</td>
+                    <td>HTML进阶</td>
+                    <td>CSS进阶</td>
+                    <td>JavaScript进阶</td>
+                    <td>后端开发</td>
+                    <td>项目答辩</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">注：课程时间为每天 9:00-17:00，中午休息 1 小时</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <!-- 复杂表格示例 -->
+        <table>
+            <caption>课程详细信息</caption>
+            <thead>
+                <tr>
+                    <th rowspan="2">课程方向</th>
+                    <th colspan="2">课程安排</th>
+                    <th rowspan="2">学习周期</th>
+                    <th rowspan="2">难度等级</th>
+                </tr>
+                <tr>
+                    <th>理论课时</th>
+                    <th>实践课时</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>前端开发</td>
+                    <td>30</td>
+                    <td>50</td>
+                    <td>3个月</td>
+                    <td>中级</td>
+                </tr>
+                <tr>
+                    <td>后端开发</td>
+                    <td>40</td>
+                    <td>60</td>
+                    <td>4个月</td>
+                    <td>高级</td>
+                </tr>
+                <tr>
+                    <td>全栈开发</td>
+                    <td>60</td>
+                    <td>90</td>
+                    <td>6个月</td>
+                    <td>高级</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html> 

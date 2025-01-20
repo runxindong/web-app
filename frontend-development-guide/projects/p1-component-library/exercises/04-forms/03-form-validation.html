@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单验证练习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        /* 验证状态样式 */
+        input:valid,
+        select:valid,
+        textarea:valid {
+            border-color: #2ecc71;
+        }
+
+        input:invalid,
+        select:invalid,
+        textarea:invalid {
+            border-color: #e74c3c;
+        }
+
+        /* 错误消息样式 */
+        .error-message {
+            display: none;
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        input:invalid + .error-message,
+        select:invalid + .error-message,
+        textarea:invalid + .error-message {
+            display: block;
+        }
+
+        /* 密码强度指示器 */
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak {
+            background-color: #e74c3c;
+            width: 33.33%;
+        }
+
+        .strength-medium {
+            background-color: #f1c40f;
+            width: 66.66%;
+        }
+
+        .strength-strong {
+            background-color: #2ecc71;
+            width: 100%;
+        }
+
+        /* 提交按钮样式 */
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* 表单状态指示器 */
+        .form-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .status-success {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .status-error {
+            background-color: #e74c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>表单验证练习</h1>
+    <p>这个练习展示了不同类型的表单验证方式。</p>
+
+    <form id="validationForm" novalidate>
+        <!-- HTML5 内置验证 -->
+        <div class="form-group">
+            <label for="email">电子邮箱</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email"
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                placeholder="example@domain.com"
+            >
+            <span class="error-message">请输入有效的电子邮箱地址</span>
+        </div>
+
+        <!-- 自定义密码验证 -->
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password"
+                required
+                minlength="8"
+                placeholder="请输入密码"
+            >
+            <div class="password-strength"></div>
+            <span class="error-message">密码必须包含大小写字母、数字和特殊字符</span>
+        </div>
+
+        <!-- 密码确认验证 -->
+        <div class="form-group">
+            <label for="confirmPassword">确认密码</label>
+            <input 
+                type="password" 
+                id="confirmPassword" 
+                name="confirmPassword"
+                required
+                placeholder="请再次输入密码"
+            >
+            <span class="error-message">两次输入的密码不一致</span>
+        </div>
+
+        <!-- 模式匹配验证 -->
+        <div class="form-group">
+            <label for="phone">手机号码</label>
+            <input 
+                type="tel" 
+                id="phone" 
+                name="phone"
+                required
+                pattern="1[3-9]\d{9}"
+                placeholder="请输入11位手机号"
+            >
+            <span class="error-message">请输入有效的手机号码</span>
+        </div>
+
+        <!-- 自定义验证规则 -->
+        <div class="form-group">
+            <label for="username">用户名</label>
+            <input 
+                type="text" 
+                id="username" 
+                name="username"
+                required
+                minlength="3"
+                maxlength="20"
+                placeholder="请输入用户名"
+            >
+            <span class="error-message">用户名只能包含字母、数字和下划线</span>
+        </div>
+
+        <!-- 提交按钮 -->
+        <button type="submit" id="submitBtn" disabled>提交</button>
+    </form>
+
+    <!-- 表单状态提示 -->
+    <div class="form-status"></div>
+
+    <script>
+        const form = document.getElementById('validationForm');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.querySelector('.form-status');
+        const strengthIndicator = document.querySelector('.password-strength');
+
+        // 密码强度检查
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            if (strength === 0) {
+                strengthIndicator.className = 'password-strength';
+            } else if (strength <= 2) {
+                strengthIndicator.className = 'password-strength strength-weak';
+            } else if (strength === 3) {
+                strengthIndicator.className = 'password-strength strength-medium';
+            } else {
+                strengthIndicator.className = 'password-strength strength-strong';
+            }
+
+            return strength >= 3;
+        }
+
+        // 实时密码验证
+        passwordInput.addEventListener('input', function() {
+            const isStrong = checkPasswordStrength(this.value);
+            this.setCustomValidity(isStrong ? '' : '密码强度不够');
+            validateForm();
+        });
+
+        // 密码确认验证
+        confirmPasswordInput.addEventListener('input', function() {
+            if (this.value !== passwordInput.value) {
+                this.setCustomValidity('密码不匹配');
+            } else {
+                this.setCustomValidity('');
+            }
+            validateForm();
+        });
+
+        // 用户名验证
+        const usernameInput = document.getElementById('username');
+        usernameInput.addEventListener('input', function() {
+            const isValid = /^[a-zA-Z0-9_]+$/.test(this.value);
+            this.setCustomValidity(isValid ? '' : '用户名格式不正确');
+            validateForm();
+        });
+
+        // 表单验证状态检查
+        function validateForm() {
+            const isValid = form.checkValidity();
+            submitBtn.disabled = !isValid;
+        }
+
+        // 表单提交处理
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (form.checkValidity()) {
+                // 模拟表单提交
+                showStatus('提交成功！', 'success');
+                form.reset();
+                strengthIndicator.className = 'password-strength';
+            } else {
+                showStatus('请检查表单填写是否正确', 'error');
+            }
+        });
+
+        // 显示状态消息
+        function showStatus(message, type) {
+            formStatus.textContent = message;
+            formStatus.className = `form-status status-${type}`;
+            formStatus.style.display = 'block';
+            
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 3000);
+        }
+
+        // 初始验证
+        validateForm();
+    </script>
+</body>
+</html> 

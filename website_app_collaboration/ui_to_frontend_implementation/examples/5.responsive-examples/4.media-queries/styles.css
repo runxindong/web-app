@@ -1,0 +1,309 @@
+/* 基础样式 / Base Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-text: #fff;
+    --border-radius: 4px;
+    --spacing: 1rem;
+    --container-width: 1200px;
+}
+
+/* 深色模式变量 / Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #34495e;
+        --secondary-color: #2980b9;
+        --accent-color: #c0392b;
+        --text-color: #ecf0f1;
+        --light-text: #2c3e50;
+    }
+}
+
+/* 基础重置 / Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f5f5f5;
+}
+
+/* 容器 / Container */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--spacing);
+}
+
+/* 头部样式 / Header Styles */
+.header {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: var(--spacing) 0;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--light-text);
+    margin: 5px 0;
+    transition: transform 0.3s ease;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing);
+}
+
+.nav-list a {
+    color: var(--light-text);
+    text-decoration: none;
+    padding: calc(var(--spacing) * 0.5);
+}
+
+/* 基础查询示例样式 / Basic Queries Example Styles */
+.responsive-grid {
+    display: grid;
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
+}
+
+.card {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.demo-box {
+    width: 100%;
+    height: 100px;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing);
+}
+
+/* 复杂条件示例样式 / Complex Conditions Example Styles */
+.complex-demo {
+    display: grid;
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
+}
+
+.demo-content {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    margin-top: calc(var(--spacing) * 0.5);
+}
+
+/* 设备特性示例样式 / Device Features Example Styles */
+.features-grid {
+    display: grid;
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
+}
+
+.feature-card {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+/* 打印样式示例 / Print Styles Example */
+.print-demo {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    margin: var(--spacing) 0;
+}
+
+.print-button {
+    display: inline-block;
+    padding: calc(var(--spacing) * 0.75) var(--spacing);
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: var(--spacing);
+}
+
+.print-only {
+    display: none;
+}
+
+/* 响应式媒体查询 / Responsive Media Queries */
+
+/* 移动设备 / Mobile Devices */
+@media (max-width: 767px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: var(--spacing);
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .responsive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-box {
+        height: 150px;
+        background-color: var(--accent-color);
+    }
+}
+
+/* 平板设备 / Tablet Devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .responsive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .demo-box {
+        height: 120px;
+    }
+}
+
+/* 桌面设备 / Desktop Devices */
+@media (min-width: 1024px) {
+    .responsive-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 横屏方向 / Landscape Orientation */
+@media (orientation: landscape) {
+    .orientation-demo {
+        background-color: var(--secondary-color);
+        color: var(--light-text);
+    }
+}
+
+/* 竖屏方向 / Portrait Orientation */
+@media (orientation: portrait) {
+    .orientation-demo {
+        background-color: var(--accent-color);
+        color: var(--light-text);
+    }
+}
+
+/* 宽高比 / Aspect Ratio */
+@media (min-aspect-ratio: 16/9) {
+    .aspect-ratio-demo {
+        background-color: var(--secondary-color);
+        color: var(--light-text);
+    }
+}
+
+/* 悬停支持 / Hover Support */
+@media (hover: hover) {
+    .hover-demo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* 指针设备 / Pointer Devices */
+@media (pointer: fine) {
+    .pointer-demo {
+        cursor: pointer;
+    }
+}
+
+/* 深色模式 / Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+
+    .card,
+    .demo-content,
+    .feature-card,
+    .print-demo {
+        background-color: #2d2d2d;
+        color: var(--text-color);
+    }
+}
+
+/* 打印样式 / Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .header,
+    .nav,
+    .print-button,
+    .screen-only {
+        display: none;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+
+    .print-content {
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+} 

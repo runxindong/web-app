@@ -1,0 +1,63 @@
+{
+  "name": "static-asset-compression-example",
+  "version": "1.0.0",
+  "description": "Example of static asset compression and optimization techniques",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "analyze": "webpack --mode production --profile --json > stats.json && webpack-bundle-analyzer stats.json",
+    "test": "jest",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "webpack",
+    "optimization",
+    "compression",
+    "performance"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "chart.js": "^4.0.0",
+    "date-fns": "^2.30.0",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/plugin-transform-runtime": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "@babel/runtime": "^7.22.0",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "compression-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "cssnano": "^6.0.1",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.5.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss": "^8.4.24",
+    "postcss-loader": "^7.3.3",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.85.0",
+    "webpack-bundle-analyzer": "^4.9.0",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

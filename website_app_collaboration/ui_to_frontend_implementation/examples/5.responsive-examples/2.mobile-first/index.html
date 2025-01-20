@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动优先设计示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50" alt="Logo">
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#products">产品</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#about">关于</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>移动优先设计</h1>
+                <p>从移动设备开始，逐步增强到大屏幕设备</p>
+                <a href="#learn-more" class="cta-button">了解更多</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>核心特性</h2>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <img src="https://via.placeholder.com/150" alt="特性1">
+                    <h3>响应式布局</h3>
+                    <p>自适应不同屏幕尺寸的布局系统</p>
+                </article>
+                <article class="feature-card">
+                    <img src="https://via.placeholder.com/150" alt="特性2">
+                    <h3>性能优化</h3>
+                    <p>针对移动设备的性能优化策略</p>
+                </article>
+                <article class="feature-card">
+                    <img src="https://via.placeholder.com/150" alt="特性3">
+                    <h3>触摸友好</h3>
+                    <p>为触摸屏设备优化的交互体验</p>
+                </article>
+                <article class="feature-card">
+                    <img src="https://via.placeholder.com/150" alt="特性4">
+                    <h3>渐进增强</h3>
+                    <p>根据设备能力逐步添加功能</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>内容优先</h2>
+                    <p>移动优先设计强调内容的重要性，确保在任何设备上都能清晰展示核心信息。</p>
+                    <ul class="content-list">
+                        <li>优化阅读体验</li>
+                        <li>突出重要信息</li>
+                        <li>简化导航结构</li>
+                        <li>减少页面负载</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="https://via.placeholder.com/400" alt="内容展示">
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <h2>案例展示</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img src="https://via.placeholder.com/300" alt="案例1">
+                    <figcaption>响应式网站设计</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <img src="https://via.placeholder.com/300" alt="案例2">
+                    <figcaption>移动应用界面</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <img src="https://via.placeholder.com/300" alt="案例3">
+                    <figcaption>自适应电商平台</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>开始您的移动优先项目</h2>
+                <p>让我们帮助您创建完美的移动体验</p>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="您的名字" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="您的邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="项目描述" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">发送请求</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>专注于创建优秀的移动优先体验</p>
+            </div>
+            <div class="footer-section">
+                <h3>联系方式</h3>
+                <ul>
+                    <li>邮箱：contact@example.com</li>
+                    <li>电话：(123) 456-7890</li>
+                    <li>地址：某某市某某区</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="微信">微信</a>
+                    <a href="#" aria-label="微博">微博</a>
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 移动优先设计示例. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,349 @@
+/* 自适应内容的CSS样式 */
+
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 根变量 */
+:root {
+    --primary-color: #2196f3;
+    --secondary-color: #1976d2;
+    --text-color: #333;
+    --light-text: #fff;
+    --background-color: #f5f5f5;
+    --spacing: 1rem;
+    --border-radius: 4px;
+    --container-width: 1200px;
+    --header-height: 60px;
+}
+
+/* 基础样式 */
+html {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+/* 头部样式 */
+.header {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+}
+
+/* 导航样式 */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--light-text);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing);
+}
+
+.nav-list a {
+    color: var(--light-text);
+    text-decoration: none;
+    padding: calc(var(--spacing) * 0.5);
+}
+
+/* 主要内容区域 */
+.main {
+    margin-top: var(--header-height);
+    padding: var(--spacing) 0;
+}
+
+.section {
+    margin-bottom: calc(var(--spacing) * 3);
+}
+
+/* 文本适配 */
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+h2 {
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    margin-bottom: var(--spacing);
+}
+
+h3 {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    margin-bottom: calc(var(--spacing) * 0.75);
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    margin-bottom: var(--spacing);
+}
+
+.lead {
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+}
+
+/* 内容适配器 */
+.content-adaptor .summary-content {
+    display: none;
+}
+
+/* 图片适配 */
+.image-example picture {
+    display: block;
+    margin-bottom: var(--spacing);
+}
+
+.image-example img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+.image-grid {
+    display: grid;
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+}
+
+/* 视频适配 */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: var(--spacing);
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-playlist {
+    display: grid;
+    gap: var(--spacing);
+}
+
+.playlist-item {
+    display: flex;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    background: white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.playlist-item.active {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.playlist-item img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius) * 0.5);
+}
+
+/* 表格适配 */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: var(--spacing);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: calc(var(--spacing) * 0.75);
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.card-view {
+    display: none;
+}
+
+/* 卡片视图 */
+.card {
+    background: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing);
+}
+
+/* 页脚 */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: var(--spacing) 0;
+    margin-top: calc(var(--spacing) * 3);
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    /* 导航适配 */
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: var(--spacing);
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    /* 内容适配 */
+    .content-adaptor .full-content {
+        display: none;
+    }
+
+    .content-adaptor .summary-content {
+        display: block;
+    }
+
+    /* 图片网格适配 */
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 表格适配 */
+    .table-container {
+        display: none;
+    }
+
+    .card-view {
+        display: block;
+    }
+
+    /* 视频播放列表适配 */
+    .playlist-item {
+        flex-direction: column;
+    }
+
+    .playlist-item img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 769px) {
+    /* 图片网格适配 */
+    .image-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* 视频播放列表适配 */
+    .video-playlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .section {
+        margin-bottom: calc(var(--spacing) * 4);
+    }
+
+    .content-adaptor .full-content {
+        columns: 2;
+        column-gap: calc(var(--spacing) * 2);
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .header,
+    .nav,
+    .video-container,
+    .video-playlist,
+    .footer {
+        display: none;
+    }
+
+    .main {
+        margin: 0;
+    }
+
+    .content-adaptor .full-content {
+        display: block;
+        columns: 1;
+    }
+
+    .content-adaptor .summary-content {
+        display: none;
+    }
+
+    .table-container {
+        display: block;
+        overflow: visible;
+    }
+
+    .card-view {
+        display: none;
+    }
+
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} 

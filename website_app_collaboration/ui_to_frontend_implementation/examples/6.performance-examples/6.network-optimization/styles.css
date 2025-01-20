@@ -1,0 +1,243 @@
+/* 基础样式 */
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #FFC107;
+    --success-color: #4CAF50;
+    --danger-color: #f44336;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --border-color: #ddd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 标题样式 */
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* 示例区域样式 */
+.demo-section {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮样式 */
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1976D2;
+}
+
+button:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+}
+
+/* 图片容器样式 */
+.image-container {
+    margin-top: 1rem;
+    min-height: 200px;
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 状态容器样式 */
+.status-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: var(--background-color);
+}
+
+/* 数据容器样式 */
+.data-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* 批处理示例样式 */
+.batch-demo .controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.metrics-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 4px;
+}
+
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.result-item {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* 增量加载样式 */
+.content-container {
+    margin-bottom: 1rem;
+}
+
+.content-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.content-item:hover {
+    transform: translateX(5px);
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 1rem;
+    color: var(--primary-color);
+}
+
+/* 性能指标样式 */
+.performance-metrics {
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.metric:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    font-weight: bold;
+}
+
+.metric-value {
+    color: var(--primary-color);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .demo-section {
+        padding: 1rem;
+    }
+
+    .batch-demo .controls {
+        flex-direction: column;
+    }
+
+    .results-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 加载状态样式 */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+} 

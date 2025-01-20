@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB 存储示例 / IndexedDB Storage Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IndexedDB 存储示例 / IndexedDB Storage Example</h1>
+            <p class="description">
+                演示使用 IndexedDB 进行结构化数据存储和离线数据同步
+                Demonstrate structured data storage and offline data synchronization using IndexedDB
+            </p>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>数据存储 / Data Storage</h2>
+                <div class="storage-demo" id="dataStorage">
+                    <div class="input-form">
+                        <div class="form-group">
+                            <label>
+                                标题 / Title:
+                                <input type="text" id="titleInput" required>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                内容 / Content:
+                                <textarea id="contentInput" required></textarea>
+                            </label>
+                        </div>
+                        <div class="demo-controls">
+                            <button onclick="saveData()">
+                                保存数据 / Save Data
+                            </button>
+                            <button onclick="loadData()">
+                                加载数据 / Load Data
+                            </button>
+                            <button onclick="clearData()">
+                                清除数据 / Clear Data
+                            </button>
+                        </div>
+                    </div>
+                    <div class="data-list">
+                        <h3>已存储的数据 / Stored Data</h3>
+                        <div class="list-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>离线同步 / Offline Sync</h2>
+                <div class="sync-demo" id="offlineSync">
+                    <div class="network-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">检查网络状态... / Checking network status...</span>
+                    </div>
+                    <div class="sync-controls">
+                        <button onclick="createOfflineData()">
+                            创建离线数据 / Create Offline Data
+                        </button>
+                        <button onclick="syncData()">
+                            同步数据 / Sync Data
+                        </button>
+                        <button onclick="clearSyncQueue()">
+                            清除同步队列 / Clear Sync Queue
+                        </button>
+                    </div>
+                    <div class="sync-status">
+                        <h3>同步状态 / Sync Status</h3>
+                        <div class="status-container">
+                            <div class="queue-info">
+                                <span class="queue-label">待同步项 / Pending Items:</span>
+                                <span class="queue-count">0</span>
+                            </div>
+                            <div class="last-sync">
+                                <span class="sync-label">上次同步 / Last Sync:</span>
+                                <span class="sync-time">从未 / Never</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>大文件存储 / Large File Storage</h2>
+                <div class="file-demo" id="fileStorage">
+                    <div class="file-input">
+                        <input type="file" id="fileInput" multiple>
+                        <div class="demo-controls">
+                            <button onclick="storeFiles()">
+                                存储文件 / Store Files
+                            </button>
+                            <button onclick="loadFiles()">
+                                加载文件 / Load Files
+                            </button>
+                            <button onclick="clearFiles()">
+                                清除文件 / Clear Files
+                            </button>
+                        </div>
+                    </div>
+                    <div class="file-list">
+                        <h3>已存储的文件 / Stored Files</h3>
+                        <div class="list-container"></div>
+                    </div>
+                    <div class="storage-info">
+                        <div class="info-item">
+                            <span class="info-label">已用空间 / Used Space:</span>
+                            <span class="used-space">0 B</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">可用空间 / Available Space:</span>
+                            <span class="available-space">计算中... / Calculating...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>数据库信息 / Database Information</h3>
+            <div class="db-info">
+                <div class="info-item">
+                    <span class="info-label">数据库版本 / Database Version:</span>
+                    <span class="db-version">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">对象存储数量 / Object Stores:</span>
+                    <span class="store-count">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">总记录数 / Total Records:</span>
+                    <span class="record-count">-</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="db-controls">
+                <button onclick="deleteDatabase()">
+                    删除数据库 / Delete Database
+                </button>
+                <button onclick="refreshInfo()">
+                    刷新信息 / Refresh Info
+                </button>
+            </div>
+            <p class="db-note">
+                注意：数据库操作可能需要一些时间，请耐心等待
+                Note: Database operations may take some time, please be patient
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互示例 | Interaction Examples</title>
+    <link rel="stylesheet" href="interaction-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>交互示例 | Interaction Examples</h1>
+
+        <section class="example-section">
+            <h2>表单交互 | Form Interactions</h2>
+            <div class="form-demo">
+                <form class="form" id="demoForm">
+                    <div class="form__group">
+                        <label class="form__label" for="username">用户名</label>
+                        <input class="form__input" type="text" id="username" name="username" required
+                               placeholder="请输入用户名">
+                        <div class="form__feedback"></div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label" for="password">密码</label>
+                        <div class="form__input-group">
+                            <input class="form__input" type="password" id="password" name="password" required
+                                   placeholder="请输入密码">
+                            <button type="button" class="form__toggle-password">显示</button>
+                        </div>
+                        <div class="form__strength-meter">
+                            <div class="strength-meter__bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="form__group">
+                        <label class="form__label">兴趣爱好</label>
+                        <div class="form__checkbox-group">
+                            <label class="checkbox">
+                                <input type="checkbox" name="interests" value="reading">
+                                <span class="checkbox__mark"></span>
+                                阅读
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="interests" value="music">
+                                <span class="checkbox__mark"></span>
+                                音乐
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" name="interests" value="sports">
+                                <span class="checkbox__mark"></span>
+                                运动
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary">提交</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>拖放交互 | Drag and Drop</h2>
+            <div class="drag-drop-demo">
+                <div class="drag-container">
+                    <div class="draggable" draggable="true">项目 1</div>
+                    <div class="draggable" draggable="true">项目 2</div>
+                    <div class="draggable" draggable="true">项目 3</div>
+                </div>
+                <div class="drop-zone">
+                    <p>将项目拖放到这里</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>滑块交互 | Slider Interactions</h2>
+            <div class="slider-demo">
+                <div class="slider">
+                    <input type="range" min="0" max="100" value="50" class="slider__input">
+                    <div class="slider__value">50</div>
+                </div>
+                <div class="slider slider--range">
+                    <input type="range" min="0" max="100" value="30" class="slider__input slider__input--min">
+                    <input type="range" min="0" max="100" value="70" class="slider__input slider__input--max">
+                    <div class="slider__range-values">
+                        <span>30</span> - <span>70</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>选项卡交互 | Tab Interactions</h2>
+            <div class="tabs-demo">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <button class="tabs__btn tabs__btn--active" data-tab="tab1">选项卡 1</button>
+                        <button class="tabs__btn" data-tab="tab2">选项卡 2</button>
+                        <button class="tabs__btn" data-tab="tab3">选项卡 3</button>
+                    </div>
+                    <div class="tabs__content">
+                        <div class="tabs__panel tabs__panel--active" id="tab1">
+                            这是选项卡 1 的内容
+                        </div>
+                        <div class="tabs__panel" id="tab2">
+                            这是选项卡 2 的内容
+                        </div>
+                        <div class="tabs__panel" id="tab3">
+                            这是选项卡 3 的内容
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>工具提示 | Tooltip</h2>
+            <div class="tooltip-demo">
+                <button class="btn" data-tooltip="这是一个上方提示">上方提示</button>
+                <button class="btn" data-tooltip="这是一个右侧提示" data-tooltip-position="right">右侧提示</button>
+                <button class="btn" data-tooltip="这是一个下方提示" data-tooltip-position="bottom">下方提示</button>
+                <button class="btn" data-tooltip="这是一个左侧提示" data-tooltip-position="left">左侧提示</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 表单交互
+        const form = document.getElementById('demoForm');
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.querySelector('.form__toggle-password');
+        const strengthMeter = document.querySelector('.strength-meter__bar');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            togglePassword.textContent = type === 'password' ? '显示' : '隐藏';
+        });
+
+        passwordInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            let strength = 0;
+            
+            if (value.length >= 8) strength += 25;
+            if (value.match(/[A-Z]/)) strength += 25;
+            if (value.match(/[0-9]/)) strength += 25;
+            if (value.match(/[^A-Za-z0-9]/)) strength += 25;
+
+            strengthMeter.style.width = strength + '%';
+            strengthMeter.style.backgroundColor = 
+                strength <= 25 ? '#f5222d' :
+                strength <= 50 ? '#faad14' :
+                strength <= 75 ? '#52c41a' :
+                '#1890ff';
+        });
+
+        // 拖放交互
+        const draggables = document.querySelectorAll('.draggable');
+        const dropZone = document.querySelector('.drop-zone');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging');
+            });
+
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging');
+            });
+        });
+
+        dropZone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropZone.classList.add('drop-zone--active');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drop-zone--active');
+        });
+
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            const dragging = document.querySelector('.dragging');
+            dropZone.appendChild(dragging);
+            dropZone.classList.remove('drop-zone--active');
+        });
+
+        // 滑块交互
+        const singleSlider = document.querySelector('.slider__input');
+        const singleValue = document.querySelector('.slider__value');
+        const rangeMin = document.querySelector('.slider__input--min');
+        const rangeMax = document.querySelector('.slider__input--max');
+        const rangeValues = document.querySelectorAll('.slider__range-values span');
+
+        singleSlider.addEventListener('input', e => {
+            singleValue.textContent = e.target.value;
+        });
+
+        rangeMin.addEventListener('input', e => {
+            const value = parseInt(e.target.value);
+            const maxValue = parseInt(rangeMax.value);
+            
+            if (value > maxValue) {
+                e.target.value = maxValue;
+                return;
+            }
+            
+            rangeValues[0].textContent = value;
+        });
+
+        rangeMax.addEventListener('input', e => {
+            const value = parseInt(e.target.value);
+            const minValue = parseInt(rangeMin.value);
+            
+            if (value < minValue) {
+                e.target.value = minValue;
+                return;
+            }
+            
+            rangeValues[1].textContent = value;
+        });
+
+        // 选项卡交互
+        const tabButtons = document.querySelectorAll('.tabs__btn');
+        const tabPanels = document.querySelectorAll('.tabs__panel');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                
+                tabButtons.forEach(btn => btn.classList.remove('tabs__btn--active'));
+                tabPanels.forEach(panel => panel.classList.remove('tabs__panel--active'));
+                
+                button.classList.add('tabs__btn--active');
+                document.getElementById(tabId).classList.add('tabs__panel--active');
+            });
+        });
+    </script>
+</body>
+</html> 

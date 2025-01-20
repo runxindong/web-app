@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器缓存示例 / Browser Cache Example</title>
+    <!-- 设置缓存控制头 / Set cache control headers -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>浏览器缓存示例 / Browser Cache Example</h1>
+            <p class="description">
+                演示不同的浏览器缓存策略和实现方法
+                Demonstrate different browser caching strategies and implementations
+            </p>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>HTTP 缓存 / HTTP Caching</h2>
+                <div class="cache-demo" id="httpCacheDemo">
+                    <div class="demo-controls">
+                        <button onclick="loadImage('fresh')">
+                            加载新图片 / Load Fresh Image
+                        </button>
+                        <button onclick="loadImage('cached')">
+                            加载缓存图片 / Load Cached Image
+                        </button>
+                    </div>
+                    <div class="demo-result">
+                        <img id="demoImage" alt="Demo Image">
+                        <div class="loading-info">
+                            <span class="loading-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>ETag 示例 / ETag Example</h2>
+                <div class="cache-demo" id="etagDemo">
+                    <div class="demo-controls">
+                        <button onclick="fetchData('fresh')">
+                            获取新数据 / Fetch Fresh Data
+                        </button>
+                        <button onclick="fetchData('cached')">
+                            获取缓存数据 / Fetch Cached Data
+                        </button>
+                    </div>
+                    <div class="demo-result">
+                        <pre class="response-info"></pre>
+                        <div class="loading-info">
+                            <span class="loading-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>缓存控制 / Cache Control</h2>
+                <div class="cache-demo" id="cacheControlDemo">
+                    <div class="demo-controls">
+                        <button onclick="fetchResource('no-cache')">
+                            无缓存 / No Cache
+                        </button>
+                        <button onclick="fetchResource('public')">
+                            公共缓存 / Public Cache
+                        </button>
+                        <button onclick="fetchResource('private')">
+                            私有缓存 / Private Cache
+                        </button>
+                    </div>
+                    <div class="demo-result">
+                        <pre class="response-headers"></pre>
+                        <div class="loading-info">
+                            <span class="loading-time"></span>
+                            <span class="cache-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>缓存信息 / Cache Information</h3>
+            <div class="cache-stats">
+                <div class="stat-item">
+                    <span class="stat-label">缓存命中 / Cache Hits:</span>
+                    <span class="stat-value" id="cacheHits">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">缓存未命中 / Cache Misses:</span>
+                    <span class="stat-value" id="cacheMisses">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">平均加载时间 / Average Load Time:</span>
+                    <span class="stat-value" id="avgLoadTime">0ms</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="cache-controls">
+                <button onclick="clearCache()">
+                    清除缓存 / Clear Cache
+                </button>
+                <button onclick="refreshStats()">
+                    刷新统计 / Refresh Stats
+                </button>
+            </div>
+            <p class="cache-note">
+                注意：实际的缓存行为可能因浏览器设置和网络条件而异
+                Note: Actual caching behavior may vary based on browser settings and network conditions
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Worker 缓存示例 / Service Worker Cache Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Service Worker 缓存示例 / Service Worker Cache Example</h1>
+            <p class="description">
+                演示 Service Worker 的缓存功能和离线访问能力
+                Demonstrate Service Worker caching functionality and offline access capabilities
+            </p>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>离线功能 / Offline Functionality</h2>
+                <div class="offline-demo">
+                    <div class="network-status">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">检查网络状态... / Checking network status...</span>
+                    </div>
+                    <div class="demo-controls">
+                        <button onclick="testOfflineAccess()">
+                            测试离线访问 / Test Offline Access
+                        </button>
+                        <button onclick="clearServiceWorkerCache()">
+                            清除缓存 / Clear Cache
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>预缓存 / Precaching</h2>
+                <div class="precache-demo">
+                    <div class="cache-status">
+                        <h3>缓存状态 / Cache Status</h3>
+                        <ul id="precacheList">
+                            <li>正在加载... / Loading...</li>
+                        </ul>
+                    </div>
+                    <div class="demo-controls">
+                        <button onclick="checkPrecacheStatus()">
+                            检查预缓存 / Check Precache
+                        </button>
+                        <button onclick="updatePrecache()">
+                            更新预缓存 / Update Precache
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>运行时缓存 / Runtime Caching</h2>
+                <div class="runtime-demo">
+                    <div class="demo-content">
+                        <div class="image-container">
+                            <img id="demoImage" alt="Demo Image" src="assets/placeholder.jpg">
+                            <div class="loading-overlay">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        <div class="api-response">
+                            <pre id="apiData">等待数据... / Waiting for data...</pre>
+                        </div>
+                    </div>
+                    <div class="demo-controls">
+                        <button onclick="loadImage()">
+                            加载图片 / Load Image
+                        </button>
+                        <button onclick="fetchData()">
+                            获取数据 / Fetch Data
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>后台同步 / Background Sync</h2>
+                <div class="sync-demo">
+                    <div class="sync-status">
+                        <span class="status-text">后台同步状态 / Background Sync Status</span>
+                        <span class="sync-indicator"></span>
+                    </div>
+                    <div class="demo-controls">
+                        <button onclick="registerSync()">
+                            注册同步 / Register Sync
+                        </button>
+                        <button onclick="checkSyncStatus()">
+                            检查状态 / Check Status
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>Service Worker 信息 / Service Worker Information</h3>
+            <div class="sw-info">
+                <div class="info-item">
+                    <span class="info-label">状态 / Status:</span>
+                    <span id="swStatus">检查中... / Checking...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">版本 / Version:</span>
+                    <span id="swVersion">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">缓存大小 / Cache Size:</span>
+                    <span id="cacheSize">计算中... / Calculating...</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="sw-controls">
+                <button onclick="unregisterServiceWorker()">
+                    注销 Service Worker / Unregister Service Worker
+                </button>
+                <button onclick="skipWaiting()">
+                    跳过等待 / Skip Waiting
+                </button>
+            </div>
+            <p class="sw-note">
+                注意：某些功能可能需要 HTTPS 或本地环境
+                Note: Some features may require HTTPS or localhost
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

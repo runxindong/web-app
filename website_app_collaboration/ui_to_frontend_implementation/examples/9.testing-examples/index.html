@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>测试示例</h1>
+        <nav>
+            <ul>
+                <li><a href="#unit-testing">单元测试</a></li>
+                <li><a href="#integration-testing">集成测试</a></li>
+                <li><a href="#e2e-testing">端到端测试</a></li>
+                <li><a href="#performance-testing">性能测试</a></li>
+                <li><a href="#accessibility-testing">可访问性测试</a></li>
+                <li><a href="#compatibility-testing">兼容性测试</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 单元测试示例 -->
+        <section id="unit-testing">
+            <h2>单元测试示例</h2>
+            
+            <!-- 计算器示例 -->
+            <div class="example-section">
+                <h3>计算器测试</h3>
+                <div class="calculator">
+                    <div class="display">
+                        <input type="text" id="display" readonly>
+                    </div>
+                    <div class="keypad">
+                        <button data-value="7">7</button>
+                        <button data-value="8">8</button>
+                        <button data-value="9">9</button>
+                        <button data-value="/" class="operator">/</button>
+                        <button data-value="4">4</button>
+                        <button data-value="5">5</button>
+                        <button data-value="6">6</button>
+                        <button data-value="*" class="operator">*</button>
+                        <button data-value="1">1</button>
+                        <button data-value="2">2</button>
+                        <button data-value="3">3</button>
+                        <button data-value="-" class="operator">-</button>
+                        <button data-value="0">0</button>
+                        <button data-value=".">.</button>
+                        <button data-value="=" class="equals">=</button>
+                        <button data-value="+" class="operator">+</button>
+                        <button data-value="C" class="clear">C</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 表单验证示例 -->
+            <div class="example-section">
+                <h3>表单验证测试</h3>
+                <form id="validationForm" class="validation-form">
+                    <div class="form-group">
+                        <label for="username">用户名:</label>
+                        <input type="text" id="username" name="username" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱:</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码:</label>
+                        <input type="password" id="password" name="password" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <button type="submit">提交</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 集成测试示例 -->
+        <section id="integration-testing">
+            <h2>集成测试示例</h2>
+            
+            <!-- 用户管理示例 -->
+            <div class="example-section">
+                <h3>用户管理测试</h3>
+                <div class="user-management">
+                    <div class="user-list">
+                        <h4>用户列表</h4>
+                        <ul id="userList"></ul>
+                    </div>
+                    <div class="user-form">
+                        <h4>添加用户</h4>
+                        <form id="addUserForm">
+                            <div class="form-group">
+                                <label for="name">姓名:</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail">邮箱:</label>
+                                <input type="email" id="userEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">角色:</label>
+                                <select id="role" required>
+                                    <option value="">请选择</option>
+                                    <option value="admin">管理员</option>
+                                    <option value="user">普通用户</option>
+                                </select>
+                            </div>
+                            <button type="submit">添加</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据同步示例 -->
+            <div class="example-section">
+                <h3>数据同步测试</h3>
+                <div class="data-sync">
+                    <div class="local-data">
+                        <h4>本地数据</h4>
+                        <div id="localData" class="data-display"></div>
+                        <button id="editLocal">编辑</button>
+                    </div>
+                    <div class="remote-data">
+                        <h4>远程数据</h4>
+                        <div id="remoteData" class="data-display"></div>
+                        <button id="sync">同步</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 端到端测试示例 -->
+        <section id="e2e-testing">
+            <h2>端到端测试示例</h2>
+            
+            <!-- 购物车示例 -->
+            <div class="example-section">
+                <h3>购物车测试</h3>
+                <div class="shopping-cart">
+                    <div class="product-list">
+                        <h4>商品列表</h4>
+                        <div id="products" class="products"></div>
+                    </div>
+                    <div class="cart">
+                        <h4>购物车</h4>
+                        <div id="cartItems" class="cart-items"></div>
+                        <div class="cart-total">
+                            总计: <span id="cartTotal">¥0.00</span>
+                        </div>
+                        <button id="checkout">结算</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 登录流程示例 -->
+            <div class="example-section">
+                <h3>登录流程测试</h3>
+                <div class="login-flow">
+                    <div id="loginStep" class="step active">
+                        <h4>登录</h4>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">邮箱:</label>
+                                <input type="email" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">密码:</label>
+                                <input type="password" id="loginPassword" required>
+                            </div>
+                            <button type="submit">登录</button>
+                        </form>
+                    </div>
+                    <div id="verificationStep" class="step">
+                        <h4>验证</h4>
+                        <form id="verificationForm">
+                            <div class="form-group">
+                                <label for="verificationCode">验证码:</label>
+                                <input type="text" id="verificationCode" required>
+                            </div>
+                            <button type="submit">验证</button>
+                        </form>
+                    </div>
+                    <div id="welcomeStep" class="step">
+                        <h4>欢迎</h4>
+                        <div class="welcome-message">
+                            登录成功！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 性能测试示例 -->
+        <section id="performance-testing">
+            <h2>性能测试示例</h2>
+            
+            <!-- 列表渲染示例 -->
+            <div class="example-section">
+                <h3>列表渲染测试</h3>
+                <div class="list-performance">
+                    <div class="controls">
+                        <label>
+                            项目数量:
+                            <input type="number" id="itemCount" value="1000" min="100" max="10000">
+                        </label>
+                        <button id="renderList">渲染列表</button>
+                        <button id="clearList">清空列表</button>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            渲染时间: <span id="renderTime">0ms</span>
+                        </div>
+                        <div class="metric">
+                            内存使用: <span id="memoryUsage">0MB</span>
+                        </div>
+                    </div>
+                    <div id="virtualList" class="virtual-list"></div>
+                </div>
+            </div>
+
+            <!-- 图片加载示例 -->
+            <div class="example-section">
+                <h3>图片加载测试</h3>
+                <div class="image-performance">
+                    <div class="controls">
+                        <button id="loadImages">加载图片</button>
+                        <button id="clearImages">清空图片</button>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            加载时间: <span id="loadTime">0ms</span>
+                        </div>
+                        <div class="metric">
+                            成功率: <span id="successRate">0%</span>
+                        </div>
+                    </div>
+                    <div id="imageGallery" class="image-gallery"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 可访问性测试示例 -->
+        <section id="accessibility-testing">
+            <h2>可访问性测试示例</h2>
+            
+            <!-- 导航菜单示例 -->
+            <div class="example-section">
+                <h3>导航菜单测试</h3>
+                <nav class="accessible-nav" role="navigation" aria-label="主导航">
+                    <button class="menu-toggle" aria-expanded="false" aria-controls="mainMenu">
+                        菜单
+                    </button>
+                    <ul id="mainMenu" class="menu">
+                        <li><a href="#" aria-current="page">首页</a></li>
+                        <li>
+                            <button aria-expanded="false" aria-controls="submenu">
+                                产品
+                            </button>
+                            <ul id="submenu" class="submenu">
+                                <li><a href="#">产品1</a></li>
+                                <li><a href="#">产品2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- 表单可访问性示例 -->
+            <div class="example-section">
+                <h3>表单可访问性测试</h3>
+                <form class="accessible-form" novalidate>
+                    <div class="form-group">
+                        <label for="fullName">姓名 (必填)</label>
+                        <input type="text" 
+                               id="fullName" 
+                               name="fullName" 
+                               required 
+                               aria-required="true"
+                               aria-describedby="nameHelp nameError">
+                        <div id="nameHelp" class="help-text">
+                            请输入您的真实姓名
+                        </div>
+                        <div id="nameError" class="error-message" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">邮箱 (必填)</label>
+                        <input type="email" 
+                               id="contactEmail" 
+                               name="contactEmail" 
+                               required 
+                               aria-required="true"
+                               aria-describedby="emailHelp emailError">
+                        <div id="emailHelp" class="help-text">
+                            我们将通过此邮箱与您联系
+                        </div>
+                        <div id="emailError" class="error-message" role="alert"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferences">偏好设置</label>
+                        <fieldset>
+                            <legend class="sr-only">选择您的偏好设置</legend>
+                            <div class="checkbox-group">
+                                <input type="checkbox" 
+                                       id="newsletter" 
+                                       name="preferences" 
+                                       value="newsletter">
+                                <label for="newsletter">订阅新闻邮件</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" 
+                                       id="updates" 
+                                       name="preferences" 
+                                       value="updates">
+                                <label for="updates">接收产品更新</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="submit">提交</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 兼容性测试示例 -->
+        <section id="compatibility-testing">
+            <h2>兼容性测试示例</h2>
+            
+            <!-- 布局兼容性示例 -->
+            <div class="example-section">
+                <h3>布局兼容性测试</h3>
+                <div class="layout-compatibility">
+                    <div class="flex-container">
+                        <div class="flex-item">Flex项目1</div>
+                        <div class="flex-item">Flex项目2</div>
+                        <div class="flex-item">Flex项目3</div>
+                    </div>
+                    <div class="grid-container">
+                        <div class="grid-item">Grid项目1</div>
+                        <div class="grid-item">Grid项目2</div>
+                        <div class="grid-item">Grid项目3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API兼容性示例 -->
+            <div class="example-section">
+                <h3>API兼容性测试</h3>
+                <div class="api-compatibility">
+                    <div class="feature-tests">
+                        <h4>特性检测</h4>
+                        <div class="feature-list">
+                            <div class="feature" id="webpSupport">
+                                WebP支持: <span class="status"></span>
+                            </div>
+                            <div class="feature" id="webglSupport">
+                                WebGL支持: <span class="status"></span>
+                            </div>
+                            <div class="feature" id="webrtcSupport">
+                                WebRTC支持: <span class="status"></span>
+                            </div>
+                            <div class="feature" id="cssGridSupport">
+                                CSS Grid支持: <span class="status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fallback-demos">
+                        <h4>降级方案演示</h4>
+                        <div class="demo-container">
+                            <div class="modern-feature">
+                                现代浏览器特性
+                            </div>
+                            <div class="fallback-feature">
+                                降级方案
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>测试示例 - 展示各种测试方法和实践</p>
+    </footer>
+
+    <!-- 测试框架和工具 -->
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+    <script src="https://unpkg.com/chai/chai.js"></script>
+    <script src="https://unpkg.com/sinon/pkg/sinon.js"></script>
+    
+    <!-- 自定义脚本 -->
+    <script src="js/calculator.js"></script>
+    <!-- <script src="js/form-validation.js"></script>
+    <script src="js/user-management.js"></script>
+    <script src="js/data-sync.js"></script>
+    <script src="js/shopping-cart.js"></script>
+    <script src="js/login-flow.js"></script>
+    <script src="js/performance.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/compatibility.js"></script> -->
+    
+    <!-- 测试脚本 -->
+    <script src="tests/unit/calculator.test.js"></script>
+    <!-- <script src="tests/unit/form-validation.test.js"></script>
+    <script src="tests/integration/user-management.test.js"></script>
+    <script src="tests/integration/data-sync.test.js"></script>
+    <script src="tests/e2e/shopping-cart.test.js"></script>
+    <script src="tests/e2e/login-flow.test.js"></script>
+    <script src="tests/performance/rendering.test.js"></script>
+    <script src="tests/performance/loading.test.js"></script>
+    <script src="tests/accessibility/navigation.test.js"></script>
+    <script src="tests/accessibility/form.test.js"></script>
+    <script src="tests/compatibility/layout.test.js"></script>
+    <script src="tests/compatibility/api.test.js"></script> -->
+</body>
+</html> 

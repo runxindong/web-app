@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖和节流优化示例</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>防抖和节流优化示例</h1>
+        
+        <section class="demo-section">
+            <h2>搜索输入优化（防抖）</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="开始输入进行搜索...">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            <div class="performance-metrics">
+                <h3>性能指标</h3>
+                <p>API调用次数: <span id="apiCallCount">0</span></p>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>滚动事件优化（节流）</h2>
+            <div class="scroll-container" id="scrollContainer">
+                <div class="scroll-content" id="scrollContent"></div>
+            </div>
+            <div class="performance-metrics">
+                <h3>性能指标</h3>
+                <p>滚动处理次数: <span id="scrollHandleCount">0</span></p>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>窗口调整优化（防抖）</h2>
+            <div class="resize-container">
+                <div class="resize-box" id="resizeBox">
+                    <p>调整窗口大小查看效果</p>
+                </div>
+            </div>
+            <div class="performance-metrics">
+                <h3>性能指标</h3>
+                <p>重排次数: <span id="resizeCount">0</span></p>
+            </div>
+        </section>
+    </div>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

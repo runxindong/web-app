@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Optimization Examples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Image Optimization Examples</h1>
+        <p>This page demonstrates various image optimization techniques.</p>
+    </header>
+
+    <main>
+        <section id="responsive-images">
+            <h2>Responsive Images</h2>
+            <div class="example">
+                <h3>Picture Element with WebP</h3>
+                <picture>
+                    <source media="(min-width: 1200px)" srcset="images/large.webp" type="image/webp">
+                    <source media="(min-width: 800px)" srcset="images/medium.webp" type="image/webp">
+                    <source media="(min-width: 400px)" srcset="images/small.webp" type="image/webp">
+                    <img src="images/fallback.jpg" alt="Responsive image example" loading="lazy">
+                </picture>
+            </div>
+
+            <div class="example">
+                <h3>Srcset with Different Sizes</h3>
+                <img srcset="images/small.jpg 300w,
+                            images/medium.jpg 600w,
+                            images/large.jpg 900w"
+                    sizes="(max-width: 320px) 280px,
+                           (max-width: 640px) 580px,
+                           800px"
+                    src="images/fallback.jpg"
+                    alt="Srcset example"
+                    loading="lazy">
+            </div>
+        </section>
+
+        <section id="lazy-loading">
+            <h2>Lazy Loading</h2>
+            <div class="example">
+                <h3>Native Lazy Loading</h3>
+                <img src="images/lazy1.jpg" alt="Lazy loaded image 1" loading="lazy">
+                <img src="images/lazy2.jpg" alt="Lazy loaded image 2" loading="lazy">
+                <img src="images/lazy3.jpg" alt="Lazy loaded image 3" loading="lazy">
+            </div>
+
+            <div class="example">
+                <h3>Intersection Observer Lazy Loading</h3>
+                <div class="lazy-container">
+                    <img data-src="images/observer1.jpg" alt="Observer lazy image 1" class="lazy">
+                    <img data-src="images/observer2.jpg" alt="Observer lazy image 2" class="lazy">
+                    <img data-src="images/observer3.jpg" alt="Observer lazy image 3" class="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section id="image-formats">
+            <h2>Image Format Comparison</h2>
+            <div class="example">
+                <h3>Format Comparison</h3>
+                <div class="format-grid">
+                    <div>
+                        <h4>JPEG</h4>
+                        <img src="images/comparison.jpg" alt="JPEG format">
+                        <p>Size: 100KB</p>
+                    </div>
+                    <div>
+                        <h4>WebP</h4>
+                        <img src="images/comparison.webp" alt="WebP format">
+                        <p>Size: 70KB</p>
+                    </div>
+                    <div>
+                        <h4>AVIF</h4>
+                        <img src="images/comparison.avif" alt="AVIF format">
+                        <p>Size: 50KB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blur-up">
+            <h2>Blur-up Loading</h2>
+            <div class="example">
+                <h3>Progressive Loading</h3>
+                <div class="blur-container">
+                    <img src="images/tiny-preview.jpg" 
+                         data-src="images/full-quality.jpg"
+                         class="blur-up"
+                         alt="Blur-up loading example">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="image-optimization.js"></script>
+</body>
+</html> 

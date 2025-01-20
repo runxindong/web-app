@@ -1,0 +1,319 @@
+/* 基础样式 / Base Styles */
+:root {
+    --primary-color: #2196f3;
+    --secondary-color: #ff4081;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --error-color: #f44336;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --indicator-size: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 头部样式 / Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.status-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.status-indicator {
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    border-radius: 50%;
+    background-color: var(--warning-color);
+}
+
+.status-indicator.active {
+    background-color: var(--success-color);
+}
+
+.status-indicator.error {
+    background-color: var(--error-color);
+}
+
+/* 主要内容样式 / Main Content Styles */
+.demo-section {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+/* 资源列表样式 / Resource List Styles */
+.resource-list {
+    margin-bottom: 2rem;
+}
+
+.list-container {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    min-height: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.list-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+/* 控制按钮样式 / Control Button Styles */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.cache-controls,
+.test-controls,
+.worker-controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* 离线演示样式 / Offline Demo Styles */
+.network-status {
+    margin-bottom: 2rem;
+}
+
+.status-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.network-indicator {
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    border-radius: 50%;
+    background-color: var(--success-color);
+}
+
+.network-indicator.offline {
+    background-color: var(--error-color);
+}
+
+.image-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.test-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 同步演示样式 / Sync Demo Styles */
+.message-form {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.status-list {
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    min-height: 100px;
+}
+
+/* 推送通知样式 / Push Notification Styles */
+.permission-status {
+    margin-bottom: 2rem;
+}
+
+.permission-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+/* 信息面板样式 / Info Panel Styles */
+.info-panel {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.worker-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* 页脚样式 / Footer Styles */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.worker-note {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* 响应式设计 / Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .demo-section {
+        padding: 1.5rem;
+    }
+
+    .cache-controls,
+    .test-controls,
+    .worker-controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* 动画效果 / Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-item {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* 辅助功能样式 / Accessibility Styles */
+button:focus,
+input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+} 

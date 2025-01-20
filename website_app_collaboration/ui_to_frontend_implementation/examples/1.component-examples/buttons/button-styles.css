@@ -1,0 +1,172 @@
+/* 容器样式 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.example-section {
+    margin-bottom: 2rem;
+}
+
+.example-section h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* 按钮基础样式 */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 按钮类型 */
+.button--primary {
+    background-color: #2196F3;
+    color: white;
+}
+
+.button--primary:hover {
+    background-color: #1976D2;
+}
+
+.button--secondary {
+    background-color: white;
+    border-color: #2196F3;
+    color: #2196F3;
+}
+
+.button--secondary:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+.button--text {
+    background-color: transparent;
+    color: #2196F3;
+    padding: 0.5rem;
+}
+
+.button--text:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+}
+
+/* 状态按钮 */
+.button--success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button--success:hover {
+    background-color: #388E3C;
+}
+
+.button--warning {
+    background-color: #FFC107;
+    color: #333;
+}
+
+.button--warning:hover {
+    background-color: #FFA000;
+}
+
+.button--error {
+    background-color: #F44336;
+    color: white;
+}
+
+.button--error:hover {
+    background-color: #D32F2F;
+}
+
+.button--info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.button--info:hover {
+    background-color: #1976D2;
+}
+
+/* 按钮尺寸 */
+.button--large {
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+}
+
+.button--small {
+    padding: 0.25rem 0.75rem;
+    font-size: 12px;
+}
+
+/* 禁用状态 */
+.button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 加载状态 */
+.button--loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.button__spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 图标按钮 */
+.button--icon {
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    margin: 0 0.25em;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .button {
+        width: 100%;
+    }
+} 

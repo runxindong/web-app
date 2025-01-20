@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式图片示例 / Responsive Images Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 头部导航 / Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <h1>响应式图片示例 / Responsive Images Example</h1>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#basic">基础优化 / Basic Optimization</a></li>
+                    <li><a href="#art-direction">艺术指导 / Art Direction</a></li>
+                    <li><a href="#density">密度切换 / Density Switching</a></li>
+                    <li><a href="#lazy-loading">延迟加载 / Lazy Loading</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 基础图片优化 / Basic Image Optimization -->
+        <section id="basic" class="section">
+            <div class="container">
+                <h2>基础优化 / Basic Optimization</h2>
+                <div class="demo-grid">
+                    <!-- srcset和sizes示例 / srcset and sizes example -->
+                    <div class="demo-item">
+                        <h3>srcset 和 sizes / srcset and sizes</h3>
+                        <img src="https://via.placeholder.com/800x600"
+                             srcset="https://via.placeholder.com/400x300 400w,
+                                     https://via.placeholder.com/800x600 800w,
+                                     https://via.placeholder.com/1200x900 1200w"
+                             sizes="(max-width: 400px) 100vw,
+                                    (max-width: 800px) 80vw,
+                                    60vw"
+                             alt="响应式图片示例 / Responsive image example">
+                        <p class="description">根据视窗大小自动选择合适的图片 / Automatically select appropriate image based on viewport size</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 艺术指导 / Art Direction -->
+        <section id="art-direction" class="section">
+            <div class="container">
+                <h2>艺术指导 / Art Direction</h2>
+                <div class="demo-grid">
+                    <!-- picture元素示例 / picture element example -->
+                    <div class="demo-item">
+                        <h3>不同场景下的图片 / Images for Different Scenarios</h3>
+                        <picture>
+                            <source media="(min-width: 1024px)"
+                                    srcset="https://via.placeholder.com/1200x400">
+                            <source media="(min-width: 768px)"
+                                    srcset="https://via.placeholder.com/800x400">
+                            <img src="https://via.placeholder.com/400x400"
+                                 alt="艺术指导示例 / Art direction example">
+                        </picture>
+                        <p class="description">根据屏幕尺寸显示不同裁剪和布局的图片 / Show different crops and layouts based on screen size</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 密度切换 / Density Switching -->
+        <section id="density" class="section">
+            <div class="container">
+                <h2>密度切换 / Density Switching</h2>
+                <div class="demo-grid">
+                    <!-- 2x和3x图片示例 / 2x and 3x images example -->
+                    <div class="demo-item">
+                        <h3>高DPI显示支持 / High DPI Display Support</h3>
+                        <img src="https://via.placeholder.com/400x300"
+                             srcset="https://via.placeholder.com/400x300 1x,
+                                     https://via.placeholder.com/800x600 2x,
+                                     https://via.placeholder.com/1200x900 3x"
+                             alt="密度切换示例 / Density switching example">
+                        <p class="description">为不同像素密度的设备提供最佳图片 / Provide optimal images for different pixel density devices</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 延迟加载 / Lazy Loading -->
+        <section id="lazy-loading" class="section">
+            <div class="container">
+                <h2>延迟加载 / Lazy Loading</h2>
+                <div class="demo-grid">
+                    <!-- 原生延迟加载示例 / Native lazy loading example -->
+                    <div class="demo-item">
+                        <h3>原生延迟加载 / Native Lazy Loading</h3>
+                        <div class="lazy-container">
+                            <img src="https://via.placeholder.com/10x10"
+                                 data-src="https://via.placeholder.com/800x600"
+                                 loading="lazy"
+                                 class="lazy"
+                                 alt="延迟加载示例 / Lazy loading example">
+                            <div class="placeholder">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        <p class="description">图片进入视口时才加载 / Load images only when they enter the viewport</p>
+                    </div>
+
+                    <!-- 渐进式图片示例 / Progressive image example -->
+                    <div class="demo-item">
+                        <h3>渐进式加载 / Progressive Loading</h3>
+                        <div class="progressive-container">
+                            <img src="https://via.placeholder.com/50x50"
+                                 data-src="https://via.placeholder.com/800x600"
+                                 class="progressive"
+                                 alt="渐进式加载示例 / Progressive loading example">
+                        </div>
+                        <p class="description">先加载低质量图片，然后渐进加载高质量图片 / Load low quality image first, then progressively load high quality image</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 响应式图片示例 / Responsive Images Example</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

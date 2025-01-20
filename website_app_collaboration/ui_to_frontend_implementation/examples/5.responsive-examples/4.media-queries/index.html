@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询示例 / Media Queries Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 头部导航 / Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <h1>媒体查询示例 / Media Queries Example</h1>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#basic">基础查询 / Basic Queries</a></li>
+                    <li><a href="#complex">复杂条件 / Complex Conditions</a></li>
+                    <li><a href="#features">设备特性 / Device Features</a></li>
+                    <li><a href="#print">打印样式 / Print Styles</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 基础查询示例 / Basic Queries Example -->
+        <section id="basic" class="section">
+            <div class="container">
+                <h2>基础查询 / Basic Queries</h2>
+                <div class="responsive-grid">
+                    <div class="card">
+                        <h3>移动设备 / Mobile</h3>
+                        <p>< 768px</p>
+                        <div class="demo-box"></div>
+                    </div>
+                    <div class="card">
+                        <h3>平板设备 / Tablet</h3>
+                        <p>768px - 1024px</p>
+                        <div class="demo-box"></div>
+                    </div>
+                    <div class="card">
+                        <h3>桌面设备 / Desktop</h3>
+                        <p>> 1024px</p>
+                        <div class="demo-box"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 复杂条件示例 / Complex Conditions Example -->
+        <section id="complex" class="section">
+            <div class="container">
+                <h2>复杂条件 / Complex Conditions</h2>
+                <div class="complex-demo">
+                    <div class="orientation-demo">
+                        <h3>屏幕方向 / Screen Orientation</h3>
+                        <div class="demo-content">
+                            <p>当前方向 / Current Orientation: <span class="orientation-text"></span></p>
+                        </div>
+                    </div>
+                    <div class="aspect-ratio-demo">
+                        <h3>宽高比 / Aspect Ratio</h3>
+                        <div class="demo-content">
+                            <p>当前宽高比 / Current Aspect Ratio: <span class="aspect-ratio-text"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 设备特性示例 / Device Features Example -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2>设备特性 / Device Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card hover-demo">
+                        <h3>悬停支持 / Hover Support</h3>
+                        <p>将鼠标移到此处 / Hover here</p>
+                    </div>
+                    <div class="feature-card pointer-demo">
+                        <h3>指针类型 / Pointer Type</h3>
+                        <p>当前设备 / Current device: <span class="pointer-text"></span></p>
+                    </div>
+                    <div class="feature-card dark-mode-demo">
+                        <h3>深色模式 / Dark Mode</h3>
+                        <p>系统主题 / System theme: <span class="theme-text"></span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 打印样式示例 / Print Styles Example -->
+        <section id="print" class="section">
+            <div class="container">
+                <h2>打印样式 / Print Styles</h2>
+                <div class="print-demo">
+                    <article class="print-content">
+                        <h3>打印优化内容 / Print Optimized Content</h3>
+                        <p>这段内容在打印时会有特殊的样式。</p>
+                        <p>This content will have special styles when printed.</p>
+                        <div class="screen-only">
+                            <p>这段内容只在屏幕上显示。</p>
+                            <p>This content only shows on screen.</p>
+                        </div>
+                        <div class="print-only">
+                            <p>这段内容只在打印时显示。</p>
+                            <p>This content only shows when printing.</p>
+                        </div>
+                    </article>
+                    <button class="print-button" onclick="window.print()">
+                        打印此页面 / Print this page
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 媒体查询示例 / Media Queries Example</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

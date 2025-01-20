@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web开发学习平台 - 语义化HTML示例</title>
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f5f6fa;
+        }
+
+        /* 布局样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部样式 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* 主要内容区域 */
+        main {
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        /* 文章样式 */
+        article {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        article header {
+            background: none;
+            box-shadow: none;
+            margin-bottom: 1.5rem;
+        }
+
+        article h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        article .meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* 章节样式 */
+        section {
+            margin: 2rem 0;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* 侧边栏样式 */
+        aside {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 100px;
+        }
+
+        aside h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 导航链接列表 */
+        .toc {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #2c3e50;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #3498db;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                position: static;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* 可访问性增强 */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #3498db;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ARIA 标记样式 */
+        [aria-current="page"] {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        [aria-label="目录"] {
+            border-left: 3px solid #3498db;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 跳转到主要内容的链接（可访问性功能） -->
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
+
+    <!-- 页头 -->
+    <header role="banner">
+        <div class="container">
+            <nav role="navigation" aria-label="主导航">
+                <ul>
+                    <li><a href="#" aria-current="page">首页</a></li>
+                    <li><a href="#">课程</a></li>
+                    <li><a href="#">练习</a></li>
+                    <li><a href="#">资源</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <div class="container">
+        <main id="main-content" role="main">
+            <!-- 文章部分 -->
+            <article>
+                <header>
+                    <h1>HTML5语义化标签的重要性</h1>
+                    <div class="meta">
+                        <time datetime="2024-03-20">发布于：2024年3月20日</time>
+                        <address>作者：<a href="#" rel="author">张教授</a></address>
+                    </div>
+                </header>
+
+                <section aria-labelledby="intro-heading">
+                    <h2 id="intro-heading">引言</h2>
+                    <p>HTML5引入了一系列新的语义化标签，这些标签不仅让代码更具可读性，还能提升网页的可访问性和搜索引擎优化效果。</p>
+                </section>
+
+                <section aria-labelledby="benefits-heading">
+                    <h2 id="benefits-heading">语义化HTML的优势</h2>
+                    <ul>
+                        <li>提高代码可读性和可维护性</li>
+                        <li>增强页面的可访问性</li>
+                        <li>有利于搜索引擎优化（SEO）</li>
+                        <li>便于不同设备和平台的解析</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="examples-heading">
+                    <h2 id="examples-heading">常用语义化标签示例</h2>
+                    <dl>
+                        <dt>&lt;header&gt;</dt>
+                        <dd>用于定义页面或区块的头部</dd>
+                        
+                        <dt>&lt;nav&gt;</dt>
+                        <dd>用于定义导航链接的部分</dd>
+                        
+                        <dt>&lt;main&gt;</dt>
+                        <dd>定义文档的主要内容</dd>
+                        
+                        <dt>&lt;article&gt;</dt>
+                        <dd>定义独立的文章内容</dd>
+                        
+                        <dt>&lt;section&gt;</dt>
+                        <dd>定义文档中的节（section、区段）</dd>
+                        
+                        <dt>&lt;aside&gt;</dt>
+                        <dd>定义侧边栏或附加内容</dd>
+                        
+                        <dt>&lt;footer&gt;</dt>
+                        <dd>定义页面或区块的底部</dd>
+                    </dl>
+                </section>
+
+                <section aria-labelledby="practice-heading">
+                    <h2 id="practice-heading">实践建议</h2>
+                    <p>在使用语义化标签时，应该：</p>
+                    <ol>
+                        <li>根据内容的语义选择合适的标签</li>
+                        <li>避免过度使用div和span</li>
+                        <li>确保标签的嵌套符合规范</li>
+                        <li>适当使用ARIA属性增强可访问性</li>
+                    </ol>
+                </section>
+            </article>
+
+            <!-- 侧边栏 -->
+            <aside role="complementary">
+                <nav aria-label="目录">
+                    <h2>文章目录</h2>
+                    <ul class="toc">
+                        <li><a href="#intro-heading">引言</a></li>
+                        <li><a href="#benefits-heading">语义化HTML的优势</a></li>
+                        <li><a href="#examples-heading">常用语义化标签示例</a></li>
+                        <li><a href="#practice-heading">实践建议</a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>我们致力于提供高质量的Web开发教育资源，帮助学习者掌握现代Web开发技术。</p>
+                </section>
+
+                <section class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">课程目录</a></li>
+                        <li><a href="#">学习路径</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </section>
+
+                <section class="footer-section">
+                    <h3>联系方式</h3>
+                    <address>
+                        邮箱：<a href="mailto:contact@example.com">contact@example.com</a><br>
+                        电话：<a href="tel:+86123456789">+86 123-4567-89</a>
+                    </address>
+                </section>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

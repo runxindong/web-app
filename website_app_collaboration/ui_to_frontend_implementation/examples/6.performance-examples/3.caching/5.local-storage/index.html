@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage 缓存示例 / LocalStorage Cache Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LocalStorage 缓存示例 / LocalStorage Cache Example</h1>
+            <p class="description">
+                演示使用 LocalStorage 进行简单数据存储和配置缓存
+                Demonstrate simple data storage and configuration caching using LocalStorage
+            </p>
+        </header>
+
+        <main>
+            <section class="demo-section">
+                <h2>简单数据存储 / Simple Data Storage</h2>
+                <div class="storage-demo" id="dataStorage">
+                    <div class="input-form">
+                        <div class="form-group">
+                            <label>
+                                键 / Key:
+                                <input type="text" id="keyInput" required>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                值 / Value:
+                                <input type="text" id="valueInput" required>
+                            </label>
+                        </div>
+                        <div class="demo-controls">
+                            <button onclick="saveData()">
+                                保存数据 / Save Data
+                            </button>
+                            <button onclick="loadData()">
+                                加载数据 / Load Data
+                            </button>
+                            <button onclick="removeData()">
+                                删除数据 / Remove Data
+                            </button>
+                        </div>
+                    </div>
+                    <div class="data-list">
+                        <h3>已存储的数据 / Stored Data</h3>
+                        <div class="list-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>配置缓存 / Configuration Cache</h2>
+                <div class="config-demo" id="configCache">
+                    <div class="config-form">
+                        <div class="form-group">
+                            <label>
+                                主题 / Theme:
+                                <select id="themeSelect">
+                                    <option value="light">浅色 / Light</option>
+                                    <option value="dark">深色 / Dark</option>
+                                    <option value="auto">自动 / Auto</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                语言 / Language:
+                                <select id="langSelect">
+                                    <option value="zh">中文 / Chinese</option>
+                                    <option value="en">英文 / English</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                字体大小 / Font Size:
+                                <input type="range" id="fontSizeRange" min="12" max="24" step="1">
+                                <span id="fontSizeValue">16px</span>
+                            </label>
+                        </div>
+                        <div class="demo-controls">
+                            <button onclick="saveConfig()">
+                                保存配置 / Save Config
+                            </button>
+                            <button onclick="resetConfig()">
+                                重置配置 / Reset Config
+                            </button>
+                        </div>
+                    </div>
+                    <div class="preview-panel">
+                        <h3>预览 / Preview</h3>
+                        <div class="preview-content">
+                            <p>这是预览文本</p>
+                            <p>This is preview text</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo-section">
+                <h2>会话状态 / Session State</h2>
+                <div class="session-demo" id="sessionState">
+                    <div class="counter-controls">
+                        <button onclick="incrementCounter()">
+                            增加计数 / Increment Counter
+                        </button>
+                        <div class="counter-display">
+                            <span class="counter-label">计数 / Count:</span>
+                            <span class="counter-value">0</span>
+                        </div>
+                        <button onclick="resetCounter()">
+                            重置计数 / Reset Counter
+                        </button>
+                    </div>
+                    <div class="session-info">
+                        <h3>会话信息 / Session Information</h3>
+                        <div class="info-container">
+                            <div class="info-item">
+                                <span class="info-label">开始时间 / Start Time:</span>
+                                <span class="session-start">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">持续时间 / Duration:</span>
+                                <span class="session-duration">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="info-panel">
+            <h3>存储信息 / Storage Information</h3>
+            <div class="storage-info">
+                <div class="info-item">
+                    <span class="info-label">已用空间 / Used Space:</span>
+                    <span class="used-space">0 B</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">可用空间 / Available Space:</span>
+                    <span class="available-space">计算中... / Calculating...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">项目数量 / Item Count:</span>
+                    <span class="item-count">0</span>
+                </div>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="storage-controls">
+                <button onclick="clearStorage()">
+                    清除存储 / Clear Storage
+                </button>
+                <button onclick="refreshInfo()">
+                    刷新信息 / Refresh Info
+                </button>
+            </div>
+            <p class="storage-note">
+                注意：LocalStorage 数据在浏览器清除数据时会被删除
+                Note: LocalStorage data will be deleted when browser data is cleared
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

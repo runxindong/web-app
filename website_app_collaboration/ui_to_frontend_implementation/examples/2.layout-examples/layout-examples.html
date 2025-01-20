@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布局示例 | Layout Examples</title>
+    <link rel="stylesheet" href="layout-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>布局示例 | Layout Examples</h1>
+
+        <section class="example-section">
+            <h2>栅格系统 | Grid System</h2>
+            <div class="grid">
+                <div class="grid__row">
+                    <div class="grid__col grid__col--12">12 列</div>
+                </div>
+                <div class="grid__row">
+                    <div class="grid__col grid__col--6">6 列</div>
+                    <div class="grid__col grid__col--6">6 列</div>
+                </div>
+                <div class="grid__row">
+                    <div class="grid__col grid__col--4">4 列</div>
+                    <div class="grid__col grid__col--4">4 列</div>
+                    <div class="grid__col grid__col--4">4 列</div>
+                </div>
+                <div class="grid__row">
+                    <div class="grid__col grid__col--3">3 列</div>
+                    <div class="grid__col grid__col--3">3 列</div>
+                    <div class="grid__col grid__col--3">3 列</div>
+                    <div class="grid__col grid__col--3">3 列</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>弹性布局 | Flexbox Layout</h2>
+            <div class="flex-container">
+                <div class="flex-container__item">弹性项目 1</div>
+                <div class="flex-container__item">弹性项目 2</div>
+                <div class="flex-container__item">弹性项目 3</div>
+            </div>
+
+            <div class="flex-container flex-container--column">
+                <div class="flex-container__item">垂直项目 1</div>
+                <div class="flex-container__item">垂直项目 2</div>
+                <div class="flex-container__item">垂直项目 3</div>
+            </div>
+
+            <div class="flex-container flex-container--space-between">
+                <div class="flex-container__item">两端对齐 1</div>
+                <div class="flex-container__item">两端对齐 2</div>
+                <div class="flex-container__item">两端对齐 3</div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>分割面板 | Split Panels</h2>
+            <div class="split-panels">
+                <div class="split-panels__panel">
+                    <div class="split-panels__content">
+                        左侧面板内容
+                    </div>
+                </div>
+                <div class="split-panels__divider"></div>
+                <div class="split-panels__panel">
+                    <div class="split-panels__content">
+                        右侧面板内容
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>折叠面板 | Collapse</h2>
+            <div class="collapse">
+                <div class="collapse__item">
+                    <div class="collapse__header">
+                        <h3 class="collapse__title">折叠面板 1</h3>
+                        <button class="collapse__trigger">展开</button>
+                    </div>
+                    <div class="collapse__content">
+                        这是折叠面板 1 的内容。点击标题或按钮可以展开/折叠内容。
+                    </div>
+                </div>
+                <div class="collapse__item">
+                    <div class="collapse__header">
+                        <h3 class="collapse__title">折叠面板 2</h3>
+                        <button class="collapse__trigger">展开</button>
+                    </div>
+                    <div class="collapse__content">
+                        这是折叠面板 2 的内容。点击标题或按钮可以展开/折叠内容。
+                    </div>
+                </div>
+                <div class="collapse__item">
+                    <div class="collapse__header">
+                        <h3 class="collapse__title">折叠面板 3</h3>
+                        <button class="collapse__trigger">展开</button>
+                    </div>
+                    <div class="collapse__content">
+                        这是折叠面板 3 的内容。点击标题或按钮可以展开/折叠内容。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>步骤条 | Steps</h2>
+            <div class="steps">
+                <div class="steps__item steps__item--completed">
+                    <div class="steps__icon">1</div>
+                    <div class="steps__content">
+                        <h4 class="steps__title">第一步</h4>
+                        <p class="steps__description">完成第一步操作</p>
+                    </div>
+                </div>
+                <div class="steps__item steps__item--active">
+                    <div class="steps__icon">2</div>
+                    <div class="steps__content">
+                        <h4 class="steps__title">第二步</h4>
+                        <p class="steps__description">正在进行第二步</p>
+                    </div>
+                </div>
+                <div class="steps__item">
+                    <div class="steps__icon">3</div>
+                    <div class="steps__content">
+                        <h4 class="steps__title">第三步</h4>
+                        <p class="steps__description">等待进行第三步</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-section">
+            <h2>分隔线 | Divider</h2>
+            <div class="divider-demo">
+                <p>上面的内容</p>
+                <div class="divider"></div>
+                <p>下面的内容</p>
+
+                <div class="divider divider--dashed"></div>
+
+                <div class="divider divider--text">
+                    <span class="divider__text">带文本的分隔线</span>
+                </div>
+
+                <div class="divider divider--vertical"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 折叠面板功能
+        document.querySelectorAll('.collapse__header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.closest('.collapse__item');
+                const content = item.querySelector('.collapse__content');
+                const trigger = item.querySelector('.collapse__trigger');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    trigger.textContent = '展开';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    trigger.textContent = '收起';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
