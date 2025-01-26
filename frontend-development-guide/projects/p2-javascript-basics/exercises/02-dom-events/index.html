@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM操作与事件处理练习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f6fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .todo-item.completed {
+            background: #e8f5e9;
+            text-decoration: line-through;
+            color: #666;
+        }
+
+        .todo-item button {
+            margin-left: auto;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .image-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .highlight {
+            background-color: yellow;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DOM操作与事件处理练习</h1>
+
+        <!-- 1. 基础DOM操作 -->
+        <section class="section">
+            <h2>1. 基础DOM操作</h2>
+            
+            <!-- 1.1 元素选择和修改 -->
+            <div>
+                <h3>元素选择和修改</h3>
+                <p id="target-text">这是一个可以被修改的文本</p>
+                <button onclick="changeText()">修改文本</button>
+                <button onclick="changeStyle()">修改样式</button>
+                <button onclick="toggleVisibility()">切换显示/隐藏</button>
+            </div>
+
+            <!-- 1.2 元素创建和添加 -->
+            <div>
+                <h3>元素创建和添加</h3>
+                <div id="container-demo">
+                    <input type="text" id="new-element-text" placeholder="输入要添加的文本">
+                    <button onclick="addElement()">添加元素</button>
+                    <button onclick="removeLastElement()">删除最后一个元素</button>
+                </div>
+                <div id="elements-container"></div>
+            </div>
+        </section>
+
+        <!-- 2. 事件处理 -->
+        <section class="section">
+            <h2>2. 事件处理</h2>
+            
+            <!-- 2.1 鼠标事件 -->
+            <div>
+                <h3>鼠标事件</h3>
+                <div id="mouse-event-demo" 
+                     style="width: 200px; height: 200px; background: #3498db; margin: 10px;">
+                    在此区域移动鼠标
+                </div>
+                <p id="mouse-event-output"></p>
+            </div>
+
+            <!-- 2.2 键盘事件 -->
+            <div>
+                <h3>键盘事件</h3>
+                <input type="text" id="keyboard-input" 
+                       placeholder="在这里输入文字" 
+                       style="width: 100%; padding: 10px;">
+                <p id="keyboard-output"></p>
+            </div>
+        </section>
+
+        <!-- 3. 实践项目：待办事项列表 -->
+        <section class="section">
+            <h2>3. 待办事项列表</h2>
+            <div>
+                <input type="text" id="todo-input" placeholder="输入待办事项">
+                <button onclick="addTodo()">添加</button>
+                <ul id="todo-list" class="todo-list"></ul>
+            </div>
+        </section>
+
+        <!-- 4. 实践项目：表单验证 -->
+        <section class="section">
+            <h2>4. 表单验证</h2>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username">
+                    <div class="error-message" id="username-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email">
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password">
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                <button type="submit">注册</button>
+            </form>
+        </section>
+
+        <!-- 5. 实践项目：图片库 -->
+        <section class="section">
+            <h2>5. 图片库</h2>
+            <div class="image-gallery" id="image-gallery">
+                <!-- 图片将通过JavaScript动态添加 -->
+            </div>
+        </section>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal" id="image-modal">
+        <div class="modal-content">
+            <button class="close-button">&times;</button>
+            <img id="modal-image" src="" alt="" style="width: 100%;">
+        </div>
+    </div>
+
+    <script>
+        // 1.1 元素选择和修改
+        function changeText() {
+            const element = document.getElementById('target-text');
+            element.textContent = '文本已被修改！' + new Date().toLocaleTimeString();
+        }
+
+        function changeStyle() {
+            const element = document.getElementById('target-text');
+            element.style.color = '#e74c3c';
+            element.style.fontSize = '20px';
+            element.style.fontWeight = 'bold';
+            element.classList.add('highlight');
+        }
+
+        function toggleVisibility() {
+            const element = document.getElementById('target-text');
+            element.style.display = element.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // 1.2 元素创建和添加
+        function addElement() {
+            const container = document.getElementById('elements-container');
+            const input = document.getElementById('new-element-text');
+            const text = input.value.trim();
+            
+            if (text) {
+                const newElement = document.createElement('p');
+                newElement.textContent = text;
+                newElement.style.padding = '10px';
+                newElement.style.background = '#f8f9fa';
+                newElement.style.margin = '5px 0';
+                newElement.style.borderRadius = '4px';
+                
+                container.appendChild(newElement);
+                input.value = '';
+            }
+        }
+
+        function removeLastElement() {
+            const container = document.getElementById('elements-container');
+            const lastElement = container.lastElementChild;
+            if (lastElement) {
+                container.removeChild(lastElement);
+            }
+        }
+
+        // 2.1 鼠标事件
+        const mouseDemo = document.getElementById('mouse-event-demo');
+        const mouseOutput = document.getElementById('mouse-event-output');
+
+        mouseDemo.addEventListener('mousemove', (e) => {
+            const rect = mouseDemo.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            mouseOutput.textContent = `鼠标位置 - X: ${Math.round(x)}, Y: ${Math.round(y)}`;
+        });
+
+        mouseDemo.addEventListener('mouseenter', () => {
+            mouseDemo.style.background = '#2ecc71';
+        });
+
+        mouseDemo.addEventListener('mouseleave', () => {
+            mouseDemo.style.background = '#3498db';
+            mouseOutput.textContent = '';
+        });
+
+        // 2.2 键盘事件
+        const keyboardInput = document.getElementById('keyboard-input');
+        const keyboardOutput = document.getElementById('keyboard-output');
+
+        keyboardInput.addEventListener('keydown', (e) => {
+            keyboardOutput.textContent = `按下的键: ${e.key} (键码: ${e.keyCode})`;
+        });
+
+        keyboardInput.addEventListener('input', (e) => {
+            const text = e.target.value;
+            keyboardOutput.textContent = `当前输入: ${text} (长度: ${text.length})`;
+        });
+
+        // 3. 待办事项列表
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const text = input.value.trim();
+            
+            if (text) {
+                const list = document.getElementById('todo-list');
+                const item = document.createElement('li');
+                item.className = 'todo-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.addEventListener('change', () => {
+                    item.classList.toggle('completed');
+                });
+                
+                const span = document.createElement('span');
+                span.textContent = text;
+                span.style.marginLeft = '10px';
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '删除';
+                deleteButton.onclick = () => list.removeChild(item);
+                
+                item.appendChild(checkbox);
+                item.appendChild(span);
+                item.appendChild(deleteButton);
+                list.appendChild(item);
+                
+                input.value = '';
+            }
+        }
+
+        // 4. 表单验证
+        const form = document.getElementById('registration-form');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+            
+            // 用户名验证
+            const username = document.getElementById('username');
+            const usernameError = document.getElementById('username-error');
+            if (username.value.length < 3) {
+                usernameError.textContent = '用户名至少需要3个字符';
+                usernameError.style.display = 'block';
+                isValid = false;
+            } else {
+                usernameError.style.display = 'none';
+            }
+            
+            // 邮箱验证
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                emailError.textContent = '请输入有效的邮箱地址';
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            // 密码验证
+            const password = document.getElementById('password');
+            const passwordError = document.getElementById('password-error');
+            if (password.value.length < 6) {
+                passwordError.textContent = '密码至少需要6个字符';
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            if (isValid) {
+                alert('注册成功！');
+                form.reset();
+            }
+        });
+
+        // 5. 图片库
+        const imageGallery = document.getElementById('image-gallery');
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeButton = document.querySelector('.close-button');
+
+        // 模拟图片数据
+        const images = [
+            'https://picsum.photos/300/300?random=1',
+            'https://picsum.photos/300/300?random=2',
+            'https://picsum.photos/300/300?random=3',
+            'https://picsum.photos/300/300?random=4',
+            'https://picsum.photos/300/300?random=5',
+            'https://picsum.photos/300/300?random=6'
+        ];
+
+        // 创建图片库
+        images.forEach(src => {
+            const imageItem = document.createElement('div');
+            imageItem.className = 'image-item';
+            
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = '图片';
+            
+            imageItem.appendChild(img);
+            imageGallery.appendChild(imageItem);
+            
+            imageItem.addEventListener('click', () => {
+                modalImage.src = src;
+                modal.style.display = 'flex';
+            });
+        });
+
+        // 关闭模态框
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

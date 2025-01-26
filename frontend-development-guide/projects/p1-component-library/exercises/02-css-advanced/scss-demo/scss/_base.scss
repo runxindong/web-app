@@ -1,0 +1,29 @@
+// 重置样式
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $text-color;
+    background-color: $bg-color;
+}
+
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: $spacing-unit * 2;
+}
+
+// 基础排版
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: $spacing-unit * 2;
+}
+
+p {
+    margin-bottom: $spacing-unit * 2;
+} 

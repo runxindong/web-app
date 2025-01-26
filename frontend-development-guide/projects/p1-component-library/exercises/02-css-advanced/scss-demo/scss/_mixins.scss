@@ -1,0 +1,47 @@
+// 弹性布局 Mixin
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+// 响应式 Mixin
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == sm {
+        @media (min-width: $breakpoint-sm) { @content; }
+    } @else if $breakpoint == md {
+        @media (min-width: $breakpoint-md) { @content; }
+    } @else if $breakpoint == lg {
+        @media (min-width: $breakpoint-lg) { @content; }
+    } @else if $breakpoint == xl {
+        @media (min-width: $breakpoint-xl) { @content; }
+    }
+}
+
+// 按钮 Mixin
+@mixin button-variant($bg-color, $text-color: white) {
+    background-color: $bg-color;
+    color: $text-color;
+    padding: $spacing-unit * 2 $spacing-unit * 4;
+    border: none;
+    border-radius: $spacing-unit;
+    cursor: pointer;
+    transition: all $transition-duration ease;
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+        transform: translateY(-2px);
+    }
+}
+
+// 卡片阴影 Mixin
+@mixin card-shadow($level: 1) {
+    @if $level == 1 {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    } @else if $level == 2 {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    } @else if $level == 3 {
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+} 

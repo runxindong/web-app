@@ -1,0 +1,66 @@
+// 弹性布局
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+// 网格布局
+@mixin grid($columns: 1, $gap: $spacing) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+// 过渡效果
+@mixin transition($properties...) {
+    $transitions: ();
+    @each $property in $properties {
+        $transitions: append($transitions, $property $duration $timing, comma);
+    }
+    transition: $transitions;
+}
+
+// 动画
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+// 响应式
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == sm {
+        @media (min-width: $breakpoint-sm) { @content; }
+    } @else if $breakpoint == md {
+        @media (min-width: $breakpoint-md) { @content; }
+    } @else if $breakpoint == lg {
+        @media (min-width: $breakpoint-lg) { @content; }
+    } @else if $breakpoint == xl {
+        @media (min-width: $breakpoint-xl) { @content; }
+    }
+}
+
+// 按钮样式
+@mixin button-base {
+    padding: $spacing * 1.5 $spacing * 3;
+    border: none;
+    border-radius: $radius;
+    font-size: $font-size-base;
+    cursor: pointer;
+    @include transition(transform, background-color, box-shadow);
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+// 卡片样式
+@mixin card-base {
+    background: white;
+    border-radius: $radius;
+    overflow: hidden;
+    box-shadow: $shadow-sm;
+    @include transition(transform, box-shadow);
+} 

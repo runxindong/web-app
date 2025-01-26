@@ -1,0 +1,30 @@
+// 导入所有部分文件
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'components';
+
+// 响应式样式
+@include respond-to(sm) {
+    .theme-demo {
+        flex-direction: column;
+        gap: $spacing-unit * 2;
+
+        .color-block {
+            width: 100%;
+        }
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .spacing-demo {
+        flex-direction: column;
+        gap: $spacing-unit * 2;
+    }
+
+    .card-group {
+        flex-direction: column;
+    }
+} 

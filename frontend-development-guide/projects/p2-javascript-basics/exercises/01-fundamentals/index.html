@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 基础练习</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f6fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .output {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            min-height: 50px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .success {
+            color: #2ecc71;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript 基础练习</h1>
+
+        <!-- 1. 变量和数据类型 -->
+        <section class="section">
+            <h2>1. 变量和数据类型</h2>
+            
+            <!-- 1.1 变量声明和赋值 -->
+            <div>
+                <h3>变量声明和赋值</h3>
+                <input type="text" id="varInput" placeholder="输入一个值">
+                <button onclick="handleVariableDemo()">测试变量</button>
+                <div id="varOutput" class="output"></div>
+            </div>
+
+            <!-- 1.2 数据类型判断 -->
+            <div>
+                <h3>数据类型判断</h3>
+                <input type="text" id="typeInput" placeholder="输入任意值">
+                <button onclick="checkDataType()">检查类型</button>
+                <div id="typeOutput" class="output"></div>
+            </div>
+
+            <!-- 1.3 类型转换 -->
+            <div>
+                <h3>类型转换</h3>
+                <input type="text" id="convertInput" placeholder="输入一个数字">
+                <select id="convertType">
+                    <option value="number">转换为数字</option>
+                    <option value="string">转换为字符串</option>
+                    <option value="boolean">转换为布尔值</option>
+                </select>
+                <button onclick="convertType()">转换</button>
+                <div id="convertOutput" class="output"></div>
+            </div>
+        </section>
+
+        <!-- 2. 运算符和表达式 -->
+        <section class="section">
+            <h2>2. 运算符和表达式</h2>
+            
+            <!-- 2.1 算术运算 -->
+            <div>
+                <h3>算术运算</h3>
+                <input type="number" id="num1" placeholder="数字 1">
+                <select id="operator">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">×</option>
+                    <option value="/">÷</option>
+                    <option value="%">%</option>
+                </select>
+                <input type="number" id="num2" placeholder="数字 2">
+                <button onclick="calculate()">计算</button>
+                <div id="calcOutput" class="output"></div>
+            </div>
+
+            <!-- 2.2 比较运算 -->
+            <div>
+                <h3>比较运算</h3>
+                <input type="text" id="compare1" placeholder="值 1">
+                <select id="compareOperator">
+                    <option value="==">==(相等)</option>
+                    <option value="===">>===(全等)</option>
+                    <option value=">">&gt;(大于)</option>
+                    <option value="<">&lt;(小于)</option>
+                </select>
+                <input type="text" id="compare2" placeholder="值 2">
+                <button onclick="compare()">比较</button>
+                <div id="compareOutput" class="output"></div>
+            </div>
+        </section>
+
+        <!-- 3. 函数 -->
+        <section class="section">
+            <h2>3. 函数</h2>
+            
+            <!-- 3.1 基本函数 -->
+            <div>
+                <h3>基本函数</h3>
+                <input type="text" id="funcInput" placeholder="输入你的名字">
+                <button onclick="greet()">问候</button>
+                <div id="greetOutput" class="output"></div>
+            </div>
+
+            <!-- 3.2 带返回值的函数 -->
+            <div>
+                <h3>带返回值的函数</h3>
+                <input type="number" id="circleRadius" placeholder="输入圆的半径">
+                <button onclick="calculateCircle()">计算圆的面积和周长</button>
+                <div id="circleOutput" class="output"></div>
+            </div>
+
+            <!-- 3.3 箭头函数 -->
+            <div>
+                <h3>箭头函数</h3>
+                <input type="text" id="arrayInput" placeholder="输入数字，用逗号分隔">
+                <button onclick="processArray()">处理数组</button>
+                <div id="arrayOutput" class="output"></div>
+            </div>
+        </section>
+
+        <!-- 4. DOM操作 -->
+        <section class="section">
+            <h2>4. DOM操作</h2>
+            
+            <!-- 4.1 元素操作 -->
+            <div>
+                <h3>元素操作</h3>
+                <div id="domDemo" class="output">这是一个可以被修改的文本</div>
+                <button onclick="changeText()">修改文本</button>
+                <button onclick="changeStyle()">修改样式</button>
+                <button onclick="addElement()">添加元素</button>
+            </div>
+
+            <!-- 4.2 事件处理 -->
+            <div>
+                <h3>事件处理</h3>
+                <div id="eventDemo" class="output" 
+                     onmouseover="handleMouseOver()" 
+                     onmouseout="handleMouseOut()">
+                    将鼠标移到这里
+                </div>
+                <button id="eventButton">点击我</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 1.1 变量声明和赋值
+        function handleVariableDemo() {
+            const input = document.getElementById('varInput').value;
+            let output = '';
+            
+            // 演示不同变量声明方式
+            var varVariable = input;
+            let letVariable = input;
+            const constVariable = input;
+            
+            output = `
+                使用 var 声明: ${varVariable}
+                使用 let 声明: ${letVariable}
+                使用 const 声明: ${constVariable}
+            `;
+            
+            document.getElementById('varOutput').textContent = output;
+        }
+
+        // 1.2 数据类型判断
+        function checkDataType() {
+            const input = document.getElementById('typeInput').value;
+            let output = '';
+            
+            // 尝试转换为数字
+            const numberValue = Number(input);
+            
+            if (!isNaN(numberValue)) {
+                output = `这是一个数字类型，值为: ${numberValue}`;
+            } else if (input.toLowerCase() === 'true' || input.toLowerCase() === 'false') {
+                output = `这是一个布尔类型，值为: ${input}`;
+            } else if (input === 'null') {
+                output = '这是 null 类型';
+            } else if (input === 'undefined') {
+                output = '这是 undefined 类型';
+            } else {
+                output = `这是一个字符串类型，值为: "${input}"`;
+            }
+            
+            document.getElementById('typeOutput').textContent = output;
+        }
+
+        // 1.3 类型转换
+        function convertType() {
+            const input = document.getElementById('convertInput').value;
+            const type = document.getElementById('convertType').value;
+            let result;
+            
+            switch(type) {
+                case 'number':
+                    result = Number(input);
+                    break;
+                case 'string':
+                    result = String(input);
+                    break;
+                case 'boolean':
+                    result = Boolean(input);
+                    break;
+            }
+            
+            document.getElementById('convertOutput').textContent = 
+                `转换结果: ${result} (类型: ${typeof result})`;
+        }
+
+        // 2.1 算术运算
+        function calculate() {
+            const num1 = Number(document.getElementById('num1').value);
+            const num2 = Number(document.getElementById('num2').value);
+            const operator = document.getElementById('operator').value;
+            let result;
+            
+            switch(operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                case '%':
+                    result = num1 % num2;
+                    break;
+            }
+            
+            document.getElementById('calcOutput').textContent = 
+                `${num1} ${operator} ${num2} = ${result}`;
+        }
+
+        // 2.2 比较运算
+        function compare() {
+            const val1 = document.getElementById('compare1').value;
+            const val2 = document.getElementById('compare2').value;
+            const operator = document.getElementById('compareOperator').value;
+            let result;
+            
+            switch(operator) {
+                case '==':
+                    result = val1 == val2;
+                    break;
+                case '===':
+                    result = val1 === val2;
+                    break;
+                case '>':
+                    result = val1 > val2;
+                    break;
+                case '<':
+                    result = val1 < val2;
+                    break;
+            }
+            
+            document.getElementById('compareOutput').textContent = 
+                `比较结果: ${result}`;
+        }
+
+        // 3.1 基本函数
+        function greet() {
+            const name = document.getElementById('funcInput').value;
+            const output = `你好，${name}！`;
+            document.getElementById('greetOutput').textContent = output;
+        }
+
+        // 3.2 带返回值的函数
+        function calculateCircle() {
+            const radius = Number(document.getElementById('circleRadius').value);
+            
+            // 计算面积
+            const calculateArea = (r) => Math.PI * r * r;
+            
+            // 计算周长
+            const calculatePerimeter = (r) => 2 * Math.PI * r;
+            
+            const area = calculateArea(radius);
+            const perimeter = calculatePerimeter(radius);
+            
+            document.getElementById('circleOutput').textContent = 
+                `圆的面积: ${area.toFixed(2)}, 周长: ${perimeter.toFixed(2)}`;
+        }
+
+        // 3.3 箭头函数
+        function processArray() {
+            const input = document.getElementById('arrayInput').value;
+            const numbers = input.split(',').map(num => Number(num.trim()));
+            
+            // 使用箭头函数进行数组操作
+            const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+            const average = sum / numbers.length;
+            const doubled = numbers.map(num => num * 2);
+            const filtered = numbers.filter(num => num > average);
+            
+            document.getElementById('arrayOutput').textContent = 
+                `总和: ${sum}
+                平均值: ${average.toFixed(2)}
+                双倍值: ${doubled.join(', ')}
+                大于平均值的数: ${filtered.join(', ')}`;
+        }
+
+        // 4.1 元素操作
+        function changeText() {
+            const element = document.getElementById('domDemo');
+            element.textContent = '文本已被修改！';
+        }
+
+        function changeStyle() {
+            const element = document.getElementById('domDemo');
+            element.style.backgroundColor = '#e74c3c';
+            element.style.color = 'white';
+            element.style.padding = '10px';
+            element.style.borderRadius = '4px';
+        }
+
+        function addElement() {
+            const container = document.getElementById('domDemo');
+            const newElement = document.createElement('p');
+            newElement.textContent = '这是新添加的段落';
+            newElement.style.color = '#3498db';
+            container.appendChild(newElement);
+        }
+
+        // 4.2 事件处理
+        function handleMouseOver() {
+            const element = document.getElementById('eventDemo');
+            element.style.backgroundColor = '#3498db';
+            element.style.color = 'white';
+            element.textContent = '鼠标已移入！';
+        }
+
+        function handleMouseOut() {
+            const element = document.getElementById('eventDemo');
+            element.style.backgroundColor = '#f8f9fa';
+            element.style.color = 'black';
+            element.textContent = '将鼠标移到这里';
+        }
+
+        // 使用 addEventListener
+        document.getElementById('eventButton').addEventListener('click', function(event) {
+            this.textContent = '按钮被点击了！';
+            setTimeout(() => {
+                this.textContent = '点击我';
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

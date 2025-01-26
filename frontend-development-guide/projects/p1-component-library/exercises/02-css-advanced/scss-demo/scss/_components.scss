@@ -1,0 +1,81 @@
+// 颜色块组件
+.theme-demo {
+    @include flex(row, space-between, center);
+    margin-bottom: $spacing-unit * 3;
+
+    .color-block {
+        padding: $spacing-unit * 2;
+        border-radius: $spacing-unit;
+        color: white;
+        width: calc(33.333% - #{$spacing-unit * 2});
+        text-align: center;
+
+        &.primary { background-color: $primary-color; }
+        &.secondary { background-color: $secondary-color; }
+        &.accent { background-color: $accent-color; }
+    }
+}
+
+// 按钮组件
+.button-group {
+    @include flex(row, center, center);
+    gap: $spacing-unit * 2;
+
+    .btn {
+        &-primary { @include button-variant($primary-color); }
+        &-secondary { @include button-variant($secondary-color); }
+        &-accent { @include button-variant($accent-color); }
+    }
+}
+
+// 间距演示组件
+.spacing-demo {
+    @include flex(row, space-between, center);
+    margin: $spacing-unit * 3 0;
+
+    .box {
+        padding: $spacing-unit * 2;
+        background: white;
+        border-radius: $spacing-unit;
+        text-align: center;
+
+        &.small { width: $spacing-unit * 15; }
+        &.medium { width: $spacing-unit * 20; }
+        &.large { width: $spacing-unit * 25; }
+    }
+}
+
+// 卡片组件
+.card-group {
+    @include flex(row, space-between, stretch);
+    gap: $spacing-unit * 2;
+
+    .card {
+        flex: 1;
+        padding: $spacing-unit * 3;
+        border-radius: $spacing-unit;
+        text-align: center;
+        transition: all $transition-duration ease;
+
+        &.basic {
+            background: white;
+            @include card-shadow(1);
+        }
+
+        &.premium {
+            @extend .basic;
+            background: lighten($primary-color, 40%);
+            @include card-shadow(2);
+        }
+
+        &.vip {
+            @extend .basic;
+            background: lighten($accent-color, 40%);
+            @include card-shadow(3);
+        }
+
+        &:hover {
+            transform: translateY(-$spacing-unit);
+        }
+    }
+} 

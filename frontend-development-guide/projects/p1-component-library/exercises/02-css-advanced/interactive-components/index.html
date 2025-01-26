@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互式组件库</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>交互式组件库</h1>
+            <p>展示常用的交互组件和动画效果</p>
+        </header>
+
+        <!-- 1. 导航菜单 -->
+        <section class="component-section">
+            <h2>导航菜单</h2>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">产品</a></li>
+                    <li><a href="#">服务</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li class="dropdown">
+                        <a href="#">更多</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">选项 1</a></li>
+                            <li><a href="#">选项 2</a></li>
+                            <li><a href="#">选项 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        <!-- 2. 交互按钮组 -->
+        <section class="component-section">
+            <h2>交互按钮</h2>
+            <div class="button-showcase">
+                <button class="btn btn-hover">悬停效果</button>
+                <button class="btn btn-ripple">涟漪效果</button>
+                <button class="btn btn-pulse">脉冲效果</button>
+                <button class="btn btn-gradient">渐变效果</button>
+            </div>
+        </section>
+
+        <!-- 3. 表单元素 -->
+        <section class="component-section">
+            <h2>表单元素</h2>
+            <form class="interactive-form">
+                <div class="form-group">
+                    <label class="floating-label">
+                        <input type="text" required>
+                        <span>用户名</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="floating-label">
+                        <input type="password" required>
+                        <span>密码</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span class="label-text">记住我</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                        <span class="label-text">开启通知</span>
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <!-- 4. 卡片组件 -->
+        <section class="component-section">
+            <h2>交互卡片</h2>
+            <div class="card-grid">
+                <div class="card hover-lift">
+                    <div class="card-image"></div>
+                    <div class="card-content">
+                        <h3>悬浮提升</h3>
+                        <p>卡片在悬浮时会轻微上浮</p>
+                    </div>
+                </div>
+                <div class="card hover-rotate">
+                    <div class="card-image"></div>
+                    <div class="card-content">
+                        <h3>悬浮旋转</h3>
+                        <p>卡片在悬浮时会产生轻微的旋转效果</p>
+                    </div>
+                </div>
+                <div class="card hover-scale">
+                    <div class="card-image"></div>
+                    <div class="card-content">
+                        <h3>悬浮缩放</h3>
+                        <p>卡片在悬浮时会轻微放大</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 加载动画 -->
+        <section class="component-section">
+            <h2>加载动画</h2>
+            <div class="loader-showcase">
+                <div class="loader spinner"></div>
+                <div class="loader dots"></div>
+                <div class="loader progress"></div>
+                <div class="loader pulse-ring"></div>
+            </div>
+        </section>
+
+        <!-- 6. 工具提示 -->
+        <section class="component-section">
+            <h2>工具提示</h2>
+            <div class="tooltip-showcase">
+                <button class="btn" data-tooltip="上方提示" data-position="top">上方提示</button>
+                <button class="btn" data-tooltip="右侧提示" data-position="right">右侧提示</button>
+                <button class="btn" data-tooltip="下方提示" data-position="bottom">下方提示</button>
+                <button class="btn" data-tooltip="左侧提示" data-position="left">左侧提示</button>
+            </div>
+        </section>
+
+        <!-- 7. 折叠面板 -->
+        <section class="component-section">
+            <h2>折叠面板</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">第一部分</button>
+                    <div class="accordion-content">
+                        <p>这是第一部分的内容说明...</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">第二部分</button>
+                    <div class="accordion-content">
+                        <p>这是第二部分的内容说明...</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">第三部分</button>
+                    <div class="accordion-content">
+                        <p>这是第三部分的内容说明...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. 模态框 -->
+        <section class="component-section">
+            <h2>模态框</h2>
+            <button class="btn btn-primary modal-trigger" data-modal="demo-modal">打开模态框</button>
+            
+            <div class="modal" id="demo-modal">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <h3>模态框标题</h3>
+                    <p>这是模态框的内容区域...</p>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary modal-close">取消</button>
+                        <button class="btn btn-primary">确定</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

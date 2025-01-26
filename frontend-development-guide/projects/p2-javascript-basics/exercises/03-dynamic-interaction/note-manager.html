@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人笔记管理系统</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --text-color: #2c3e50;
+            --bg-color: #f5f6fa;
+            --border-color: #ddd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .notes-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: var(--bg-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item:hover {
+            background: #e8f4f8;
+        }
+
+        .category-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .note-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .note-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .note-content {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e8f4f8;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: var(--bg-color);
+            border-radius: 4px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .notes-header {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sort-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sort-controls select {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .btn-icon {
+            padding: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-icon.desc {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>个人笔记管理系统</h1>
+            <button class="btn-primary" onclick="openNoteModal()">新建笔记</button>
+        </header>
+
+        <main class="main-content">
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="搜索笔记..." onkeyup="searchNotes()">
+                </div>
+
+                <h3>分类</h3>
+                <ul class="category-list" id="categoryList">
+                    <li class="category-item active" onclick="filterByCategory('all')">
+                        全部笔记
+                        <span class="count">0</span>
+                    </li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalNotes">0</div>
+                        <div class="stat-label">总笔记数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalCategories">0</div>
+                        <div class="stat-label">分类数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalTags">0</div>
+                        <div class="stat-label">标签数</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 主要内容区 -->
+            <section class="notes-container">
+                <div class="notes-header">
+                    <div class="sort-controls">
+                        <select id="sortField" onchange="sortNotes()">
+                            <option value="updatedAt">更新时间</option>
+                            <option value="createdAt">创建时间</option>
+                            <option value="title">标题</option>
+                        </select>
+                        <button class="btn-icon" onclick="toggleSortDirection()" id="sortDirectionBtn">
+                            ↓
+                        </button>
+                    </div>
+                </div>
+                <div class="note-grid" id="noteGrid">
+                    <!-- 笔记卡片将通过 JavaScript 动态添加 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 新建/编辑笔记的模态框 -->
+    <div class="modal" id="noteModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">新建笔记</h2>
+            <form id="noteForm" onsubmit="handleNoteSubmit(event)">
+                <div class="form-group">
+                    <label for="noteTitle">标题</label>
+                    <input type="text" id="noteTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="noteContent">内容</label>
+                    <textarea id="noteContent" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="noteCategory">分类</label>
+                    <select id="noteCategory" required>
+                        <option value="工作">工作</option>
+                        <option value="学习">学习</option>
+                        <option value="生活">生活</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="noteTags">标签（用逗号分隔）</label>
+                    <input type="text" id="noteTags" placeholder="例如: 重要, 待办, 会议">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">保存</button>
+                    <button type="button" class="btn-danger" onclick="closeNoteModal()">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 存储笔记数据
+        let notes = [];
+        let currentFilter = 'all';
+        let editingNoteId = null;
+
+        // 排序状态
+        let sortConfig = {
+            field: 'updatedAt',
+            direction: 'desc'
+        };
+
+        // 切换排序方向
+        function toggleSortDirection() {
+            sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';
+            const btn = document.getElementById('sortDirectionBtn');
+            btn.classList.toggle('desc', sortConfig.direction === 'desc');
+            sortNotes();
+        }
+
+        // 排序笔记
+        function sortNotes() {
+            const sortField = document.getElementById('sortField').value;
+            sortConfig.field = sortField;
+            
+            let sortedNotes = [...notes];
+            
+            sortedNotes.sort((a, b) => {
+                let valueA = a[sortField];
+                let valueB = b[sortField];
+                
+                // 对于日期字段进行特殊处理
+                if (sortField === 'updatedAt' || sortField === 'createdAt') {
+                    valueA = new Date(valueA).getTime();
+                    valueB = new Date(valueB).getTime();
+                }
+                // 对于标题进行字符串比较
+                else if (sortField === 'title') {
+                    valueA = valueA.toLowerCase();
+                    valueB = valueB.toLowerCase();
+                }
+                
+                if (sortConfig.direction === 'asc') {
+                    return valueA > valueB ? 1 : -1;
+                } else {
+                    return valueA < valueB ? 1 : -1;
+                }
+            });
+            
+            notes = sortedNotes;
+            updateNotesDisplay();
+        }
+
+        // 修改 initializePage 函数
+        function initializePage() {
+            // 从 localStorage 加载笔记
+            const savedNotes = localStorage.getItem('notes');
+            if (savedNotes) {
+                notes = JSON.parse(savedNotes);
+                sortNotes(); // 初始化时进行排序
+                updateStats();
+            }
+
+            // 初始化分类列表
+            updateCategoryList();
+        }
+
+        // 打开新建笔记模态框
+        function openNoteModal(noteId = null) {
+            const modal = document.getElementById('noteModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const form = document.getElementById('noteForm');
+
+            if (noteId) {
+                // 编辑模式
+                const note = notes.find(n => n.id === noteId);
+                if (note) {
+                    modalTitle.textContent = '编辑笔记';
+                    document.getElementById('noteTitle').value = note.title;
+                    document.getElementById('noteContent').value = note.content;
+                    document.getElementById('noteCategory').value = note.category;
+                    document.getElementById('noteTags').value = note.tags.join(', ');
+                    editingNoteId = noteId;
+                }
+            } else {
+                // 新建模式
+                modalTitle.textContent = '新建笔记';
+                form.reset();
+                editingNoteId = null;
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        // 关闭模态框
+        function closeNoteModal() {
+            document.getElementById('noteModal').style.display = 'none';
+            document.getElementById('noteForm').reset();
+            editingNoteId = null;
+        }
+
+        // 处理笔记提交
+        function handleNoteSubmit(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('noteTitle').value;
+            const content = document.getElementById('noteContent').value;
+            const category = document.getElementById('noteCategory').value;
+            const tags = document.getElementById('noteTags').value
+                .split(',')
+                .map(tag => tag.trim())
+                .filter(tag => tag);
+
+            if (editingNoteId) {
+                // 更新现有笔记
+                const index = notes.findIndex(n => n.id === editingNoteId);
+                if (index !== -1) {
+                    notes[index] = {
+                        ...notes[index],
+                        title,
+                        content,
+                        category,
+                        tags,
+                        updatedAt: new Date().toISOString()
+                    };
+                }
+            } else {
+                // 创建新笔记
+                const newNote = {
+                    id: Date.now().toString(),
+                    title,
+                    content,
+                    category,
+                    tags,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                notes.unshift(newNote);
+            }
+
+            // 保存到 localStorage
+            localStorage.setItem('notes', JSON.stringify(notes));
+
+            // 更新显示
+            updateNotesDisplay();
+            updateStats();
+            updateCategoryList();
+            closeNoteModal();
+        }
+
+        // 删除笔记
+        function deleteNote(noteId) {
+            if (confirm('确定要删除这个笔记吗？')) {
+                notes = notes.filter(note => note.id !== noteId);
+                localStorage.setItem('notes', JSON.stringify(notes));
+                updateNotesDisplay();
+                updateStats();
+                updateCategoryList();
+            }
+        }
+
+        // 更新笔记显示
+        function updateNotesDisplay() {
+            const grid = document.getElementById('noteGrid');
+            grid.innerHTML = '';
+
+            let filteredNotes = notes;
+            if (currentFilter !== 'all') {
+                filteredNotes = notes.filter(note => note.category === currentFilter);
+            }
+
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                filteredNotes = filteredNotes.filter(note => 
+                    note.title.toLowerCase().includes(searchTerm) ||
+                    note.content.toLowerCase().includes(searchTerm) ||
+                    note.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            filteredNotes.forEach(note => {
+                const card = document.createElement('div');
+                card.className = 'note-card';
+                card.innerHTML = `
+                    <h3 class="note-title">${note.title}</h3>
+                    <p class="note-content">${note.content.substring(0, 100)}${note.content.length > 100 ? '...' : ''}</p>
+                    <div class="note-tags">
+                        ${note.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="note-footer">
+                        <span>${new Date(note.updatedAt).toLocaleDateString()}</span>
+                        <div class="note-actions">
+                            <button class="btn-primary" onclick="openNoteModal('${note.id}')">编辑</button>
+                            <button class="btn-danger" onclick="deleteNote('${note.id}')">删除</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 更新分类列表
+        function updateCategoryList() {
+            const categoryList = document.getElementById('categoryList');
+            const categories = ['all', ...new Set(notes.map(note => note.category))];
+            
+            categoryList.innerHTML = categories.map(category => `
+                <li class="category-item ${category === currentFilter ? 'active' : ''}" 
+                    onclick="filterByCategory('${category}')">
+                    ${category === 'all' ? '全部笔记' : category}
+                    <span class="count">
+                        ${category === 'all' ? notes.length : notes.filter(note => note.category === category).length}
+                    </span>
+                </li>
+            `).join('');
+        }
+
+        // 按分类筛选
+        function filterByCategory(category) {
+            currentFilter = category;
+            updateNotesDisplay();
+            updateCategoryList();
+        }
+
+        // 搜索笔记
+        function searchNotes() {
+            updateNotesDisplay();
+        }
+
+        // 更新统计信息
+        function updateStats() {
+            document.getElementById('totalNotes').textContent = notes.length;
+            document.getElementById('totalCategories').textContent = 
+                new Set(notes.map(note => note.category)).size;
+            document.getElementById('totalTags').textContent = 
+                new Set(notes.flatMap(note => note.tags)).size;
+        }
+
+        // 初始化页面
+        initializePage();
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('noteModal');
+            if (event.target === modal) {
+                closeNoteModal();
+            }
+        }
+    </script>
+</body>
+</html> 

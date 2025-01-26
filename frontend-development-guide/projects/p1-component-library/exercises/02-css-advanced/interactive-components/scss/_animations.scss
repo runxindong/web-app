@@ -1,0 +1,73 @@
+// 涟漪效果
+@include keyframes(ripple) {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+// 脉冲效果
+@include keyframes(pulse) {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+// 加载动画
+@include keyframes(spin) {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@include keyframes(dots) {
+    0%, 20% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60%, 100% {
+        transform: translateY(0);
+    }
+}
+
+@include keyframes(progress) {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+// 模态框动画
+@include keyframes(fadeIn) {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@include keyframes(slideIn) {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+} 
