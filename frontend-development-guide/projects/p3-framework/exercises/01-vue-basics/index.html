@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 基础练习</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        :root {
+            --primary-color: #42b983;
+            --text-color: #2c3e50;
+            --border-color: #ddd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .demo-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .input {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        .list-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vue 基础练习</h1>
+        
+        <div id="app">
+            <!-- 1. 数据绑定 -->
+            <section class="section">
+                <h2>1. 数据绑定</h2>
+                <div class="demo-box">
+                    <input 
+                        v-model="message" 
+                        class="input" 
+                        placeholder="输入一些文字..."
+                    >
+                    <p>输入的文字: {{ message }}</p>
+                    <p v-text="message"></p>
+                    <p v-html="htmlMessage"></p>
+                </div>
+            </section>
+
+            <!-- 2. 条件渲染 -->
+            <section class="section">
+                <h2>2. 条件渲染</h2>
+                <div class="demo-box">
+                    <button 
+                        @click="toggleVisible" 
+                        class="btn"
+                    >
+                        {{ isVisible ? '隐藏' : '显示' }}
+                    </button>
+                    <div v-if="isVisible">
+                        <p>这是一段通过 v-if 控制的内容</p>
+                    </div>
+                    <div v-show="isVisible">
+                        <p>这是一段通过 v-show 控制的内容</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 列表渲染 -->
+            <section class="section">
+                <h2>3. 列表渲染</h2>
+                <div class="demo-box">
+                    <input 
+                        v-model="newItem" 
+                        @keyup.enter="addItem"
+                        class="input" 
+                        placeholder="添加新项目..."
+                    >
+                    <button @click="addItem" class="btn">添加</button>
+                    <ul>
+                        <li 
+                            v-for="(item, index) in items" 
+                            :key="item.id"
+                            class="list-item"
+                        >
+                            {{ index + 1 }}. {{ item.text }}
+                            <button 
+                                @click="removeItem(index)"
+                                class="btn"
+                            >
+                                删除
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 4. 计算属性 -->
+            <section class="section">
+                <h2>4. 计算属性</h2>
+                <div class="demo-box">
+                    <input 
+                        v-model.number="num1" 
+                        type="number" 
+                        class="input"
+                    >
+                    <input 
+                        v-model.number="num2" 
+                        type="number" 
+                        class="input"
+                    >
+                    <p>计算结果: {{ sum }}</p>
+                    <p>翻转的消息: {{ reversedMessage }}</p>
+                </div>
+            </section>
+
+            <!-- 5. 事件处理 -->
+            <section class="section">
+                <h2>5. 事件处理</h2>
+                <div class="demo-box">
+                    <button 
+                        @click="increment"
+                        class="btn"
+                    >
+                        点击次数: {{ counter }}
+                    </button>
+                    <div
+                        @mousemove="handleMouseMove"
+                        style="height: 100px; border: 1px solid #ddd; margin-top: 10px;"
+                    >
+                        鼠标位置: x: {{ mouseX }}, y: {{ mouseY }}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue;
+
+        createApp({
+            setup() {
+                // 1. 数据绑定
+                const message = ref('Hello Vue!');
+                const htmlMessage = ref('<span style="color: red;">这是一段 HTML</span>');
+
+                // 2. 条件渲染
+                const isVisible = ref(true);
+                const toggleVisible = () => {
+                    isVisible.value = !isVisible.value;
+                };
+
+                // 3. 列表渲染
+                const items = ref([
+                    { id: 1, text: '学习 Vue 基础' },
+                    { id: 2, text: '练习组件开发' }
+                ]);
+                const newItem = ref('');
+
+                const addItem = () => {
+                    if (newItem.value.trim()) {
+                        items.value.push({
+                            id: Date.now(),
+                            text: newItem.value
+                        });
+                        newItem.value = '';
+                    }
+                };
+
+                const removeItem = (index) => {
+                    items.value.splice(index, 1);
+                };
+
+                // 4. 计算属性
+                const num1 = ref(0);
+                const num2 = ref(0);
+
+                const sum = computed(() => {
+                    return num1.value + num2.value;
+                });
+
+                const reversedMessage = computed(() => {
+                    return message.value.split('').reverse().join('');
+                });
+
+                // 5. 事件处理
+                const counter = ref(0);
+                const mouseX = ref(0);
+                const mouseY = ref(0);
+
+                const increment = () => {
+                    counter.value++;
+                };
+
+                const handleMouseMove = (event) => {
+                    mouseX.value = event.offsetX;
+                    mouseY.value = event.offsetY;
+                };
+
+                return {
+                    // 数据绑定
+                    message,
+                    htmlMessage,
+                    
+                    // 条件渲染
+                    isVisible,
+                    toggleVisible,
+                    
+                    // 列表渲染
+                    items,
+                    newItem,
+                    addItem,
+                    removeItem,
+                    
+                    // 计算属性
+                    num1,
+                    num2,
+                    sum,
+                    reversedMessage,
+                    
+                    // 事件处理
+                    counter,
+                    mouseX,
+                    mouseY,
+                    increment,
+                    handleMouseMove
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html> 

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 组件化开发</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        :root {
+            --primary-color: #42b983;
+            --text-color: #2c3e50;
+            --border-color: #ddd;
+            --bg-color: #f5f5f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 应用主容器 -->
+        <div class="container">
+            <!-- 顶部导航组件 -->
+            <nav-bar 
+                :user="currentUser"
+                @logout="handleLogout"
+            ></nav-bar>
+
+            <!-- 主要内容区 -->
+            <main>
+                <!-- 博客列表和创建博客的切换 -->
+                <div v-if="currentView === 'list'">
+                    <!-- 博客列表组件 -->
+                    <blog-list 
+                        :posts="posts"
+                        @delete="deletePost"
+                        @edit="editPost"
+                    ></blog-list>
+                    <button 
+                        class="btn" 
+                        @click="() => {
+                            currentPost = {
+                                title: '',
+                                content: ''
+                            };
+                            currentView = 'create';
+                        }"
+                    >
+                        写新博客
+                    </button>
+                </div>
+                
+                <!-- 博客编辑表单 -->
+                <blog-form
+                    v-else
+                    :post="currentPost"
+                    @submit="handleSubmit"
+                    @cancel="handleCancel"
+                ></blog-form>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, computed } = Vue;
+
+        // 导航栏组件
+        const NavBar = {
+            props: {
+                user: {
+                    type: Object,
+                    required: true
+                }
+            },
+            template: `
+                <nav class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h1 style="color: var(--primary-color);">博客系统</h1>
+                        <div>
+                            <span>欢迎, {{ user.name }}</span>
+                            <button class="btn" @click="$emit('logout')">登出</button>
+                        </div>
+                    </div>
+                </nav>
+            `
+        };
+
+        // 博客列表组件
+        const BlogList = {
+            props: {
+                posts: {
+                    type: Array,
+                    required: true
+                }
+            },
+            template: `
+                <div class="blog-list">
+                    <article v-for="post in posts" :key="post.id" class="card">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.content }}</p>
+                        <div style="margin-top: 10px;">
+                            <small>作者: {{ post.author }} | 发布时间: {{ formatDate(post.date) }}</small>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button class="btn" @click="$emit('edit', post)">编辑</button>
+                            <button class="btn" style="background-color: #ff4444;" @click="$emit('delete', post.id)">删除</button>
+                        </div>
+                    </article>
+                </div>
+            `,
+            methods: {
+                formatDate(date) {
+                    return new Date(date).toLocaleString();
+                }
+            }
+        };
+
+        // 博客表单组件
+        const BlogForm = {
+            props: {
+                post: {
+                    type: Object,
+                    default: () => ({
+                        title: '',
+                        content: ''
+                    })
+                }
+            },
+            data() {
+                return {
+                    form: {
+                        title: this.post.title,
+                        content: this.post.content
+                    }
+                };
+            },
+            template: `
+                <div class="card">
+                    <h2>{{ post.id ? '编辑博客' : '创建新博客' }}</h2>
+                    <form @submit.prevent="handleSubmit">
+                        <input 
+                            v-model="form.title"
+                            class="input"
+                            placeholder="博客标题"
+                            required
+                        >
+                        <textarea
+                            v-model="form.content"
+                            class="input"
+                            placeholder="博客内容"
+                            rows="5"
+                            required
+                        ></textarea>
+                        <div>
+                            <button type="submit" class="btn">
+                                {{ post.id ? '保存' : '发布' }}
+                            </button>
+                            <button 
+                                type="button" 
+                                class="btn" 
+                                style="background-color: #666;"
+                                @click="$emit('cancel')"
+                            >
+                                取消
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            `,
+            methods: {
+                handleSubmit() {
+                    this.$emit('submit', {
+                        ...this.post,
+                        ...this.form
+                    });
+                }
+            }
+        };
+
+        // 创建 Vue 应用
+        createApp({
+            components: {
+                'nav-bar': NavBar,
+                'blog-list': BlogList,
+                'blog-form': BlogForm
+            },
+            setup() {
+                // 状态管理
+                const currentUser = ref({
+                    id: 1,
+                    name: '测试用户'
+                });
+
+                const posts = ref([
+                    {
+                        id: 1,
+                        title: '组件化开发简介',
+                        content: '组件是可复用的 Vue 实例，带有一个名字。我们可以在一个通过 new Vue 创建的 Vue 根实例中，把这个组件作为自定义元素来使用。',
+                        author: '测试用户',
+                        date: new Date('2024-01-01')
+                    }
+                ]);
+
+                const currentView = ref('list');
+                const currentPost = ref(null);
+
+                // 方法
+                const handleLogout = () => {
+                    alert('已登出');
+                };
+
+                const deletePost = (postId) => {
+                    const index = posts.value.findIndex(p => p.id === postId);
+                    if (index > -1) {
+                        posts.value.splice(index, 1);
+                    }
+                };
+
+                const editPost = (post) => {
+                    currentPost.value = { ...post };
+                    currentView.value = 'create';
+                };
+
+                const handleSubmit = (post) => {
+                    if (post.id) {
+                        // 更新现有博客
+                        const index = posts.value.findIndex(p => p.id === post.id);
+                        if (index > -1) {
+                            posts.value[index] = {
+                                ...posts.value[index],
+                                ...post,
+                                date: new Date()
+                            };
+                        }
+                    } else {
+                        // 创建新博客
+                        posts.value.push({
+                            id: Date.now(),
+                            ...post,
+                            author: currentUser.value.name,
+                            date: new Date()
+                        });
+                    }
+                    handleCancel();
+                };
+
+                const handleCancel = () => {
+                    currentView.value = 'list';
+                    currentPost.value = null;
+                };
+
+                return {
+                    currentUser,
+                    posts,
+                    currentView,
+                    currentPost,
+                    handleLogout,
+                    deletePost,
+                    editPost,
+                    handleSubmit,
+                    handleCancel
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html> 
