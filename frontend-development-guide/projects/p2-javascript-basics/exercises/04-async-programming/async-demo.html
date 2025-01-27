@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步编程练习</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --error-color: #f44336;
+            --success-color: #4CAF50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            margin: 5px;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 50px;
+        }
+
+        .success {
+            background-color: #e8f5e9;
+            color: var(--success-color);
+        }
+
+        .error {
+            background-color: #ffebee;
+            color: var(--error-color);
+        }
+
+        .loading {
+            display: none;
+            margin: 10px 0;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. 回调函数示例 -->
+        <section class="section">
+            <h2>1. 回调函数示例</h2>
+            <button class="btn" onclick="startCallbackDemo()">开始回调演示</button>
+            <div id="callbackResult" class="result"></div>
+        </section>
+
+        <!-- 2. Promise 示例 -->
+        <section class="section">
+            <h2>2. Promise 示例</h2>
+            <button class="btn" onclick="startPromiseDemo()">开始 Promise 演示</button>
+            <div class="loading" id="promiseLoading">
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="promiseProgress"></div>
+                </div>
+            </div>
+            <div id="promiseResult" class="result"></div>
+        </section>
+
+        <!-- 3. Async/Await 示例 -->
+        <section class="section">
+            <h2>3. Async/Await 示例</h2>
+            <button class="btn" onclick="startAsyncAwaitDemo()">开始 Async/Await 演示</button>
+            <div id="asyncResult" class="result"></div>
+        </section>
+
+        <!-- 4. 并行请求示例 -->
+        <section class="section">
+            <h2>4. 并行请求示例</h2>
+            <button class="btn" onclick="startParallelDemo()">开始并行请求演示</button>
+            <div id="parallelResult" class="result"></div>
+        </section>
+    </div>
+
+    <script>
+        // 模拟异步操作
+        function simulateAsyncOperation(delay, success = true) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (success) {
+                        resolve(`操作成功完成 (耗时: ${delay}ms)`);
+                    } else {
+                        reject(new Error(`操作失败 (耗时: ${delay}ms)`));
+                    }
+                }, delay);
+            });
+        }
+
+        // 1. 回调函数示例
+        function startCallbackDemo() {
+            const resultDiv = document.getElementById('callbackResult');
+            resultDiv.textContent = '开始执行...';
+
+            // 模拟多层回调（回调地狱示例）
+            setTimeout(() => {
+                resultDiv.textContent += '\n第一步完成';
+                setTimeout(() => {
+                    resultDiv.textContent += '\n第二步完成';
+                    setTimeout(() => {
+                        resultDiv.textContent += '\n第三步完成';
+                        resultDiv.className = 'result success';
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+        // 2. Promise 示例
+        async function startPromiseDemo() {
+            const resultDiv = document.getElementById('promiseResult');
+            const loadingDiv = document.getElementById('promiseLoading');
+            const progressBar = document.getElementById('promiseProgress');
+            
+            loadingDiv.classList.add('active');
+            resultDiv.textContent = '';
+            
+            try {
+                // 使用 Promise 链式调用
+                await simulateAsyncOperation(1000)
+                    .then(result => {
+                        progressBar.style.width = '33%';
+                        resultDiv.textContent = result;
+                        return simulateAsyncOperation(1000);
+                    })
+                    .then(result => {
+                        progressBar.style.width = '66%';
+                        resultDiv.textContent += '\n' + result;
+                        return simulateAsyncOperation(1000);
+                    })
+                    .then(result => {
+                        progressBar.style.width = '100%';
+                        resultDiv.textContent += '\n' + result;
+                        resultDiv.className = 'result success';
+                    });
+            } catch (error) {
+                resultDiv.textContent = error.message;
+                resultDiv.className = 'result error';
+            } finally {
+                setTimeout(() => {
+                    loadingDiv.classList.remove('active');
+                    progressBar.style.width = '0%';
+                }, 1000);
+            }
+        }
+
+        // 3. Async/Await 示例
+        async function startAsyncAwaitDemo() {
+            const resultDiv = document.getElementById('asyncResult');
+            resultDiv.textContent = '开始执行...';
+
+            try {
+                // 使用 async/await 使代码更清晰
+                const result1 = await simulateAsyncOperation(1000);
+                resultDiv.textContent += '\n' + result1;
+
+                const result2 = await simulateAsyncOperation(1000);
+                resultDiv.textContent += '\n' + result2;
+
+                const result3 = await simulateAsyncOperation(1000, false); // 这里会失败
+                resultDiv.textContent += '\n' + result3;
+
+            } catch (error) {
+                resultDiv.textContent += '\n出错了: ' + error.message;
+                resultDiv.className = 'result error';
+                return;
+            }
+
+            resultDiv.className = 'result success';
+        }
+
+        // 4. 并行请求示例
+        async function startParallelDemo() {
+            const resultDiv = document.getElementById('parallelResult');
+            resultDiv.textContent = '开始并行请求...';
+
+            try {
+                // 使用 Promise.all 并行执行多个请求
+                const startTime = Date.now();
+                const results = await Promise.all([
+                    simulateAsyncOperation(2000),
+                    simulateAsyncOperation(1500),
+                    simulateAsyncOperation(1000)
+                ]);
+
+                const totalTime = Date.now() - startTime;
+                resultDiv.textContent = `所有请求完成！总耗时: ${totalTime}ms\n\n`;
+                results.forEach((result, index) => {
+                    resultDiv.textContent += `请求 ${index + 1}: ${result}\n`;
+                });
+                resultDiv.className = 'result success';
+
+            } catch (error) {
+                resultDiv.textContent = '并行请求出错: ' + error.message;
+                resultDiv.className = 'result error';
+            }
+        }
+    </script>
+</body>
+</html> 

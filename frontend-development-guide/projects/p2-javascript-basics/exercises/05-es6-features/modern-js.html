@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6+ 特性练习</title>
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --success-color: #4CAF50;
+            --warning-color: #FFC107;
+            --error-color: #f44336;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .demo-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e3f2fd;
+            min-height: 40px;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. 变量声明和解构 -->
+        <section class="section">
+            <h2>1. 变量声明和解构</h2>
+            <div class="feature-description">
+                演示 let/const、解构赋值、默认参数等特性
+            </div>
+            <div class="demo-box">
+                <button class="btn" onclick="destructuringDemo()">运行解构示例</button>
+                <div id="destructuringResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- 2. 箭头函数和 this -->
+        <section class="section">
+            <h2>2. 箭头函数和 this</h2>
+            <div class="feature-description">
+                展示箭头函数特性和 this 绑定的区别
+            </div>
+            <div class="demo-box">
+                <button class="btn" onclick="arrowFunctionDemo()">运行箭头函数示例</button>
+                <div id="arrowResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- 3. 类和模块 -->
+        <section class="section">
+            <h2>3. 类和模块</h2>
+            <div class="feature-description">
+                演示类的定义、继承、静态方法等
+            </div>
+            <div class="demo-box">
+                <button class="btn" onclick="classDemo()">运行类示例</button>
+                <div id="classResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- 4. 新的数据结构 -->
+        <section class="section">
+            <h2>4. 新的数据结构</h2>
+            <div class="feature-description">
+                展示 Set、Map、WeakMap 等新数据结构的使用
+            </div>
+            <div class="demo-box">
+                <button class="btn" onclick="dataStructuresDemo()">运行数据结构示例</button>
+                <div id="dataStructuresResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- 5. 迭代器和生成器 -->
+        <section class="section">
+            <h2>5. 迭代器和生成器</h2>
+            <div class="feature-description">
+                演示迭代器和生成器函数的使用
+            </div>
+            <div class="demo-box">
+                <button class="btn" onclick="iteratorDemo()">运行迭代器示例</button>
+                <div id="iteratorResult" class="result"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 1. 变量声明和解构示例
+        function destructuringDemo() {
+            const result = document.getElementById('destructuringResult');
+            let output = '';
+
+            // 对象解构
+            const person = {
+                name: '张三',
+                age: 30,
+                city: '上海',
+                skills: ['JavaScript', 'React', 'Node.js']
+            };
+
+            const { name, age, skills: [mainSkill, ...otherSkills] } = person;
+            output += `对象解构: ${name} 今年 ${age} 岁\n`;
+            output += `主要技能: ${mainSkill}, 其他技能: ${otherSkills.join(', ')}\n\n`;
+
+            // 数组解构
+            const numbers = [1, 2, 3, 4, 5];
+            const [first, second, ...rest] = numbers;
+            output += `数组解构: 前两个数字是 ${first} 和 ${second}\n`;
+            output += `剩余数字: ${rest.join(', ')}\n\n`;
+
+            // 默认参数
+            const greet = (name = '访客', greeting = '你好') => `${greeting}, ${name}!`;
+            output += `默认参数: ${greet()}\n`;
+            output += `自定义参数: ${greet('李四', '早上好')}`;
+
+            result.textContent = output;
+        }
+
+        // 2. 箭头函数示例
+        function arrowFunctionDemo() {
+            const result = document.getElementById('arrowResult');
+            let output = '';
+
+            // 普通函数 vs 箭头函数
+            const normalObj = {
+                name: '普通函数',
+                sayHiNormal: function() {
+                    setTimeout(function() {
+                        output += `${this.name} 说你好\n`; // this 不会指向 normalObj
+                    }, 100);
+                }
+            };
+
+            const arrowObj = {
+                name: '箭头函数',
+                sayHiArrow: function() {
+                    setTimeout(() => {
+                        output += `${this.name} 说你好\n`; // this 会指向 arrowObj
+                    }, 100);
+                }
+            };
+
+            normalObj.sayHiNormal();
+            arrowObj.sayHiArrow();
+
+            // 链式操作示例
+            const numbers = [1, 2, 3, 4, 5];
+            const doubled = numbers
+                .filter(n => n % 2 === 0)
+                .map(n => n * 2)
+                .reduce((acc, curr) => acc + curr, 0);
+
+            setTimeout(() => {
+                output += `\n链式操作结果: ${doubled}`;
+                result.textContent = output;
+            }, 200);
+        }
+
+        // 3. 类示例
+        function classDemo() {
+            const result = document.getElementById('classResult');
+            let output = '';
+
+            // 基类
+            class Animal {
+                constructor(name) {
+                    this.name = name;
+                }
+
+                speak() {
+                    return `${this.name} 发出声音`;
+                }
+
+                static isAnimal(obj) {
+                    return obj instanceof Animal;
+                }
+            }
+
+            // 子类
+            class Dog extends Animal {
+                constructor(name, breed) {
+                    super(name);
+                    this.breed = breed;
+                }
+
+                speak() {
+                    return `${this.name} (${this.breed}) 汪汪叫`;
+                }
+            }
+
+            const dog = new Dog('旺财', '柴犬');
+            output += `${dog.speak()}\n`;
+            output += `是否为动物: ${Animal.isAnimal(dog)}\n\n`;
+
+            // 私有字段示例
+            class Counter {
+                #count = 0;
+
+                increment() {
+                    this.#count++;
+                    return this.#count;
+                }
+            }
+
+            const counter = new Counter();
+            output += `计数器: ${counter.increment()}`;
+
+            result.textContent = output;
+        }
+
+        // 4. 新数据结构示例
+        function dataStructuresDemo() {
+            const result = document.getElementById('dataStructuresResult');
+            let output = '';
+
+            // Set 示例
+            const set = new Set([1, 1, 2, 2, 3, 3]);
+            output += `Set 去重: ${[...set].join(', ')}\n\n`;
+
+            // Map 示例
+            const map = new Map();
+            const keyObj = { id: 1 };
+            map.set(keyObj, '对象作为键');
+            map.set('string', '字符串作为键');
+
+            output += 'Map 示例:\n';
+            for (const [key, value] of map) {
+                output += `${typeof key === 'object' ? JSON.stringify(key) : key} => ${value}\n`;
+            }
+
+            // WeakMap 示例
+            const weakMap = new WeakMap();
+            let obj = { data: '一些数据' };
+            weakMap.set(obj, '关联数据');
+            output += '\nWeakMap 是否包含对象: ' + weakMap.has(obj);
+
+            result.textContent = output;
+        }
+
+        // 5. 迭代器和生成器示例
+        function iteratorDemo() {
+            const result = document.getElementById('iteratorResult');
+            let output = '';
+
+            // 生成器函数
+            function* numberGenerator() {
+                yield 1;
+                yield 2;
+                yield 3;
+            }
+
+            output += '生成器示例:\n';
+            const gen = numberGenerator();
+            for (const num of gen) {
+                output += `${num}, `;
+            }
+
+            // 自定义迭代器
+            const range = {
+                from: 1,
+                to: 5,
+                [Symbol.iterator]() {
+                    return {
+                        current: this.from,
+                        last: this.to,
+                        next() {
+                            if (this.current <= this.last) {
+                                return { done: false, value: this.current++ };
+                            } else {
+                                return { done: true };
+                            }
+                        }
+                    };
+                }
+            };
+
+            output += '\n\n自定义迭代器示例:\n';
+            for (const num of range) {
+                output += `${num}, `;
+            }
+
+            result.textContent = output;
+        }
+    </script>
+</body>
+</html> 
