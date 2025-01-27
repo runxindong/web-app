@@ -92,6 +92,9 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: all 0.3s ease;
+            cursor: move;
+            user-select: none;
         }
 
         .task-item.completed {
@@ -100,10 +103,13 @@
 
         .task-item.completed .task-content {
             text-decoration: line-through;
+            color: #999;
         }
 
         .task-content {
             flex: 1;
+            margin-left: 8px;
+            transition: all 0.3s ease;
         }
 
         .task-actions {
@@ -148,6 +154,201 @@
         [v-cloak] {
             display: none;
         }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox:hover {
+            background-color: rgba(66, 185, 131, 0.1);
+        }
+
+        .custom-checkbox.completed {
+            background-color: var(--primary-color);
+        }
+
+        .custom-checkbox.completed::after {
+            content: '✓';
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .task-status {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .priority-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        .priority-high {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .priority-medium {
+            background-color: #ffb700;
+            color: white;
+        }
+
+        .priority-low {
+            background-color: #42b983;
+            color: white;
+        }
+
+        .task-item.dragging {
+            opacity: 0.5;
+            background-color: #f8f9fa;
+            transform: scale(1.02);
+        }
+
+        .task-item.drag-over {
+            border: 2px dashed var(--primary-color);
+        }
+
+        .drag-handle {
+            color: #999;
+            margin-right: 8px;
+            cursor: move;
+        }
+
+        .drag-handle:hover {
+            color: var(--primary-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .priority-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .priority-item {
+            text-align: center;
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .bar {
+            flex: 1;
+            background-color: var(--primary-color);
+            transition: height 0.3s ease;
+            position: relative;
+            min-width: 40px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -162,6 +363,11 @@
                     type="text" 
                     placeholder="输入新任务..."
                 >
+                <select v-model="taskPriority" class="input">
+                    <option v-for="priority in priorities" :value="priority.value">
+                        {{ priority.label }}
+                    </option>
+                </select>
                 <button @click="addTask" class="btn">添加任务</button>
             </div>
             <div class="filters">
@@ -182,14 +388,35 @@
             <div 
                 v-for="task in filteredTasks" 
                 :key="task.id"
-                :class="['task-item', { completed: task.completed }]"
+                :class="['task-item', { 
+                    completed: task.completed,
+                    dragging: draggingTask?.id === task.id,
+                    'drag-over': dragOverTask?.id === task.id
+                }]"
+                :data-task-id="task.id"
+                draggable="true"
+                @dragstart="dragStart($event, task)"
+                @dragend="dragEnd"
+                @dragover.prevent="dragOver($event, task)"
+                @dragleave="dragLeave($event, task)"
+                @drop="drop($event, task)"
             >
-                <input 
-                    type="checkbox" 
-                    v-model="task.completed"
-                    @change="toggleTask(task)"
-                >
-                <span class="task-content">{{ task.title }}</span>
+                <span class="drag-handle">⋮⋮</span>
+                <div class="checkbox-wrapper">
+                    <div 
+                        :class="['custom-checkbox', { completed: task.completed }]"
+                        @click="toggleTask(task)"
+                    ></div>
+                    <span class="task-content">{{ task.title }}</span>
+                    <span 
+                        :class="['task-status', task.completed ? 'status-completed' : 'status-pending']"
+                    >
+                        {{ task.completed ? '已完成' : '待完成' }}
+                    </span>
+                    <span :class="['priority-badge', `priority-${task.priority}`]">
+                        {{ getPriorityLabel(task.priority) }}
+                    </span>
+                </div>
                 <div class="task-actions">
                     <button 
                         @click="deleteTask(task)"
@@ -202,9 +429,63 @@
         </div>
 
         <div class="task-stats">
-            <p>总任务数: {{ tasks.length }}</p>
-            <p>已完成: {{ completedCount }}</p>
-            <p>未完成: {{ pendingCount }}</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ tasks.length }}</div>
+                    <div class="stat-label">总任务数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ completedCount }}</div>
+                    <div class="stat-label">已完成任务</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ pendingCount }}</div>
+                    <div class="stat-label">待完成任务</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ completionRate }}%</div>
+                    <div class="stat-label">完成率</div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <h3>总体进度</h3>
+                <div class="progress-bar">
+                    <div 
+                        class="progress-fill"
+                        :style="{ width: `${completionRate}%` }"
+                    ></div>
+                </div>
+                <div class="priority-stats">
+                    <div 
+                        v-for="priority in priorityStats" 
+                        :key="priority.value" 
+                        class="priority-item"
+                    >
+                        <div :style="{ color: priority.color }">
+                            {{ priority.label }}: {{ priority.count }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>任务分布</h3>
+                <div class="bar-chart">
+                    <div 
+                        v-for="stat in taskDistribution" 
+                        :key="stat.label"
+                        class="bar"
+                        :style="{ 
+                            height: `${stat.percentage}%`,
+                            backgroundColor: stat.color
+                        }"
+                    >
+                        <span class="bar-value">{{ stat.count }}</span>
+                        <span class="bar-label">{{ stat.label }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -219,12 +500,20 @@
                 const newTask = ref('');
                 const loading = ref(true);
                 const currentFilter = ref('all');
+                const taskPriority = ref('medium');
 
                 // 过滤器选项
                 const filters = [
                     { label: '全部', value: 'all' },
                     { label: '待完成', value: 'pending' },
                     { label: '已完成', value: 'completed' }
+                ];
+
+                // 优先级选项
+                const priorities = [
+                    { label: '高', value: 'high', color: '#ff4444' },
+                    { label: '中', value: 'medium', color: '#ffb700' },
+                    { label: '低', value: 'low', color: '#42b983' }
                 ];
 
                 // 计算属性
@@ -246,6 +535,55 @@
                 const pendingCount = computed(() => 
                     tasks.value.filter(task => !task.completed).length
                 );
+
+                const completionRate = computed(() => {
+                    if (tasks.value.length === 0) return 0;
+                    return Math.round((completedCount.value / tasks.value.length) * 100);
+                });
+
+                const priorityStats = computed(() => {
+                    return priorities.map(priority => ({
+                        ...priority,
+                        count: tasks.value.filter(task => task.priority === priority.value).length
+                    }));
+                });
+
+                const taskDistribution = computed(() => {
+                    const total = tasks.value.length;
+                    if (total === 0) return [];
+
+                    const distribution = [
+                        {
+                            label: '待完成',
+                            count: pendingCount.value,
+                            color: '#ffb700',
+                            percentage: (pendingCount.value / total) * 100
+                        },
+                        {
+                            label: '已完成',
+                            count: completedCount.value,
+                            color: '#42b983',
+                            percentage: (completedCount.value / total) * 100
+                        }
+                    ];
+
+                    // 添加优先级分布
+                    priorities.forEach(priority => {
+                        const count = tasks.value.filter(task => task.priority === priority.value).length;
+                        distribution.push({
+                            label: `${priority.label}优先级`,
+                            count,
+                            color: priority.color,
+                            percentage: (count / total) * 100
+                        });
+                    });
+
+                    return distribution;
+                });
+
+                // 添加拖拽相关的状态
+                const draggingTask = ref(null);
+                const dragOverTask = ref(null);
 
                 // 方法
                 const loadTasks = async () => {
@@ -278,7 +616,8 @@
                     const task = {
                         id: Date.now(),
                         title: newTask.value,
-                        completed: false
+                        completed: false,
+                        priority: taskPriority
                     };
 
                     tasks.value.push(task);
@@ -287,7 +626,20 @@
                 };
 
                 const toggleTask = async (task) => {
+                    // 切换任务状态
                     task.completed = !task.completed;
+                    
+                    // 添加动画效果
+                    const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
+                    if (taskElement) {
+                        taskElement.style.transition = 'transform 0.2s ease';
+                        taskElement.style.transform = 'scale(1.02)';
+                        setTimeout(() => {
+                            taskElement.style.transform = 'scale(1)';
+                        }, 200);
+                    }
+
+                    // 保存到本地存储
                     await saveTasks();
                 };
 
@@ -297,6 +649,67 @@
                         tasks.value.splice(index, 1);
                         await saveTasks();
                     }
+                };
+
+                const getPriorityLabel = (priority) => {
+                    const priorityObj = priorities.find(p => p.value === priority);
+                    return priorityObj ? priorityObj.label : '未知优先级';
+                };
+
+                // 拖拽开始
+                const dragStart = (event, task) => {
+                    draggingTask.value = task;
+                    event.dataTransfer.effectAllowed = 'move';
+                    // 设置拖拽时的半透明效果
+                    setTimeout(() => {
+                        event.target.classList.add('dragging');
+                    }, 0);
+                };
+
+                // 拖拽结束
+                const dragEnd = (event) => {
+                    event.target.classList.remove('dragging');
+                    draggingTask.value = null;
+                    dragOverTask.value = null;
+                };
+
+                // 拖拽经过
+                const dragOver = (event, task) => {
+                    if (draggingTask.value?.id !== task.id) {
+                        dragOverTask.value = task;
+                    }
+                };
+
+                // 拖拽离开
+                const dragLeave = (event, task) => {
+                    if (dragOverTask.value?.id === task.id) {
+                        dragOverTask.value = null;
+                    }
+                };
+
+                // 放置处理
+                const drop = async (event, targetTask) => {
+                    event.preventDefault();
+                    if (!draggingTask.value || draggingTask.value.id === targetTask.id) {
+                        return;
+                    }
+
+                    // 获取源任务和目标任务的索引
+                    const sourceIndex = tasks.value.findIndex(t => t.id === draggingTask.value.id);
+                    const targetIndex = tasks.value.findIndex(t => t.id === targetTask.id);
+
+                    if (sourceIndex !== -1 && targetIndex !== -1) {
+                        // 从数组中移除源任务
+                        const [movedTask] = tasks.value.splice(sourceIndex, 1);
+                        // 将任务插入到目标位置
+                        tasks.value.splice(targetIndex, 0, movedTask);
+                        // 保存更新后的任务列表
+                        await saveTasks();
+                    }
+
+                    // 重置拖拽状态
+                    draggingTask.value = null;
+                    dragOverTask.value = null;
                 };
 
                 // 生命周期钩子
@@ -312,9 +725,22 @@
                     filteredTasks,
                     completedCount,
                     pendingCount,
+                    taskPriority,
+                    priorities,
                     addTask,
                     toggleTask,
-                    deleteTask
+                    deleteTask,
+                    getPriorityLabel,
+                    dragStart,
+                    dragEnd,
+                    dragOver,
+                    dragLeave,
+                    drop,
+                    draggingTask,
+                    dragOverTask,
+                    completionRate,
+                    priorityStats,
+                    taskDistribution
                 };
             }
         }).mount('#app');
